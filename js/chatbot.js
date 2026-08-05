@@ -57,11 +57,11 @@ Netqorix was founded and is led by <strong>Sanjeev Kumar</strong> (Technical Dir
 <strong>Automation & AI Agent Services (2026 Rate Card):</strong><br><br>
 <ul>
   <li><strong>Workflow Automation (${formatPrice('₹5,000 – ₹20,000', '$180 – $750')}):</strong> Zapier / Make / n8n app integrations, auto-tasks, data sync per workflow.</li>
-  <li><strong>Rule-Based Chatbot (${formatPrice('₹15,000 – ₹40,000', '$550 – $1,500')}):</strong> FAQ & lead-capture bot for website or WhatsApp with scripted flows.</li>
+  <li><strong>Chatbot — Rule-Based (${formatPrice('₹15,000 – ₹40,000', '$550 – $1,500')}):</strong> FAQ & lead-capture bot for website or WhatsApp with scripted flows.</li>
   <li><strong>AI Agent / LLM Bot (${formatPrice('₹40,000 – ₹1,50,000', '$1,500 – $5,500')}):</strong> GPT / Claude-powered assistant, custom knowledge base, system integrations.</li>
   <li><strong>Marketing Automation (${formatPrice('₹12,000 – ₹45,000', '$450 – $1,700')}):</strong> Email / WhatsApp drip campaigns, CRM setup, automated sequences.</li>
   <li><strong>Custom Scripts / API Automation (${formatPrice('₹8,000 – ₹35,000', '$300 – $1,300')}):</strong> Data scraping, report generation, system-to-system scripts.</li>
-  <li><strong>Automation Maintenance (${formatPrice('₹3,000 – ₹8,000 / mo', '$120 – $300 / mo')}):</strong> Ongoing API fixes and tweaks.</li>
+  <li><strong>Automation Maintenance (${formatPrice('₹3,000 – ₹8,000 / mo', '$120 – $300 / mo')}):</strong> Ongoing API monitoring, fixes, and tweaks.</li>
 </ul>
 <a href="contact.html">Book a scoping call for a custom AI/Automation quote!</a>
       `
@@ -102,8 +102,35 @@ Combine with our standard web tiers for maximum visual impact! <a href="contact.
   <li><strong>Simple App (${formatPrice('₹80,000 – ₹2,00,000', '$3,000 – $7,000')}):</strong> Few screens, basic backend, cross-platform build (React Native / Flutter) for iOS & Android.</li>
   <li><strong>Mid-Complexity (${formatPrice('₹3,00,000 – ₹8,00,000', '$10,000 – $28,000')}):</strong> Auth, payment gateways, push notifications, real-time sync, user dashboard.</li>
   <li><strong>Complex / Enterprise (${formatPrice('₹10,00,000+', '$35,000+')}):</strong> Custom logic, high scale concurrency, multi-tier admin control portal.</li>
-  <li><strong>Native Premium:</strong> 1.5× – 2× base multiplier for separate dedicated native iOS (Swift) + Android (Kotlin) codebases.</li>
+  <li><strong>Native Build Premium:</strong> 1.5× – 2× base multiplier for separate dedicated native iOS (Swift) + Android (Kotlin) codebases.</li>
   <li><strong>App Store Deployment (${formatPrice('₹10,000 – ₹25,000', '$350 – $800')}):</strong> Apple App Store & Google Play Store submission and review handling.</li>
+</ul>
+      `
+    },
+    {
+      id: 'cloud_devops',
+      keywords: ['cloud', 'aws', 'gcp', 'azure', 'digitalocean', 'devops', 'infrastructure', 'server', 'hosting setup'],
+      response: () => `
+<strong>Cloud Services & Infrastructure Rates (2026):</strong><br><br>
+<ul>
+  <li><strong>Cloud Setup (one-time) (${formatPrice('₹15,000 – ₹60,000', '$500 – $2,200')}):</strong> Account/architecture setup, environments, CI/CD, security config on AWS / GCP / Azure / DO.</li>
+  <li><strong>Managed — Starter (${formatPrice('₹4,000 / mo', '$150 / mo')}):</strong> Small app / static + serverless. Monitoring, backups, SSL, patching.</li>
+  <li><strong>Managed — Business (${formatPrice('₹10,000 / mo', '$380 / mo')}):</strong> Multi-service app, autoscaling, DB management, alerts, monthly report.</li>
+  <li><strong>Managed — Scale (${formatPrice('₹25,000+ / mo', '$900+ / mo')}):</strong> High-traffic enterprise app, load balancing, DevOps, 24×7 monitoring, priority SLA.</li>
+  <li><strong>Provider Cost Markup:</strong> Actual AWS/GCP/Azure/DO usage billed at cost + ${formatPrice('15–20%', '15–20%')} management margin.</li>
+</ul>
+      `
+    },
+    {
+      id: 'maintenance_amc',
+      keywords: ['amc', 'annual maintenance', 'retainer', 'support plan', 'maintenance', 'bug fix', 'patch', 'hosting management'],
+      response: () => `
+<strong>Maintenance & Support Services (Recurring):</strong><br><br>
+<ul>
+  <li><strong>Annual Maintenance (AMC) (${formatPrice('15 – 20% / yr', '15 – 20% / yr')}):</strong> Updates, bug fixes, security patches, uptime monitoring (% of project cost / year).</li>
+  <li><strong>Retainer — Basic (${formatPrice('₹8,000 / mo', '$300 / mo')}):</strong> Up to 10 hrs/month of changes, support, minor features.</li>
+  <li><strong>Retainer — Growth (${formatPrice('₹18,000 / mo', '$650 / mo')}):</strong> Up to 25 hrs/month, priority support, ongoing feature work.</li>
+  <li><strong>Hosting Management (${formatPrice('₹3,000 – ₹6,000 / mo', '$120 – $250 / mo')}):</strong> Server management, backups, scaling, SSL renewal (excl. hosting fees).</li>
 </ul>
       `
     },
@@ -113,7 +140,7 @@ Combine with our standard web tiers for maximum visual impact! <a href="contact.
       response: () => `
 <strong>3D Modeling & Visual Asset Services:</strong><br><br>
 <ul>
-  <li><strong>Simple Model (static) (${formatPrice('₹3,00,000 – ₹12,000', '$120 – $450')}):</strong> Basic product/prop, clean topology, single texture.</li>
+  <li><strong>Simple Model (static) (${formatPrice('₹3,000 – ₹12,000', '$120 – $450')}):</strong> Basic product/prop, clean topology, single texture.</li>
   <li><strong>Detailed Model + Textures (${formatPrice('₹15,000 – ₹45,000', '$550 – $1,700')}):</strong> High-detail model, PBR textures, web/game optimized.</li>
   <li><strong>Complex / Character Model (${formatPrice('₹40,000 – ₹1,20,000', '$1,500 – $4,500')}):</strong> Character asset, rigging-ready, multi-materials.</li>
   <li><strong>Animation / Rigging (${formatPrice('₹10,000 – ₹50,000', '$380 – $1,900')}):</strong> Rig + animation cycles per model.</li>
@@ -131,8 +158,8 @@ Source files (.blend / .fbx / .glb) included on delivery!
   <li><strong>UI/UX Design (${formatPrice('₹20,000 – ₹80,000', '$700 – $2,800')}):</strong> Figma prototypes, user journeys, responsive wireframes.</li>
   <li><strong>Logo & Brand Identity (${formatPrice('₹8,000 – ₹25,000', '$300 – $900')}):</strong> Vector logo, color system, brand manual.</li>
   <li><strong>Business Card — Standard (${formatPrice('₹800 – ₹2,000', '$30 – $75')}):</strong> 1 concept, print-ready.</li>
-  <li><strong>Business Card — Premium (${formatPrice('₹2,500 – ₹6,00,0', '$90 – $220')}):</strong> 2–3 concepts, double-sided, source files.</li>
-  <li><strong>Digital / QR Business Card (${formatPrice('₹3,00,000 – ₹8,000', '$110 – $300')}):</strong> vCard tap-to-share integration.</li>
+  <li><strong>Business Card — Premium (${formatPrice('₹2,500 – ₹6,000', '$90 – $220')}):</strong> 2–3 concepts, double-sided, source files.</li>
+  <li><strong>Digital / QR Business Card (${formatPrice('₹3,000 – ₹8,000', '$110 – $300')}):</strong> vCard tap-to-share integration.</li>
   <li><strong>Payment Gateway Integration (${formatPrice('₹10,000 – ₹25,000', '$350 – $900')}):</strong> Razorpay, Stripe, PayPal, UPI with Webhooks.</li>
   <li><strong>Third-Party API Integration (${formatPrice('₹8,000 – ₹20,000', '$300 – $700')}):</strong> Per API endpoint.</li>
   <li><strong>Admin Dashboard / CMS (${formatPrice('₹25,000 – ₹90,000', '$900 – $3,200')}):</strong> Web management portal.</li>
@@ -150,9 +177,9 @@ Source files (.blend / .fbx / .glb) included on delivery!
   <li><strong>On-Page Setup (${formatPrice('₹12,000 – ₹35,000', '$450 – $1,300')}):</strong> Meta tags, schema, sitemap XML, Core Web Vitals.</li>
   <li><strong>Monthly SEO — Starter (${formatPrice('₹10,000 / mo', '$380 / mo')}):</strong> Up to 10 keywords + 2 blogs / month.</li>
   <li><strong>Monthly SEO — Growth (${formatPrice('₹22,000 / mo', '$800 / mo')}):</strong> Up to 25 keywords + 4 blogs + link building.</li>
-  <li><strong>Google Business Profile Setup (${formatPrice('₹3,00,000 – ₹8,000', '$120 – $300')}):</strong> Account verification & geotagged setup.</li>
-  <li><strong>Local SEO Retainer (${formatPrice('₹8,00,000 / mo', '$300 / mo')}):</strong> Google Maps ranking & local citations.</li>
-  <li><strong>Content / Blog Article (${formatPrice('₹1,500 – ₹4,00,0', '$60 – $150')}):</strong> SEO article (800–1,200 words).</li>
+  <li><strong>Google Business Profile Setup (${formatPrice('₹3,000 – ₹8,000', '$120 – $300')}):</strong> Account verification & geotagged setup.</li>
+  <li><strong>Local SEO Retainer (${formatPrice('₹8,000 / mo', '$300 / mo')}):</strong> Google Maps ranking & local citations.</li>
+  <li><strong>Content / Blog Article (${formatPrice('₹1,500 – ₹4,000', '$60 – $150')}):</strong> SEO article (800–1,200 words).</li>
 </ul>
       `
     },
@@ -164,9 +191,9 @@ Source files (.blend / .fbx / .glb) included on delivery!
 <ul>
   <li>💳 <strong>Payment Terms:</strong> 50% advance to start, 50% on final delivery. Retainers billed monthly in advance.</li>
   <li>🔄 <strong>Revisions:</strong> 2 rounds of design/code revisions included per milestone. Additional rounds billed hourly.</li>
-  <li>⏱️ <strong>Out-of-Scope Hourly Rate:</strong> ${formatPrice('₹800 – ₹1,500 / hr (India)', '$30 – $60 / hr (International)')} for extra work.</li>
-  <li>🔑 <strong>100% Ownership:</strong> Full source code, database scripts, graphic assets, and IP rights transferred upon final payment.</li>
-  <li>📋 <strong>Quote & Taxes:</strong> Final binding quote confirmed after a scoping call. GST / applicable taxes extra where relevant.</li>
+  <li>⏱️ <strong>Hourly Rate:</strong> ${formatPrice('₹800 – ₹1,500 / hr (India)', '$30 – $60 / hr (International)')} for out-of-scope work.</li>
+  <li>🔑 <strong>100% Ownership:</strong> Full source code and IP transferred on final payment.</li>
+  <li>📋 <strong>Quote & Taxes:</strong> Timeline & final cost confirmed after a scoping call. GST / applicable taxes extra where relevant.</li>
 </ul>
       `
     },

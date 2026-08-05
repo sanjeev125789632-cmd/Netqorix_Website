@@ -123,7 +123,7 @@
       </div>
 
       <!-- TABLE 1: WEBSITE DEVELOPMENT & DEPLOYMENT -->
-      <div class="table-block">
+      <div class="table-block" id="table-1">
         <div class="table-block-header">
           <h3>1. Website Development &amp; Deployment</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Web Engineering</span>
@@ -176,7 +176,7 @@
       </div>
 
       <!-- TABLE 2: MOBILE & WEB APP DEVELOPMENT -->
-      <div class="table-block">
+      <div class="table-block" id="table-2">
         <div class="table-block-header">
           <h3>2. Mobile &amp; Web App Development</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Cross-Platform &amp; Native</span>
@@ -224,7 +224,7 @@
       </div>
 
       <!-- TABLE 3: MAINTENANCE & SUPPORT (RECURRING) -->
-      <div class="table-block">
+      <div class="table-block" id="table-3">
         <div class="table-block-header">
           <h3>3. Maintenance &amp; Support (Recurring)</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Retainers &amp; AMC</span>
@@ -267,7 +267,7 @@
       </div>
 
       <!-- TABLE 4: CLOUD SERVICES & INFRASTRUCTURE -->
-      <div class="table-block">
+      <div class="table-block" id="table-4">
         <div class="table-block-header">
           <h3>4. Cloud Services &amp; Infrastructure</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">AWS / GCP / Azure / DO</span>
@@ -310,14 +310,82 @@
           </tbody>
         </table>
         <div class="table-footnote">
-          Footnote: Two models — fixed monthly management fees (provider usage billed separately) or pass-through provider cost + margin. Supported providers: AWS, Google Cloud, Azure, DigitalOcean, Vercel, Netlify. Starting estimates.
+          Footnote: Two models — fixed monthly management fees (provider usage billed separately) or pass-through provider cost + margin. Supported providers: AWS, Google Cloud, Azure, DigitalOcean, Vercel, Netlify. Starting estimates. Final quote depends on scope, features, and timeline.
         </div>
       </div>
 
-      <!-- TABLE 5: AUTOMATION SERVICES -->
-      <div class="table-block">
+      <!-- TABLE 5: ADD-ON SERVICES -->
+      <div class="table-block" id="table-5">
         <div class="table-block-header">
-          <h3>5. Automation Services</h3>
+          <h3>5. Add-On Services</h3>
+          <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Design &amp; Integrations</span>
+        </div>
+        <table class="pricing-table">
+          <caption>Add-On Services Rates</caption>
+          <thead>
+            <tr>
+              <th scope="col">Service Item</th>
+              <th scope="col">Deliverables &amp; Details</th>
+              <th scope="col" style="text-align: right;">Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier-name">UI/UX Design (per project)</td>
+              <td class="tier-desc">Figma design system, interactive prototypes, user journey mapping, and desktop/mobile responsive wireframes.</td>
+              <td class="tier-price"><span data-inr="₹20,000 – ₹80,000" data-usd="$700 – $2,800">₹20,000 – ₹80,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Logo &amp; Brand Identity</td>
+              <td class="tier-desc">Vector logo design, color palette, typography guidelines, brand usage manual, and asset kit.</td>
+              <td class="tier-price"><span data-inr="₹8,000 – ₹25,000" data-usd="$300 – $900">₹8,000 – ₹25,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Business Card Design — Standard</td>
+              <td class="tier-desc">1 design concept, print-ready PDF files with bleed specifications.</td>
+              <td class="tier-price"><span data-inr="₹800 – ₹2,000" data-usd="$30 – $75">₹800 – ₹2,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Business Card Design — Premium</td>
+              <td class="tier-desc">2–3 design concepts, double-sided artwork, source vector files, and special print finish setup.</td>
+              <td class="tier-price"><span data-inr="₹2,500 – ₹6,000" data-usd="$90 – $220">₹2,500 – ₹6,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Digital / QR Business Card</td>
+              <td class="tier-desc">Custom vCard webpage, tap-to-share QR integration, contact save button for mobile devices.</td>
+              <td class="tier-price"><span data-inr="₹3,000 – ₹8,000" data-usd="$110 – $300">₹3,000 – ₹8,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Payment Gateway Integration</td>
+              <td class="tier-desc">Razorpay, Stripe, PayPal, or UPI gateway integration with automated Webhooks and invoice receipts.</td>
+              <td class="tier-price"><span data-inr="₹10,000 – ₹25,000" data-usd="$350 – $900">₹10,000 – ₹25,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Third-Party API Integration (each)</td>
+              <td class="tier-desc">Integration of CRM, WhatsApp Business, SMS gateway, or custom REST/GraphQL API endpoints (per API).</td>
+              <td class="tier-price"><span data-inr="₹8,000 – ₹20,000" data-usd="$300 – $700">₹8,000 – ₹20,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Admin Dashboard / CMS</td>
+              <td class="tier-desc">Custom web admin portal for content management, user permissions, analytics, and record exports.</td>
+              <td class="tier-price"><span data-inr="₹25,000 – ₹90,000" data-usd="$900 – $3,200">₹25,000 – ₹90,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Rush Delivery</td>
+              <td class="tier-desc">Expedited project timeline execution with dedicated priority resource allocation.</td>
+              <td class="tier-price"><span data-inr="+25 – 40%" data-usd="+25 – 40%">+25 – 40%</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="table-footnote">
+          Footnote: Add-ons can be integrated into primary project proposals or contracted separately. Starting estimates. Final quote depends on scope.
+        </div>
+      </div>
+
+      <!-- TABLE 6: AUTOMATION SERVICES -->
+      <div class="table-block" id="table-6">
+        <div class="table-block-header">
+          <h3>6. Automation Services</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Efficiency &amp; Workflows</span>
         </div>
         <table class="pricing-table">
@@ -367,10 +435,10 @@
         </div>
       </div>
 
-      <!-- TABLE 6: 3D MODELING SERVICES -->
-      <div class="table-block">
+      <!-- TABLE 7: 3D MODELING SERVICES -->
+      <div class="table-block" id="table-7">
         <div class="table-block-header">
-          <h3>6. 3D Modeling Services</h3>
+          <h3>7. 3D Modeling Services</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Visual Assets &amp; Rigging</span>
         </div>
         <table class="pricing-table">
@@ -415,76 +483,8 @@
         </div>
       </div>
 
-      <!-- TABLE 7: ADD-ON SERVICES -->
-      <div class="table-block">
-        <div class="table-block-header">
-          <h3>7. Add-On Services</h3>
-          <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Design &amp; Integrations</span>
-        </div>
-        <table class="pricing-table">
-          <caption>Add-On Services Rates</caption>
-          <thead>
-            <tr>
-              <th scope="col">Service Item</th>
-              <th scope="col">Deliverables &amp; Details</th>
-              <th scope="col" style="text-align: right;">Rate</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tier-name">UI/UX Design</td>
-              <td class="tier-desc">Figma design system, interactive prototypes, user journey mapping, and desktop/mobile responsive wireframes.</td>
-              <td class="tier-price"><span data-inr="₹20,000 – ₹80,000" data-usd="$700 – $2,800">₹20,000 – ₹80,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Logo &amp; Brand Identity</td>
-              <td class="tier-desc">Vector logo design, color palette, typography guidelines, brand usage manual, and asset kit.</td>
-              <td class="tier-price"><span data-inr="₹8,000 – ₹25,000" data-usd="$300 – $900">₹8,000 – ₹25,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Business Card — Standard</td>
-              <td class="tier-desc">1 design concept, print-ready PDF files with bleed specifications.</td>
-              <td class="tier-price"><span data-inr="₹800 – ₹2,000" data-usd="$30 – $75">₹800 – ₹2,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Business Card — Premium</td>
-              <td class="tier-desc">2–3 design concepts, double-sided artwork, source vector files, and special print finish setup.</td>
-              <td class="tier-price"><span data-inr="₹2,500 – ₹6,000" data-usd="$90 – $220">₹2,500 – ₹6,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Digital / QR Business Card</td>
-              <td class="tier-desc">Custom vCard webpage, tap-to-share QR integration, contact save button for mobile devices.</td>
-              <td class="tier-price"><span data-inr="₹3,000 – ₹8,000" data-usd="$110 – $300">₹3,000 – ₹8,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Payment Gateway Integration</td>
-              <td class="tier-desc">Razorpay, Stripe, PayPal, or UPI gateway integration with automated Webhooks and invoice receipts.</td>
-              <td class="tier-price"><span data-inr="₹10,000 – ₹25,000" data-usd="$350 – $900">₹10,000 – ₹25,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Third-Party API Integration</td>
-              <td class="tier-desc">Integration of CRM, WhatsApp Business, SMS gateway, or custom REST/GraphQL API endpoints (per API).</td>
-              <td class="tier-price"><span data-inr="₹8,000 – ₹20,000" data-usd="$300 – $700">₹8,000 – ₹20,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Admin Dashboard / CMS</td>
-              <td class="tier-desc">Custom web admin portal for content management, user permissions, analytics, and record exports.</td>
-              <td class="tier-price"><span data-inr="₹25,000 – ₹90,000" data-usd="$900 – $3,200">₹25,000 – ₹90,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Rush Delivery</td>
-              <td class="tier-desc">Expedited project timeline execution with dedicated priority resource allocation.</td>
-              <td class="tier-price"><span data-inr="+25 – 40%" data-usd="+25 – 40%">+25 – 40%</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-footnote">
-          Footnote: Add-ons can be integrated into primary project proposals or contracted separately. Starting estimates. Final quote depends on scope.
-        </div>
-      </div>
-
       <!-- TABLE 8: SEO SERVICES -->
-      <div class="table-block">
+      <div class="table-block" id="table-8">
         <div class="table-block-header">
           <h3>8. SEO Services</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Organic Search &amp; GBP</span>
@@ -541,68 +541,9 @@
         </div>
       </div>
 
-<<<<<<< HEAD
-      <!-- TABLE 9: ENGAGEMENT TERMS -->
-      <div class="terms-card">
+      <!-- SECTION 9: ENGAGEMENT TERMS & CONDITIONS -->
+      <div class="terms-card" id="terms">
         <h3>9. Engagement Terms &amp; Conditions</h3>
-=======
-      <!-- TABLE 7: AUTOMATION & AI SERVICES -->
-      <div class="table-block">
-        <div class="table-block-header">
-          <h3>7. Automation &amp; AI Services</h3>
-          <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Workflow, Chatbots &amp; LLM</span>
-        </div>
-        <table class="pricing-table">
-          <caption>Automation and AI Services Rates</caption>
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>What's Included</th>
-              <th>Rate (INR / USD)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tier-name">Workflow Automation</td>
-              <td class="tier-desc">Zapier / Make / n8n — connect apps, auto-tasks, data sync (per workflow)</td>
-              <td class="tier-price"><span>₹5,000 – ₹20,000 ($180 – $750)</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Chatbot — Rule-Based</td>
-              <td class="tier-desc">FAQ / lead-capture bot for website or WhatsApp, scripted flows</td>
-              <td class="tier-price"><span>₹15,000 – ₹40,000 ($550 – $1,500)</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">AI Agent / LLM Bot</td>
-              <td class="tier-desc">GPT/Claude-powered assistant, custom knowledge base, integrations</td>
-              <td class="tier-price"><span>₹40,000 – ₹1,50,000 ($1,500 – $5,500)</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Marketing Automation</td>
-              <td class="tier-desc">Email / WhatsApp / social drip campaigns, CRM setup, sequences</td>
-              <td class="tier-price"><span>₹12,000 – ₹45,000 ($450 – $1,700)</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Custom Scripts / API Automation</td>
-              <td class="tier-desc">Data scraping, report generation, system-to-system integration (per script)</td>
-              <td class="tier-price"><span>₹8,000 – ₹35,000 ($300 – $1,300)</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Automation Maintenance</td>
-              <td class="tier-desc">Monitoring, fixes, tweaks as apps/APIs change (monthly)</td>
-              <td class="tier-price"><span>₹3,000 – ₹8,000 / mo ($120 – $300 / mo)</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-footnote">
-          Footnote: Third-party tool subscriptions (Zapier, OpenAI/LLM API, WhatsApp Business API, CRM) billed separately at cost or paid directly by client.
-        </div>
-      </div>
-
-      <!-- TABLE 8: ENGAGEMENT TERMS -->
-      <div class="terms-card">
-        <h3>8. Engagement Terms &amp; Conditions</h3>
->>>>>>> 7a6f55601b30622fb295f8b03b6aa8a8450a8e08
         <ul class="terms-list">
           <li class="terms-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
