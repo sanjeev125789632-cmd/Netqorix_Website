@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const progress = Math.min(elapsed / duration, 1);
         // Ease out quad
         const easedProgress = progress * (2 - progress);
-        const currentVal = Math.floor(target * easedProgress * Math.pow(10, decimals)) / Math.pow(10, decimals);
+        const currentVal = Math.round(target * easedProgress * Math.pow(10, decimals)) / Math.pow(10, decimals);
         
         el.textContent = `${prefix}${currentVal.toFixed(decimals)}${suffix}`;
 
@@ -212,6 +212,13 @@ document.addEventListener('DOMContentLoaded', () => {
         content.style.maxHeight = content.scrollHeight + 'px';
         button.setAttribute('aria-expanded', 'true');
       }
+    });
+  });
+
+  // Recompute accordion height on resize for active items
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.faq-item.active .faq-content').forEach(content => {
+      content.style.maxHeight = content.scrollHeight + 'px';
     });
   });
 
@@ -316,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Check minimum time-on-form threshold (anti-bot)
       const timeElapsed = Date.now() - formStartTime;
-      if (timeElapsed < 2500) {
+      if (timeElapsed < 800) {
         console.warn('Submission too fast, likely bot.');
         window.location.href = 'thanks.html';
         return;

@@ -421,6 +421,12 @@ p:last-child {
 }
 
 @media (max-width: 992px) {
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: rgba(240, 239, 244, 0.98);
+  }
+
   .mobile-nav-toggle {
     display: flex;
     border-radius: var(--radius-sm);
@@ -437,18 +443,19 @@ p:last-child {
     left: 0;
     right: 0;
     bottom: 0;
+    width: 100%;
     height: calc(100vh - var(--header-height));
-    background-color: rgba(240, 239, 244, 0.98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    height: calc(100dvh - var(--header-height));
+    background-color: var(--color-paper);
     flex-direction: column;
     align-items: flex-start;
-    padding: 2rem 1.5rem;
-    gap: 1.25rem;
+    padding: 2rem 1.5rem 3rem 1.5rem;
+    gap: 1rem;
     transform: translateX(100%);
     transition: transform var(--transition-base);
     box-shadow: var(--shadow-lg);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     z-index: 9999;
   }
 
@@ -457,11 +464,12 @@ p:last-child {
   }
 
   .nav-link {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 600;
     width: 100%;
     display: block;
-    padding: 0.625rem 0;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
   }
 
   .nav-mobile-cta-item {
@@ -485,8 +493,17 @@ p:last-child {
     display: none;
   }
 
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
   .header-actions {
     gap: 0.5rem;
+  }
+
+  .currency-option {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -621,6 +638,37 @@ p:last-child {
   border-top: 1px solid var(--color-border);
   font-size: 0.875rem;
   color: var(--color-muted);
+}
+
+@media (max-width: 576px) {
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .ledger-card {
+    padding: 1.25rem 1rem;
+  }
+  .ledger-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .ledger-row {
+    padding: 0.75rem 0.875rem;
+  }
+  .ledger-footer-note {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
 }
 
 .hero-meta-item {
@@ -1013,9 +1061,16 @@ p:last-child {
 @media (max-width: 576px) {
   .pricing-header-bar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 1rem;
     padding: 1rem 1.25rem;
+  }
+
+  .table-block-header {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
 
