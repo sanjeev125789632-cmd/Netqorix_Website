@@ -285,8 +285,6 @@ p:last-child {
   top: 0;
   z-index: 1000;
   background-color: rgba(240, 239, 244, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border-subtle);
   height: var(--header-height);
   display: flex;
