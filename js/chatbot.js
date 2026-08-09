@@ -221,7 +221,7 @@ Visit our full <a href="pricing.html">Transparent Service Charges page</a> or <a
       keywords: ['contact', 'call', 'email', 'phone', 'reach', 'meeting', 'scoping', 'book', 'address', 'office', 'whatsapp'],
       response: () => `
 <strong>Contact Netqorix Engineering Team:</strong><br><br>
-📧 <strong>Email:</strong> <a href="mailto:hello@netqorix.com">hello@netqorix.com</a> | <a href="mailto:sanjeev125789632@gmail.com">sanjeev125789632@gmail.com</a><br>
+📧 <strong>Email:</strong> <a href="mailto:sanjeev125789632@gmail.com">sanjeev125789632@gmail.com</a><br>
 📞 <strong>Phone / WhatsApp:</strong> <a href="tel:+918369532924">+91 83695 32924</a><br>
 📍 <strong>Location:</strong> Mumbai, India (Serving clients worldwide)<br><br>
 🚀 <a href="contact.html" style="font-weight: 700;">Click here to book a free 30-minute scoping call</a>
@@ -266,7 +266,7 @@ You can ask me about:
   <li>📜 <strong>Engagement Terms & Payment Policy</strong></li>
   <li>👨‍💻 <strong>Founder & Direct Contact Info</strong></li>
 </ul>
-Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at <a href="mailto:hello@netqorix.com">hello@netqorix.com</a> or <a href="tel:+918369532924">+91 83695 32924</a>.
+Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a href="tel:+918369532924">+91 83695 32924</a>.
     `;
   }
 

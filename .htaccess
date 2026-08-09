@@ -1,0 +1,25 @@
+# Netqorix Server Configuration & Clean URLs
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect index.html to domain root (301 Permanent)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+  RewriteRule ^index\.html$ https://netqorix.com/ [R=301,L]
+
+  # Redirect any request ending in .html to clean URL (301 Permanent)
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.*)\.html\ HTTP/
+  RewriteRule ^(.*)\.html$ https://netqorix.com/$1 [R=301,L]
+
+  # Serve existing files and directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Serve clean URLs by appending .html internally
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # Custom 404 Error Document
+  ErrorDocument 404 /404.html
+</IfModule>

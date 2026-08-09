@@ -1,3 +1,5 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "liveServer.settings.file": "index.html",
+    "liveServer.settings.root": "/"
 }

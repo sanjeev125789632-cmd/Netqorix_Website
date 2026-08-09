@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Production Lead Capture Endpoint & Access Key
   const ACCESS_KEY = '21a04abe-eff7-4856-a921-1d630b0ae2a6';
   const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-  const CONTACT_EMAIL = 'hello@netqorix.com,sanjeev125789632@gmail.com';
+  const CONTACT_EMAIL = 'sanjeev125789632@gmail.com';
 
   /* ==========================================================================
      1. STICKY HEADER & MOBILE NAVIGATION
@@ -406,5 +406,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
+
+  /* ==========================================================================
+     8. SCROLL-TRIGGERED REVEAL ANIMATIONS
+     ========================================================================== */
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    revealElements.forEach(el => el.classList.add('is-visible'));
+  }
 });
+
 
