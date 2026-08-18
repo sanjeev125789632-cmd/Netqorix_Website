@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Production Lead Capture Endpoint & Access Key
   const ACCESS_KEY = '21a04abe-eff7-4856-a921-1d630b0ae2a6';
   const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-  const CONTACT_EMAIL = 'sanjeev125789632@gmail.com';
+  const CONTACT_EMAIL = 'netqorix@gmail.com';
 
   /* ==========================================================================
      1. STICKY HEADER & MOBILE NAVIGATION

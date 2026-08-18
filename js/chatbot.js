@@ -46,7 +46,7 @@ Netqorix was founded and is led by <strong>Sanjeev Kumar</strong> (Technical Dir
   <li><strong>Direct Engineering Access:</strong> Work directly with senior developers, avoiding account manager delays.</li>
 </ul>
 <strong>Trusted Clients:</strong> Alok S Kumar & Co (Chartered Accountants), Bharat Infra Solar, NAVANA Architects, SS EXIM Global.<br><br>
-📫 Direct Founder Email: <a href="mailto:sanjeev125789632@gmail.com">sanjeev125789632@gmail.com</a><br>
+📫 Direct Founder Email: <a href="mailto:netqorix@gmail.com">netqorix@gmail.com</a><br>
 📞 Call / WhatsApp: <a href="tel:+918369532924">+91 83695 32924</a>
       `
     },
@@ -221,7 +221,7 @@ Visit our full <a href="pricing.html">Transparent Service Charges page</a> or <a
       keywords: ['contact', 'call', 'email', 'phone', 'reach', 'meeting', 'scoping', 'book', 'address', 'office', 'whatsapp'],
       response: () => `
 <strong>Contact Netqorix Engineering Team:</strong><br><br>
-📧 <strong>Email:</strong> <a href="mailto:sanjeev125789632@gmail.com">sanjeev125789632@gmail.com</a><br>
+📧 <strong>Email:</strong> <a href="mailto:netqorix@gmail.com">netqorix@gmail.com</a><br>
 📞 <strong>Phone / WhatsApp:</strong> <a href="tel:+918369532924">+91 83695 32924</a><br>
 📍 <strong>Location:</strong> Mumbai, India (Serving clients worldwide)<br><br>
 🚀 <a href="contact.html" style="font-weight: 700;">Click here to book a free 30-minute scoping call</a>
