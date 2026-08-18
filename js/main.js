@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
   // Production Lead Capture Endpoint & Access Key
-  const ACCESS_KEY = '21a04abe-eff7-4856-a921-1d630b0ae2a6';
+  const ACCESS_KEY = 'dfb47309-848e-47a9-a2c0-30ff4a8df0fc';
   const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
   const CONTACT_EMAIL = 'netqorix@gmail.com';
 
