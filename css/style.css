@@ -2276,3 +2276,16 @@ a.client-logo-item:hover {
     display: none !important;
   }
 }
+
+/* Client screenshot proof grid + CTA hierarchy */
+.hero-risk-reversal{margin:.75rem 0 0;font-weight:700;color:var(--color-ink)}
+.client-showcase-section{padding:4rem 0;background:var(--color-paper-light)}
+.client-showcase-kicker{text-align:center;color:var(--color-primary);font-weight:700;margin-bottom:.5rem}
+.client-showcase-section h2{text-align:center;margin-bottom:2rem}
+.client-screenshot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.client-screenshot-card{overflow:hidden;background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+.client-screenshot-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--color-border)}
+.client-screenshot-card__body{padding:1rem}.client-screenshot-card__body h3{font-size:1.05rem;margin-bottom:.4rem}.client-screenshot-card__body p{font-size:.9rem;margin-bottom:.75rem}.client-screenshot-card__body a{font-weight:700;color:var(--color-primary)}
+a[href^="https://wa.me/"][class*="btn"]{background:#c4e000!important;color:#171126!important;border-color:#c4e000!important}
+@media(max-width:900px){.client-screenshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.client-showcase-section{padding:2.75rem 0}.client-screenshot-grid{grid-template-columns:1fr}}
