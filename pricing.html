@@ -24,7 +24,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 
-    <script type="application/ld+json">
+      <!-- TODO: Replace the placeholder organization sameAs URLs below with the verified Netqorix Google Business Profile, company LinkedIn, and GitHub organization URLs. -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -35,7 +36,9 @@
       "url": "https://www.netqorix.com/",
       "logo": "https://www.netqorix.com/Netqorix_Logo.png",
       "sameAs": [
-        "https://www.linkedin.com/in/sanjeev-yadav-46592a258"
+        "https://www.google.com/maps/place/TODO-NETQORIX-GOOGLE-BUSINESS-PROFILE",
+        "https://www.linkedin.com/company/TODO-NETQORIX",
+        "https://github.com/TODO-NETQORIX"
       ],
       "contactPoint": {
         "@type": "ContactPoint",
@@ -49,6 +52,9 @@
           "English",
           "Hindi"
         ]
+      },
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
       }
     },
     {
@@ -66,6 +72,90 @@
           "position": 2,
           "name": "Pricing",
           "item": "https://www.netqorix.com/pricing"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.netqorix.com/#founder",
+      "name": "Sanjeev Yadav",
+      "url": "https://www.netqorix.com/about",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjeev-yadav-46592a258"
+      ],
+      "worksFor": {
+        "@id": "https://www.netqorix.com/#organization"
+      }
+    },
+    {
+      "@type": "OfferCatalog",
+      "@id": "https://www.netqorix.com/pricing#packages",
+      "name": "Netqorix Website Packages",
+      "url": "https://www.netqorix.com/pricing",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "@id": "https://www.netqorix.com/pricing#starter-offer",
+          "name": "Starter",
+          "description": "5-page business site, mobile-ready, contact form, SSL, live in 10 days.",
+          "priceCurrency": "INR",
+          "price": "15000",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.netqorix.com/pricing#packages",
+          "seller": {
+            "@id": "https://www.netqorix.com/#organization"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Starter Website Package",
+            "provider": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://www.netqorix.com/pricing#growth-offer",
+          "name": "Growth",
+          "description": "Up to 15 pages, CMS, SEO setup, Google Business Profile, and analytics.",
+          "priceCurrency": "INR",
+          "price": "45000",
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.netqorix.com/pricing#packages",
+          "seller": {
+            "@id": "https://www.netqorix.com/#organization"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Growth Website Package",
+            "provider": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "@id": "https://www.netqorix.com/pricing#custom-offer",
+          "name": "Custom",
+          "description": "Web app, portal, e-commerce, integrations, and cloud deployment.",
+          "priceCurrency": "INR",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "minPrice": "120000"
+          },
+          "availability": "https://schema.org/InStock",
+          "url": "https://www.netqorix.com/pricing#packages",
+          "seller": {
+            "@id": "https://www.netqorix.com/#organization"
+          },
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Digital Product Package",
+            "provider": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          }
         }
       ]
     }

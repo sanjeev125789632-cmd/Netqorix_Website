@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="css/chatbot.css">
 
   <!-- Structured Data JSON-LD -->
-    <script type="application/ld+json">
+      <!-- TODO: Replace the placeholder organization sameAs URLs below with the verified Netqorix Google Business Profile, company LinkedIn, and GitHub organization URLs. -->
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
@@ -39,7 +40,9 @@
       "url": "https://www.netqorix.com/",
       "logo": "https://www.netqorix.com/Netqorix_Logo.png",
       "sameAs": [
-        "https://www.linkedin.com/in/sanjeev-yadav-46592a258"
+        "https://www.google.com/maps/place/TODO-NETQORIX-GOOGLE-BUSINESS-PROFILE",
+        "https://www.linkedin.com/company/TODO-NETQORIX",
+        "https://github.com/TODO-NETQORIX"
       ],
       "contactPoint": {
         "@type": "ContactPoint",
@@ -53,6 +56,9 @@
           "English",
           "Hindi"
         ]
+      },
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
       }
     },
     {
@@ -83,6 +89,18 @@
         }
       ],
       "parentOrganization": {
+        "@id": "https://www.netqorix.com/#organization"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.netqorix.com/#founder",
+      "name": "Sanjeev Yadav",
+      "url": "https://www.netqorix.com/about",
+      "sameAs": [
+        "https://www.linkedin.com/in/sanjeev-yadav-46592a258"
+      ],
+      "worksFor": {
         "@id": "https://www.netqorix.com/#organization"
       }
     }
