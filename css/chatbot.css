@@ -452,3 +452,10 @@
     right: 0;
   }
 }
+
+/* Lift the launcher clear of the sticky mobile CTA bar (< 768px) */
+@media (max-width: 767px) {
+  #netqorix-chatbot {
+    bottom: calc(56px + 1rem + env(safe-area-inset-bottom, 0px));
+  }
+}
