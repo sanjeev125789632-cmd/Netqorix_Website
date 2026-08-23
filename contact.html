@@ -8,12 +8,12 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <title>Contact Us &amp; Book Scoping Call — Netqorix</title>
-  <meta name="description" content="Book a free scoping call with Netqorix engineering lead. Direct email:  Phone: +91 83695 32924. Mumbai, India.">
+  <title>Contact Us — Get a Fixed Quote in 24 Hours | Netqorix</title>
+  <meta name="description" content="Tell us what you need and get a fixed quote within 24 hours. WhatsApp or call +91 83695 32924, Mumbai, India. Send your requirement now.">
   <link rel="canonical" href="https://netqorix.com/contact.html">
 
-  <meta property="og:title" content="Contact Us &amp; Book Scoping Call — Netqorix">
-  <meta property="og:description" content="Get a fixed quote and technical proposal within 24 hours. Direct contact details and scoping booking form.">
+  <meta property="og:title" content="Contact Us — Get a Fixed Quote in 24 Hours | Netqorix">
+  <meta property="og:description" content="Tell us what you need and get a fixed quote within 24 hours. WhatsApp or call +91 83695 32924, Mumbai, India. Send your requirement now.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://netqorix.com/contact.html">
 
@@ -125,6 +125,9 @@
 
         <!-- FORM CARD -->
         <div class="lead-form-card">
+          <p style="margin-bottom: 1.25rem;">
+            <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-accent" style="width: 100%;">WhatsApp your requirement</a>
+          </p>
           <form id="lead-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
             <input type="hidden" name="access_key" value="dfb47309-848e-47a9-a2c0-30ff4a8df0fc">
             <!-- Honeypot Field -->
@@ -133,51 +136,65 @@
             <div class="form-grid">
               <div class="form-group">
                 <label for="name" class="form-label">Full Name *</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Alok Kumar" required>
+                <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Alok Kumar" autocomplete="name" required>
               </div>
 
               <div class="form-group">
-                <label for="email" class="form-label">Work Email *</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="name@company.com" required>
-              </div>
-
-              <div class="form-group">
-                <label for="company" class="form-label">Company Name *</label>
-                <input type="text" id="company" name="company" class="form-control" placeholder="e.g. NAVANA Architects" required>
-              </div>
-
-              <div class="form-group">
-                <label for="service" class="form-label">Service Interest *</label>
-                <select id="service" name="service" class="form-control" required>
-                  <option value="">Select a service category</option>
-                  <option value="Web Development & Deployment">Web Development &amp; Deployment</option>
-                  <option value="Mobile & Web App Build">Mobile &amp; Web App Build</option>
-                  <option value="Cloud Setup & Infrastructure">Cloud Setup &amp; Infrastructure</option>
-                  <option value="Maintenance & Support Retainer">Maintenance &amp; Support Retainer</option>
-                  <option value="SEO & Local Search Setup">SEO &amp; Local Search Setup</option>
-                  <option value="UI/UX & Branding Add-Ons">UI/UX &amp; Branding Add-Ons</option>
-                </select>
+                <label for="phone" class="form-label">WhatsApp Number *</label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. +91 83695 32924" inputmode="tel" autocomplete="tel" required>
               </div>
 
               <div class="form-group full-width">
-                <label for="budget" class="form-label">Estimated Budget Range *</label>
-                <select id="budget" name="budget" class="form-control" required>
-                  <option value="">Select budget range</option>
-                  <option value="₹15,000 – ₹40,000 / $500 – $1,200">₹15,000 – ₹40,000 / $500 – $1,200 (Starter Website)</option>
-                  <option value="₹50,000 – ₹1,50,000 / $1,800 – $5,000">₹50,000 – ₹1,50,000 / $1,800 – $5,000 (Dynamic Custom Site)</option>
-                  <option value="₹80,000 – ₹2,00,000 / $3,000 – $7,000">₹80,000 – ₹2,00,000 / $3,000 – $7,000 (Simple Mobile App)</option>
-                  <option value="₹2,00,000+ / $6,500+">₹2,00,000+ / $6,500+ (E-Commerce / Enterprise App)</option>
-                </select>
-              </div>
-
-              <div class="form-group full-width">
-                <label for="message" class="form-label">Project Requirements *</label>
-                <textarea id="message" name="message" class="form-control" rows="4" placeholder="Briefly describe your goals, required features, or target launch date..." required></textarea>
+                <label for="message" class="form-label">What do you need? *</label>
+                <textarea id="message" name="message" class="form-control" rows="4" placeholder="e.g. A 5-page website for my solar business, live before Diwali." required></textarea>
               </div>
             </div>
 
+            <details class="form-optional">
+              <summary class="form-optional-summary">Add project details (optional)</summary>
+              <div class="form-optional-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Work Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="name@company.com" autocomplete="email">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="company" class="form-label">Company Name</label>
+                    <input type="text" id="company" name="company" class="form-control" placeholder="e.g. NAVANA Architects" autocomplete="organization">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="service" class="form-label">Service Interest</label>
+                    <select id="service" name="service" class="form-control">
+                      <option value="">Select a service category</option>
+                      <option value="Web Development & Deployment">Web Development &amp; Deployment</option>
+                      <option value="Mobile & Web App Build">Mobile &amp; Web App Build</option>
+                      <option value="Cloud Setup & Infrastructure">Cloud Setup &amp; Infrastructure</option>
+                      <option value="Maintenance & Support Retainer">Maintenance &amp; Support Retainer</option>
+                      <option value="SEO & Local Search Setup">SEO &amp; Local Search Setup</option>
+                      <option value="UI/UX & Branding Add-Ons">UI/UX &amp; Branding Add-Ons</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="budget" class="form-label">Budget Guide</label>
+                    <select id="budget" name="budget" class="form-control">
+                      <option value="">Prefer not to say</option>
+                      <option value="Starter — ₹15,000 / $500">Starter &mdash; ₹15,000 / $500</option>
+                      <option value="Growth — ₹45,000 / $1,500">Growth &mdash; ₹45,000 / $1,500</option>
+                      <option value="Custom — from ₹1,20,000 / $4,000">Custom &mdash; from ₹1,20,000 / $4,000</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </details>
+
             <div style="margin-top: 1.5rem;">
-              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Book a free scoping call</button>
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Get my quote in 24 hours</button>
+              <p style="font-size: 0.8125rem; color: var(--color-muted); margin-top: 0.75rem; text-align: center;">
+                Three fields is all we need. Fixed quote back within 24 business hours.
+              </p>
             </div>
           </form>
         </div>
@@ -186,6 +203,9 @@
 
     </div>
   </main>
+
+  <!-- FRESHNESS STRIP — edit this single line to update the latest launch -->
+  <div class="freshness-strip"><div class="container"><p>Latest launch: <a href="https://bharatinfrassociate.com/" target="_blank" rel="noopener">bharatinfrassociate.com</a> &mdash; August 2026</p></div></div>
 
   <!-- SITE FOOTER -->
   <footer class="site-footer">
@@ -200,6 +220,7 @@
             </div>
           </a>
           <p>Transparent, project-based pricing for digital products built to scale. Serving founders and leaders across India and internationally.</p>
+          <p class="footer-cta"><a href="contact.html" class="btn btn-accent btn-sm">Book a free scoping call</a></p>
         </div>
 
         <div class="footer-col">
@@ -241,6 +262,18 @@
       </div>
     </div>
   </footer>
+
+  <!-- STICKY MOBILE CTA BAR (visible below 768px) -->
+  <div class="mobile-cta-bar" role="region" aria-label="Quick contact">
+    <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="mobile-cta-bar__btn mobile-cta-bar__btn--wa">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.39c0-4.54 3.7-8.24 8.26-8.24zm-2.2 4.1c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34.99 2.5c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:+918369532924" class="mobile-cta-bar__btn mobile-cta-bar__btn--call">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      Call +91 83695 32924
+    </a>
+  </div>
 
   <script src="js/main.js" defer></script>
   <script src="js/chatbot.js" defer></script>

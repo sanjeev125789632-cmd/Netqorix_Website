@@ -284,6 +284,13 @@ document.addEventListener('DOMContentLoaded', () => {
           isValid = false;
           errorMessage = 'Please enter a valid work email address.';
         }
+      } else if (input.type === 'tel' && input.value.trim()) {
+        // WhatsApp number is the primary reply channel — needs at least 8 digits
+        const digits = input.value.replace(/\D/g, '');
+        if (digits.length < 8) {
+          isValid = false;
+          errorMessage = 'Please enter a valid WhatsApp number with country or STD code.';
+        }
       }
 
       if (!isValid) {
@@ -383,14 +390,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function triggerMailtoFallback(formData) {
       const name = formData.get('name') || '';
+      const phone = formData.get('phone') || '';
       const email = formData.get('email') || '';
       const company = formData.get('company') || '';
       const service = formData.get('service') || '';
       const budget = formData.get('budget') || '';
       const message = formData.get('message') || '';
 
-      const bodyText = `Name: ${name}%0D%0AEmail: ${email}%0D%0ACompany: ${company}%0D%0AService: ${service}%0D%0ABudget: ${budget}%0D%0AMessage: ${message}`;
-      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Netqorix Scoping Request - ${encodeURIComponent(name)}&body=${bodyText}`;
+      const bodyText = `Name: ${name}%0D%0AWhatsApp: ${phone}%0D%0AEmail: ${email}%0D%0ACompany: ${company}%0D%0AService: ${service}%0D%0ABudget: ${budget}%0D%0AMessage: ${message}`;
+      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Netqorix Quote Request - ${encodeURIComponent(name)}&body=${bodyText}`;
       
       window.location.href = mailtoUrl;
       setTimeout(() => {
