@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://netqorix.com/sitemap.xml
+Sitemap: https://www.netqorix.com/sitemap.xml
