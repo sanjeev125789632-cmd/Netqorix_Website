@@ -144,7 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
   if (!SUPPORTED_CURRENCIES.includes(currentCurrency)) {
-    currentCurrency = LANGUAGE_CURRENCY[currentLanguage];
+    // First-time visitors always start with INR. Currency changes automatically
+    // only after they choose another language or manually select a currency.
+    currentCurrency = 'INR';
   }
 
   function formatConvertedUsdText(value, currency) {
