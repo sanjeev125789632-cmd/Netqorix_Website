@@ -2531,3 +2531,35 @@ body {
     transition: none;
   }
 }
+
+
+/* Translation-safe text wrapping */
+.btn,
+.hero-brand-cta,
+.footer-cta,
+.footer-cta a,
+.mobile-cta-bar__btn {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  line-height: 1.35;
+}
+.hero-brand-cta {
+  width: min(100%, 340px);
+  max-width: 340px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.footer-cta {
+  width: 100%;
+}
+.footer-cta a {
+  display: inline-block;
+}
+.mobile-cta-bar__btn {
+  flex: 1 1 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

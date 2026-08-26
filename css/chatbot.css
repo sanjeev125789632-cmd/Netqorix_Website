@@ -459,3 +459,17 @@
     bottom: calc(56px + 1rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+
+/* Keep translated chatbot labels inside the floating control */
+.nq-chat-trigger {
+  max-width: min(22rem, calc(100vw - 2rem));
+  min-width: 0;
+}
+.nq-chat-trigger-text {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  line-height: 1.2;
+}
