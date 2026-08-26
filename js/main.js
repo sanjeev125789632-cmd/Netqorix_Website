@@ -89,46 +89,211 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. DUAL CURRENCY TOGGLE (INR ⇄ USD) & PERSISTENCE
+     2. LANGUAGE & MULTI-CURRENCY LOCALIZATION
      ========================================================================== */
   const CURRENCY_STORAGE_KEY = 'netqorix_currency_pref';
-  // Deliberate default currency for first-time visitors: INR
-  let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
-  if (!currentCurrency || (currentCurrency !== 'INR' && currentCurrency !== 'USD')) {
-    currentCurrency = 'INR';
+  const LANGUAGE_STORAGE_KEY = 'netqorix_language_pref';
+  const SUPPORTED_CURRENCIES = ['INR', 'USD', 'GBP', 'EUR', 'JPY', 'KRW', 'CNY'];
+  const LANGUAGE_CURRENCY = {
+    en: 'USD',
+    es: 'EUR',
+    de: 'EUR',
+    it: 'EUR',
+    ja: 'JPY',
+    ko: 'KRW',
+    zh: 'CNY'
+  };
+  const CURRENCY_META = {
+    INR: { label: '₹ INR', locale: 'en-IN', rate: 1 },
+    USD: { label: '$ USD', locale: 'en-US', rate: 1 },
+    GBP: { label: '£ GBP', locale: 'en-GB', rate: 0.74 },
+    EUR: { label: '€ EUR', locale: 'de-DE', rate: 0.86 },
+    JPY: { label: '¥ JPY', locale: 'ja-JP', rate: 147 },
+    KRW: { label: '₩ KRW', locale: 'ko-KR', rate: 1390 },
+    CNY: { label: '¥ CNY', locale: 'zh-CN', rate: 7.12 }
+  };
+  const LANGUAGE_OPTIONS = [
+    ['en', 'English'],
+    ['es', 'Español'],
+    ['de', 'Deutsch'],
+    ['it', 'Italiano'],
+    ['ja', '日本語'],
+    ['ko', '한국어'],
+    ['zh-CN', '中文']
+  ];
+
+  function normalizedLanguage(language) {
+    return language === 'zh-CN' ? 'zh' : language;
   }
 
-  function applyCurrency(curr) {
-    currentCurrency = curr;
-    localStorage.setItem(CURRENCY_STORAGE_KEY, curr);
+  function displayLanguage(language) {
+    return language === 'zh' ? 'zh-CN' : language;
+  }
 
-    // Update active state on all currency option buttons across the DOM
-    const inrBtns = document.querySelectorAll('.currency-option[data-currency="INR"]');
-    const usdBtns = document.querySelectorAll('.currency-option[data-currency="USD"]');
+  function readGoogleLanguageCookie() {
+    const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
+    return match ? normalizedLanguage(decodeURIComponent(match[1])) : '';
+  }
 
-    inrBtns.forEach(btn => btn.classList.toggle('active', curr === 'INR'));
-    usdBtns.forEach(btn => btn.classList.toggle('active', curr === 'USD'));
+  let currentLanguage = normalizedLanguage(
+    localStorage.getItem(LANGUAGE_STORAGE_KEY) || readGoogleLanguageCookie() || 'en'
+  );
+  if (!Object.prototype.hasOwnProperty.call(LANGUAGE_CURRENCY, currentLanguage)) {
+    currentLanguage = 'en';
+  }
 
-    // Update all price elements in the DOM
-    const priceElements = document.querySelectorAll('[data-inr][data-usd]');
-    priceElements.forEach(el => {
-      const inrVal = el.getAttribute('data-inr');
-      const usdVal = el.getAttribute('data-usd');
-      el.textContent = (curr === 'INR') ? inrVal : usdVal;
+  let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
+  if (!SUPPORTED_CURRENCIES.includes(currentCurrency)) {
+    currentCurrency = LANGUAGE_CURRENCY[currentLanguage];
+  }
+
+  function formatConvertedUsdText(value, currency) {
+    if (currency === 'USD') return value;
+    const meta = CURRENCY_META[currency];
+    return value.replace(/\$\s?([\d,]+)/g, (match, amount) => {
+      const usd = Number(amount.replace(/,/g, ''));
+      if (!Number.isFinite(usd)) return match;
+      const converted = usd * meta.rate;
+      const rounding = currency === 'JPY' || currency === 'KRW'
+        ? (converted >= 100000 ? 10000 : 1000)
+        : (converted >= 10000 ? 100 : converted >= 1000 ? 10 : 1);
+      const rounded = Math.round(converted / rounding) * rounding;
+      return new Intl.NumberFormat(meta.locale, {
+        style: 'currency',
+        currency,
+        currencyDisplay: 'narrowSymbol',
+        maximumFractionDigits: 0
+      }).format(rounded);
     });
   }
 
-  // Initialize currency on page load
-  applyCurrency(currentCurrency);
+  function applyCurrency(currency, persist = true) {
+    if (!SUPPORTED_CURRENCIES.includes(currency)) return;
+    currentCurrency = currency;
+    if (persist) localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
 
-  // Global event delegation for currency buttons
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.currency-option');
-    if (btn) {
-      const selected = btn.getAttribute('data-currency');
-      if (selected && (selected === 'INR' || selected === 'USD')) {
-        applyCurrency(selected);
-      }
+    document.querySelectorAll('.currency-option').forEach(button => {
+      button.classList.toggle('active', button.dataset.currency === currency);
+    });
+    document.querySelectorAll('.currency-select').forEach(select => {
+      select.value = currency;
+    });
+
+    document.querySelectorAll('[data-inr][data-usd]').forEach(element => {
+      const inrValue = element.getAttribute('data-inr');
+      const usdValue = element.getAttribute('data-usd');
+      element.textContent = currency === 'INR'
+        ? inrValue
+        : formatConvertedUsdText(usdValue, currency);
+    });
+  }
+
+  function setTranslationCookie(language) {
+    const translatedLanguage = displayLanguage(language);
+    const cookieValue = language === 'en' ? '' : `/en/${translatedLanguage}`;
+    const expiry = language === 'en' ? 'Thu, 01 Jan 1970 00:00:00 GMT' : 'Fri, 31 Dec 2038 23:59:59 GMT';
+    document.cookie = `googtrans=${cookieValue}; path=/; expires=${expiry}; SameSite=Lax`;
+    if (location.hostname.endsWith('netqorix.com')) {
+      document.cookie = `googtrans=${cookieValue}; domain=.netqorix.com; path=/; expires=${expiry}; SameSite=Lax`;
+    }
+  }
+
+  function createSelect(className, label, options, selectedValue) {
+    const wrapper = document.createElement('label');
+    wrapper.className = 'locale-field notranslate';
+    const accessibleLabel = document.createElement('span');
+    accessibleLabel.className = 'sr-only';
+    accessibleLabel.textContent = label;
+    const select = document.createElement('select');
+    select.className = className;
+    select.setAttribute('aria-label', label);
+    options.forEach(([value, text]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = text;
+      select.appendChild(option);
+    });
+    select.value = selectedValue;
+    wrapper.append(accessibleLabel, select);
+    return wrapper;
+  }
+
+  function installLocaleControls() {
+    const languageField = createSelect(
+      'language-select',
+      'Select language',
+      LANGUAGE_OPTIONS,
+      displayLanguage(currentLanguage)
+    );
+    const currencyField = createSelect(
+      'currency-select',
+      'Select currency',
+      SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
+      currentCurrency
+    );
+    const controls = document.createElement('div');
+    controls.className = 'locale-controls notranslate';
+    controls.setAttribute('aria-label', 'Language and currency');
+    controls.append(languageField, currencyField);
+
+    const headerActions = document.querySelector('.header-actions');
+    if (headerActions) {
+      const oldCurrencyControl = headerActions.querySelector('.currency-toggle-wrapper');
+      if (oldCurrencyControl) oldCurrencyControl.replaceWith(controls);
+      else headerActions.prepend(controls);
+    }
+
+    document.querySelectorAll('.pricing-header-bar .currency-toggle-wrapper').forEach(wrapper => {
+      const pricingCurrency = currencyField.cloneNode(true);
+      wrapper.replaceWith(pricingCurrency);
+    });
+
+    document.querySelectorAll('.language-select').forEach(select => {
+      select.addEventListener('change', event => {
+        const language = normalizedLanguage(event.target.value);
+        currentLanguage = language;
+        localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+        applyCurrency(LANGUAGE_CURRENCY[language]);
+        setTranslationCookie(language);
+        window.location.reload();
+      });
+    });
+    document.querySelectorAll('.currency-select').forEach(select => {
+      select.addEventListener('change', event => applyCurrency(event.target.value));
+    });
+  }
+
+  window.googleTranslateElementInit = function () {
+    if (!window.google || !window.google.translate) return;
+    new window.google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,es,de,it,ja,ko,zh-CN',
+      autoDisplay: false
+    }, 'netqorix-google-translate');
+  };
+
+  function loadTranslationEngine() {
+    const mount = document.createElement('div');
+    mount.id = 'netqorix-google-translate';
+    mount.className = 'translation-engine';
+    document.body.appendChild(mount);
+    if (document.querySelector('script[data-netqorix-translate]')) return;
+    const script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    script.dataset.netqorixTranslate = 'true';
+    document.head.appendChild(script);
+  }
+
+  document.documentElement.lang = displayLanguage(currentLanguage);
+  installLocaleControls();
+  applyCurrency(currentCurrency, false);
+  loadTranslationEngine();
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest('.currency-option');
+    if (button && SUPPORTED_CURRENCIES.includes(button.dataset.currency)) {
+      applyCurrency(button.dataset.currency);
     }
   });
 
