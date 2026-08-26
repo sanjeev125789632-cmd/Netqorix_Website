@@ -198,12 +198,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function createSelect(className, label, options, selectedValue) {
+  function languageName(language) {
+    const selected = LANGUAGE_OPTIONS.find(([code]) => normalizedLanguage(code) === normalizedLanguage(language));
+    return selected ? selected[1] : 'English';
+  }
+
+  function createSelect(className, label, options, selectedValue, visibleLabel = true) {
     const wrapper = document.createElement('label');
     wrapper.className = 'locale-field notranslate';
-    const accessibleLabel = document.createElement('span');
-    accessibleLabel.className = 'sr-only';
-    accessibleLabel.textContent = label;
+    wrapper.setAttribute('translate', 'no');
+
+    const labelText = document.createElement('span');
+    labelText.className = visibleLabel ? 'locale-field-label' : 'sr-only';
+    labelText.textContent = label;
+
     const select = document.createElement('select');
     select.className = className;
     select.setAttribute('aria-label', label);
@@ -214,38 +222,110 @@ document.addEventListener('DOMContentLoaded', () => {
       select.appendChild(option);
     });
     select.value = selectedValue;
-    wrapper.append(accessibleLabel, select);
+    wrapper.append(labelText, select);
     return wrapper;
   }
 
-  function installLocaleControls() {
-    const languageField = createSelect(
-      'language-select',
-      'Select language',
-      LANGUAGE_OPTIONS,
-      displayLanguage(currentLanguage)
-    );
-    const currencyField = createSelect(
-      'currency-select',
-      'Select currency',
-      SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
-      currentCurrency
-    );
-    const controls = document.createElement('div');
-    controls.className = 'locale-controls notranslate';
-    controls.setAttribute('aria-label', 'Language and currency');
-    controls.append(languageField, currencyField);
+  function updateLocaleSummary() {
+    document.querySelectorAll('.locale-trigger-text').forEach(element => {
+      element.textContent = `${languageName(currentLanguage)} · ${CURRENCY_META[currentCurrency].label}`;
+    });
+    document.querySelectorAll('.locale-status').forEach(element => {
+      element.textContent = `Selected: ${languageName(currentLanguage)} and ${CURRENCY_META[currentCurrency].label}`;
+    });
+  }
 
+  function closeLocalePanels(exceptSwitcher) {
+    document.querySelectorAll('.locale-switcher').forEach(switcher => {
+      if (switcher === exceptSwitcher) return;
+      const button = switcher.querySelector('.locale-trigger');
+      const panel = switcher.querySelector('.locale-panel');
+      if (button && panel) {
+        button.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      }
+    });
+  }
+
+  function createLocaleSwitcher() {
+    const switcher = document.createElement('div');
+    switcher.className = 'locale-switcher notranslate';
+    switcher.setAttribute('translate', 'no');
+
+    const panelId = `locale-panel-${Math.random().toString(36).slice(2, 9)}`;
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'locale-trigger';
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', panelId);
+    trigger.setAttribute('aria-label', 'Change website language and currency');
+    trigger.innerHTML = `
+      <svg class="locale-globe" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3C9.6 5.5 8.4 8.5 8.4 12S9.6 18.5 12 21"></path>
+      </svg>
+      <span class="locale-trigger-text"></span>
+      <svg class="locale-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m5 7.5 5 5 5-5"></path></svg>
+    `;
+
+    const panel = document.createElement('div');
+    panel.id = panelId;
+    panel.className = 'locale-panel';
+    panel.hidden = true;
+    panel.innerHTML = `
+      <div class="locale-panel-heading">
+        <span class="locale-panel-kicker">GLOBAL PREFERENCES</span>
+        <strong>Choose your region</strong>
+      </div>
+    `;
+    panel.append(
+      createSelect('language-select', 'Website language', LANGUAGE_OPTIONS, displayLanguage(currentLanguage)),
+      createSelect(
+        'currency-select',
+        'Display currency',
+        SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
+        currentCurrency
+      )
+    );
+
+    const note = document.createElement('p');
+    note.className = 'locale-note';
+    note.textContent = 'Your selection is remembered. Converted prices are estimates.';
+    const status = document.createElement('span');
+    status.className = 'locale-status sr-only';
+    status.setAttribute('aria-live', 'polite');
+    panel.append(note, status);
+    switcher.append(trigger, panel);
+
+    trigger.addEventListener('click', () => {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      closeLocalePanels(isOpen ? null : switcher);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+      panel.hidden = isOpen;
+      if (!isOpen) panel.querySelector('select')?.focus();
+    });
+
+    return switcher;
+  }
+
+  function installLocaleControls() {
     const headerActions = document.querySelector('.header-actions');
     if (headerActions) {
+      const switcher = createLocaleSwitcher();
       const oldCurrencyControl = headerActions.querySelector('.currency-toggle-wrapper');
-      if (oldCurrencyControl) oldCurrencyControl.replaceWith(controls);
-      else headerActions.prepend(controls);
+      if (oldCurrencyControl) oldCurrencyControl.replaceWith(switcher);
+      else headerActions.prepend(switcher);
     }
 
     document.querySelectorAll('.pricing-header-bar .currency-toggle-wrapper').forEach(wrapper => {
-      const pricingCurrency = currencyField.cloneNode(true);
-      wrapper.replaceWith(pricingCurrency);
+      const pricingField = createSelect(
+        'currency-select currency-select--pricing',
+        'Display currency',
+        SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
+        currentCurrency
+      );
+      pricingField.classList.add('locale-field--pricing');
+      wrapper.replaceWith(pricingField);
     });
 
     document.querySelectorAll('.language-select').forEach(select => {
@@ -259,8 +339,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
     document.querySelectorAll('.currency-select').forEach(select => {
-      select.addEventListener('change', event => applyCurrency(event.target.value));
+      select.addEventListener('change', event => {
+        applyCurrency(event.target.value);
+        updateLocaleSummary();
+      });
     });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.locale-switcher')) closeLocalePanels();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const openSwitcher = document.querySelector('.locale-trigger[aria-expanded="true"]')?.closest('.locale-switcher');
+      if (openSwitcher) {
+        closeLocalePanels();
+        openSwitcher.querySelector('.locale-trigger')?.focus();
+      }
+    });
+
+    updateLocaleSummary();
   }
 
   window.googleTranslateElementInit = function () {

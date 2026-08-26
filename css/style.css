@@ -2356,3 +2356,178 @@ body {
     font-size: 0.68rem;
   }
 }
+
+
+/* Accessible language and currency popover */
+.locale-switcher {
+  position: relative;
+  z-index: 10001;
+}
+.locale-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  max-width: 15rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-paper-light), color-mix(in srgb, var(--color-primary) 8%, var(--color-paper-light)));
+  color: var(--color-ink);
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.08);
+  cursor: pointer;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.locale-trigger:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary);
+  box-shadow: 0 7px 18px rgba(17, 24, 39, 0.12);
+}
+.locale-trigger:focus-visible,
+.language-select:focus-visible,
+.currency-select:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  outline-offset: 2px;
+}
+.locale-globe {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 1.7;
+}
+.locale-trigger-text {
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.locale-chevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: transform var(--transition-fast);
+}
+.locale-trigger[aria-expanded="true"] .locale-chevron {
+  transform: rotate(180deg);
+}
+.locale-panel {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  width: min(20rem, calc(100vw - 2rem));
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper-light);
+  box-shadow: 0 18px 45px rgba(17, 24, 39, 0.18);
+}
+.locale-panel[hidden] {
+  display: none;
+}
+.locale-panel::before {
+  content: '';
+  position: absolute;
+  top: -0.4rem;
+  right: 1.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  background: var(--color-paper-light);
+  transform: rotate(45deg);
+}
+.locale-panel-heading {
+  display: grid;
+  gap: 0.15rem;
+  margin-bottom: 0.85rem;
+}
+.locale-panel-kicker {
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.locale-panel .locale-field {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+.locale-field-label {
+  color: var(--color-ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.locale-panel .language-select,
+.locale-panel .currency-select,
+.locale-field--pricing .currency-select {
+  width: 100%;
+  max-width: none;
+  min-height: 44px;
+  padding: 0.55rem 2.25rem 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-paper);
+  font-size: 0.82rem;
+}
+.locale-note {
+  margin: 0.85rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+.locale-field--pricing {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 12rem;
+}
+@media (max-width: 992px) {
+  .locale-trigger {
+    max-width: 9.5rem;
+  }
+  .locale-trigger-text {
+    max-width: 6.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .locale-trigger {
+    width: 42px;
+    min-width: 42px;
+    padding: 0;
+    justify-content: center;
+  }
+  .locale-trigger-text,
+  .locale-trigger .locale-chevron {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .locale-panel {
+    position: fixed;
+    top: calc(var(--header-height) - 0.35rem);
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+  .locale-panel::before {
+    right: 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .locale-trigger,
+  .locale-chevron {
+    transition: none;
+  }
+}
