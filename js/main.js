@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const SUPPORTED_CURRENCIES = ['INR', 'USD', 'GBP', 'EUR', 'JPY', 'KRW', 'CNY'];
   const LANGUAGE_CURRENCY = {
     en: 'USD',
+    hi: 'INR',
     es: 'EUR',
     de: 'EUR',
     it: 'EUR',
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const LANGUAGE_OPTIONS = [
     ['en', 'English'],
+    ['hi', 'हिन्दी'],
     ['es', 'Español'],
     ['de', 'Deutsch'],
     ['it', 'Italiano'],
@@ -366,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.google || !window.google.translate) return;
     new window.google.translate.TranslateElement({
       pageLanguage: 'en',
-      includedLanguages: 'en,es,de,it,ja,ko,zh-CN',
+      includedLanguages: 'en,hi,es,de,it,ja,ko,zh-CN',
       autoDisplay: false
     }, 'netqorix-google-translate');
   };
