@@ -681,10 +681,63 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
+  /* ========================================================================
+     8. HOMEPAGE PROJECT ESTIMATOR
+     Indicative only; the final amount is confirmed after scoping.
+     ======================================================================== */
+  const estimator = document.querySelector('#project-estimator');
+  if (estimator) {
+    const pagesInput = estimator.querySelector('#est-pages');
+    const pageOutput = estimator.querySelector('#page-count-output');
+    const deliveryInput = estimator.querySelector('#est-delivery');
+    const estimateOutput = estimator.querySelector('#estimate-total');
+    const estimateCta = estimator.querySelector('#estimator-cta');
+    const featureCosts = {
+      cms: { inr: 15000, usd: 500 },
+      seo: { inr: 12000, usd: 400 },
+      commerce: { inr: 50000, usd: 1700 },
+      integrations: { inr: 25000, usd: 850 },
+      hosting: { inr: 10000, usd: 350 }
+    };
+
+    function calculateEstimate() {
+      const pages = Number(pagesInput.value);
+      let inr = 15000 + Math.max(0, pages - 5) * 2500;
+      let usd = 500 + Math.max(0, pages - 5) * 80;
+      estimator.querySelectorAll('input[name="feature"]:checked').forEach(input => {
+        inr += featureCosts[input.value].inr;
+        usd += featureCosts[input.value].usd;
+      });
+      if (deliveryInput.value === 'ten') { inr += 10000; usd += 350; }
+      if (deliveryInput.value === 'rush') { inr += 30000; usd += 1000; }
+
+      pageOutput.textContent = pages;
+      const inrText = `₹${inr.toLocaleString('en-IN')}`;
+      const usdText = `$${usd.toLocaleString('en-US')}`;
+      estimateOutput.dataset.inr = inrText;
+      estimateOutput.dataset.usd = usdText;
+      estimateOutput.textContent = currentCurrency === 'INR'
+        ? inrText
+        : formatConvertedUsdText(usdText, currentCurrency);
+
+      const selected = Array.from(estimator.querySelectorAll('input[name="feature"]:checked'))
+        .map(input => input.parentElement.textContent.trim());
+      const brief = `Hi Netqorix, I would like a fixed quote for approximately ${pages} pages${selected.length ? ` with ${selected.join(', ')}` : ''}. Preferred delivery: ${deliveryInput.options[deliveryInput.selectedIndex].text}. Indicative estimate shown: ${estimateOutput.textContent}.`;
+      estimateCta.href = `https://wa.me/918369532924?text=${encodeURIComponent(brief)}`;
+    }
+
+    estimator.addEventListener('input', calculateEstimate);
+    estimator.addEventListener('change', calculateEstimate);
+    document.addEventListener('change', event => {
+      if (event.target.matches('.currency-select')) calculateEstimate();
+    });
+    calculateEstimate();
+  }
+
   /* ==========================================================================
-     8. SCROLL-TRIGGERED REVEAL ANIMATIONS
+     9. SCROLL-TRIGGERED REVEAL ANIMATIONS
      ========================================================================== */
-  const revealElements = document.querySelectorAll('.scroll-reveal');
+  const revealElements = document.querySelectorAll('.scroll-reveal, .reveal-on-scroll');
   if (revealElements.length > 0 && 'IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -703,5 +756,4 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => el.classList.add('is-visible'));
   }
 });
-
 
