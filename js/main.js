@@ -2,7 +2,7 @@
  * Netqorix Main JavaScript Engine
  * Vanilla JS - Zero External Dependencies
  * Features: Mobile Nav, Sticky Header, Netqorix Ledger Count-Up, FAQ Accordion,
- *           INR/USD Currency Switcher, Form Validation, Anti-Spam & UTM Tracking.
+ *           Language-Aware Currency Switcher, Form Validation, Anti-Spam & UTM Tracking.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const LOCALE_PREFERENCE_KEY = 'netqorix_locale_preferences_v2';
   const EXCHANGE_RATE_CACHE_KEY = 'netqorix_exchange_rates_v1';
   const RATE_CACHE_TTL = 24 * 60 * 60 * 1000;
-  const SUPPORTED_CURRENCIES = ['INR', 'USD', 'GBP', 'EUR', 'JPY', 'KRW', 'CNY'];
+  const SUPPORTED_CURRENCIES = ['INR', 'EUR', 'JPY', 'KRW', 'CNY'];
   const basePrices = Object.freeze({
     starter: 15000,
     growth: 45000,
@@ -111,9 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     monthlySupport: 8000
   });
   const LANGUAGE_REGIONS = {
-    'en-IN': { language: 'en', region: 'IN', currency: 'INR', label: 'English · India', translate: 'en' },
-    'en-US': { language: 'en', region: 'US', currency: 'USD', label: 'English · United States', translate: 'en' },
-    'en-GB': { language: 'en', region: 'GB', currency: 'GBP', label: 'English · United Kingdom', translate: 'en' },
+    en: { language: 'en', region: '', currency: 'INR', label: 'English', translate: 'en' },
     'hi-IN': { language: 'hi', region: 'IN', currency: 'INR', label: 'हिन्दी', translate: 'hi' },
     es: { language: 'es', region: 'ES', currency: 'EUR', label: 'Español', translate: 'es' },
     de: { language: 'de', region: 'DE', currency: 'EUR', label: 'Deutsch', translate: 'de' },
@@ -124,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const CURRENCY_META = {
     INR: { label: 'INR (₹)', locale: 'en-IN', fallbackRate: 1 },
-    USD: { label: 'USD ($)', locale: 'en-US', fallbackRate: 0.012 },
-    GBP: { label: 'GBP (£)', locale: 'en-GB', fallbackRate: 0.0094 },
     EUR: { label: 'EUR (€)', locale: 'de-DE', fallbackRate: 0.0111 },
     JPY: { label: 'JPY (¥)', locale: 'ja-JP', fallbackRate: 1.8 },
     KRW: { label: 'KRW (₩)', locale: 'ko-KR', fallbackRate: 16.5 },
@@ -140,9 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const locales = navigator.languages?.length ? navigator.languages : [navigator.language || 'en-IN'];
     for (const locale of locales) {
       const normalized = locale.replace('_', '-');
-      if (/^en-GB/i.test(normalized)) return 'en-GB';
-      if (/^en-US/i.test(normalized)) return 'en-US';
-      if (/^en/i.test(normalized)) return 'en-IN';
+      if (/^en/i.test(normalized)) return 'en';
       if (/^hi/i.test(normalized)) return 'hi-IN';
       if (/^es/i.test(normalized)) return 'es';
       if (/^de/i.test(normalized)) return 'de';
@@ -151,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (/^ko/i.test(normalized)) return 'ko';
       if (/^zh/i.test(normalized)) return 'zh-CN';
     }
-    return 'en-IN';
+    return 'en';
   }
 
   function readGoogleLanguageCookie() {
@@ -168,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Ignore malformed or unavailable storage and use browser preferences.
     }
     const legacyLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || readGoogleLanguageCookie();
-    const legacyLocale = legacyLanguage === 'en' ? 'en-IN' : legacyLanguage;
+    const legacyLocale = /^en(?:-|$)/i.test(legacyLanguage) ? 'en' : legacyLanguage;
     const locale = LANGUAGE_REGIONS[legacyLocale] ? legacyLocale : browserLocalePreference();
     const config = LANGUAGE_REGIONS[locale];
     const legacyCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
@@ -313,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function languageName(locale) {
-    return LANGUAGE_REGIONS[locale]?.label || LANGUAGE_REGIONS['en-IN'].label;
+    return LANGUAGE_REGIONS[locale]?.label || LANGUAGE_REGIONS.en.label;
   }
 
   function createSelect(className, label, options, selectedValue, visibleLabel = true) {
