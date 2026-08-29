@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -202,22 +213,22 @@
             <tr>
               <td class="tier-name">Annual Maintenance (AMC)</td>
               <td class="tier-desc">Updates, bug fixes, security patches, uptime monitoring — % of project cost / year.</td>
-              <td class="tier-price"><span data-inr="15 – 20% / yr" data-usd="15 – 20% / yr">15 – 20% / yr</span></td>
+              <td class="tier-price"><span data-price-static="15 – 20% / yr">15 – 20% / yr</span></td>
             </tr>
             <tr>
               <td class="tier-name">Retainer — Basic</td>
               <td class="tier-desc">Up to 10 hrs/month of changes, support, minor features.</td>
-              <td class="tier-price"><span data-inr="₹8,000 / mo" data-usd="$300 / mo">₹8,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="8000" data-price-suffix="/ mo">₹8,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Retainer — Growth</td>
               <td class="tier-desc">Up to 25 hrs/month, priority support, ongoing feature work.</td>
-              <td class="tier-price"><span data-inr="₹18,000 / mo" data-usd="$650 / mo">₹18,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="18000" data-price-suffix="/ mo">₹18,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Hosting Management</td>
               <td class="tier-desc">Server management, backups, scaling, SSL renewal (excl. hosting fees).</td>
-              <td class="tier-price"><span data-inr="₹3,000 – ₹6,000 / mo" data-usd="$120 – $250 / mo">₹3,000 – ₹6,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="3000" data-price-max="6000" data-price-suffix="/ mo">₹3,000 – ₹6,000 / mo</span></td>
             </tr>
           </tbody>
         </table>
