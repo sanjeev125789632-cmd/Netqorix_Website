@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -157,7 +168,7 @@
         <p>Dedicated native iOS and Android builds are recommended primarily for applications requiring low-level hardware access, high-frequency Bluetooth peripheral communication, complex 3D graphic rendering, or custom audio processing.</p>
 
         <h2 style="margin-top: 2rem; margin-bottom: 1rem; color: var(--color-ink);">Service Charges Comparison</h2>
-        <p>At Netqorix, cross-platform builds start at ₹80,000 / $3,000 for simple apps, whereas separate native builds carry a 1.5× – 2× multiplier due to parallel engineering teams.</p>
+        <p>At Netqorix, cross-platform builds start at <span data-price-min="80000">₹80,000</span> for simple apps, whereas separate native builds carry a 1.5× – 2× multiplier due to parallel engineering teams.</p>
       </article>
 
       <div class="terms-card" style="margin-top: 3rem; text-align: center;">
