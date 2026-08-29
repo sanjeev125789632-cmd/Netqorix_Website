@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -202,37 +213,37 @@
             <tr>
               <td class="tier-name">SEO Audit (one-time)</td>
               <td class="tier-desc">Technical + on-page audit, keyword gap analysis, prioritized action report.</td>
-              <td class="tier-price"><span data-inr="₹8,000 – ₹20,000" data-usd="$300 – $750">₹8,000 – ₹20,000</span></td>
+              <td class="tier-price"><span data-price-min="8000" data-price-max="20000">₹8,000 – ₹20,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">On-Page Setup (one-time)</td>
               <td class="tier-desc">Meta tags, schema, sitemap, speed &amp; Core Web Vitals, GA4 + Search Console.</td>
-              <td class="tier-price"><span data-inr="₹12,000 – ₹35,000" data-usd="$450 – $1,300">₹12,000 – ₹35,000</span></td>
+              <td class="tier-price"><span data-price-min="12000" data-price-max="35000">₹12,000 – ₹35,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">Monthly SEO — Starter</td>
               <td class="tier-desc">Up to 10 keywords, on-page tweaks, 2 blogs, monthly report.</td>
-              <td class="tier-price"><span data-inr="₹10,000 / mo" data-usd="$380 / mo">₹10,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="10000" data-price-suffix="/ mo">₹10,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Monthly SEO — Growth</td>
               <td class="tier-desc">Up to 25 keywords, link building, 4 blogs, competitor tracking, priority support.</td>
-              <td class="tier-price"><span data-inr="₹22,000 / mo" data-usd="$800 / mo">₹22,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="22000" data-price-suffix="/ mo">₹22,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Google Business Profile Setup</td>
               <td class="tier-desc">One-time: create/claim &amp; verify listing, categories, photos, services, posts, optimization.</td>
-              <td class="tier-price"><span data-inr="₹3,000 – ₹8,000" data-usd="$120 – $300">₹3,000 – ₹8,000</span></td>
+              <td class="tier-price"><span data-price-min="3000" data-price-max="8000">₹3,000 – ₹8,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">Local SEO</td>
               <td class="tier-desc">Google Business Profile, local citations, maps ranking, reviews strategy.</td>
-              <td class="tier-price"><span data-inr="₹8,000 / mo" data-usd="$300 / mo">₹8,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="8000" data-price-suffix="/ mo">₹8,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Content / Blog (per article)</td>
               <td class="tier-desc">SEO-optimized 800–1,200 word article, keyword-targeted.</td>
-              <td class="tier-price"><span data-inr="₹1,500 – ₹4,000" data-usd="$60 – $150">₹1,500 – ₹4,000</span></td>
+              <td class="tier-price"><span data-price-min="1500" data-price-max="4000">₹1,500 – ₹4,000</span></td>
             </tr>
           </tbody>
         </table>
