@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -202,32 +213,32 @@
             <tr>
               <td class="tier-name">Starter</td>
               <td class="tier-desc">Static / business site, up to 5 pages, responsive design, contact form integration, basic technical SEO setup.</td>
-              <td class="tier-price"><span data-inr="₹15,000 – ₹40,000" data-usd="$500 – $1,200">₹15,000 – ₹40,000</span></td>
+              <td class="tier-price"><span data-price-min="15000" data-price-max="40000">₹15,000 – ₹40,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">Professional</td>
               <td class="tier-desc">Custom dynamic site, CMS integration, blog system, Node/Python backend, user authentication, third-party API integrations.</td>
-              <td class="tier-price"><span data-inr="₹50,000 – ₹1,50,000" data-usd="$1,800 – $5,000">₹50,000 – ₹1,50,000</span></td>
+              <td class="tier-price"><span data-price-min="50000" data-price-max="150000">₹50,000 – ₹1,50,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">E-Commerce / Web App</td>
               <td class="tier-desc">Online store, payment gateways, custom product logic, customer dashboards, admin portal, scalable backend architecture.</td>
-              <td class="tier-price"><span data-inr="₹2,00,000+" data-usd="$6,500+">₹2,00,000+</span></td>
+              <td class="tier-price"><span data-price-min="200000" data-price-suffix="+">₹2,00,000+</span></td>
             </tr>
             <tr>
               <td class="tier-name">3D / Interactive — Essential</td>
               <td class="tier-desc">Three.js / WebGL, animated 3D hero or product viewer, scroll effects (1–2 scenes).</td>
-              <td class="tier-price"><span data-inr="₹80,000 – ₹2,00,000" data-usd="$3,000 – $7,000">₹80,000 – ₹2,00,000</span></td>
+              <td class="tier-price"><span data-price-min="80000" data-price-max="200000">₹80,000 – ₹2,00,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">3D / Interactive — Immersive</td>
               <td class="tier-desc">Full 3D experience, custom models, physics/interaction, product configurator.</td>
-              <td class="tier-price"><span data-inr="₹2,50,000 – ₹6,00,000+" data-usd="$9,000 – $22,000+">₹2,50,000 – ₹6,00,000+</span></td>
+              <td class="tier-price"><span data-price-min="250000" data-price-max="600000" data-price-suffix="+">₹2,50,000 – ₹6,00,000+</span></td>
             </tr>
             <tr>
               <td class="tier-name">Deployment Setup</td>
               <td class="tier-desc">Domain pointing, cloud hosting configuration, SSL installation, CI/CD pipeline, go-live audit (one-time, per project).</td>
-              <td class="tier-price"><span data-inr="₹5,000 – ₹15,000" data-usd="$200 – $500">₹5,000 – ₹15,000</span></td>
+              <td class="tier-price"><span data-price-min="5000" data-price-max="15000">₹5,000 – ₹15,000</span></td>
             </tr>
           </tbody>
         </table>
