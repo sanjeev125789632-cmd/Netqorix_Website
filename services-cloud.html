@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -202,27 +213,27 @@
             <tr>
               <td class="tier-name">Cloud Setup (one-time)</td>
               <td class="tier-desc">Account/architecture setup, environments, CI/CD, security config on AWS / GCP / Azure / DO.</td>
-              <td class="tier-price"><span data-inr="₹15,000 – ₹60,000" data-usd="$500 – $2,200">₹15,000 – ₹60,000</span></td>
+              <td class="tier-price"><span data-price-min="15000" data-price-max="60000">₹15,000 – ₹60,000</span></td>
             </tr>
             <tr>
               <td class="tier-name">Managed — Starter</td>
               <td class="tier-desc">Small app / static + serverless. Monitoring, backups, SSL, patching.</td>
-              <td class="tier-price"><span data-inr="₹4,000 / mo" data-usd="$150 / mo">₹4,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="4000" data-price-suffix="/ mo">₹4,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Managed — Business</td>
               <td class="tier-desc">Multi-service app, autoscaling, DB management, alerts, monthly report.</td>
-              <td class="tier-price"><span data-inr="₹10,000 / mo" data-usd="$380 / mo">₹10,000 / mo</span></td>
+              <td class="tier-price"><span data-price-min="10000" data-price-suffix="/ mo">₹10,000 / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Managed — Scale</td>
               <td class="tier-desc">High-traffic / enterprise, load balancing, DevOps, 24×7 monitoring, priority SLA.</td>
-              <td class="tier-price"><span data-inr="₹25,000+ / mo" data-usd="$900+ / mo">₹25,000+ / mo</span></td>
+              <td class="tier-price"><span data-price-min="25000" data-price-suffix="+ / mo">₹25,000+ / mo</span></td>
             </tr>
             <tr>
               <td class="tier-name">Provider Cost Markup</td>
               <td class="tier-desc">Actual AWS/GCP/Azure/DO usage billed at cost + management margin.</td>
-              <td class="tier-price"><span data-inr="cost + 15–20%" data-usd="cost + 15–20%">cost + 15–20%</span></td>
+              <td class="tier-price"><span data-price-static="cost + 15–20%">cost + 15–20%</span></td>
             </tr>
           </tbody>
         </table>
