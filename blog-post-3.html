@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -163,7 +174,7 @@
 
       <div class="terms-card" style="margin-top: 3rem; text-align: center;">
         <h3>Boost Your Organic Search Rankings</h3>
-        <p style="color: #D1CCE2; margin-bottom: 1.5rem;">Explore our Google Business Profile and Local SEO packages from ₹3,000 / $120.</p>
+        <p style="color: #D1CCE2; margin-bottom: 1.5rem;">Explore our Google Business Profile and Local SEO packages from <span data-price-min="3000">₹3,000</span>.</p>
         <a href="services-seo" class="btn btn-accent btn-lg">View SEO Rates &amp; Packages</a>
       </div>
 
