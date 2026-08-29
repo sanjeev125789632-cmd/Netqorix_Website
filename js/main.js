@@ -296,10 +296,25 @@ document.addEventListener('DOMContentLoaded', () => {
     updateLocaleSummary();
   }
 
+  function clearTranslationCookies() {
+    const expired = 'Thu, 01 Jan 1970 00:00:00 GMT';
+    ['googtrans', 'googtransopt'].forEach(name => {
+      document.cookie = `${name}=; path=/; expires=${expired}; Max-Age=0; SameSite=Lax`;
+      if (location.hostname.endsWith('netqorix.com')) {
+        document.cookie = `${name}=; domain=.netqorix.com; path=/; expires=${expired}; Max-Age=0; SameSite=Lax`;
+        document.cookie = `${name}=; domain=netqorix.com; path=/; expires=${expired}; Max-Age=0; SameSite=Lax`;
+      }
+    });
+  }
+
   function setTranslationCookie(locale) {
     const translatedLanguage = LANGUAGE_REGIONS[locale].translate;
-    const cookieValue = translatedLanguage === 'en' ? '' : `/en/${translatedLanguage}`;
-    const expiry = translatedLanguage === 'en' ? 'Thu, 01 Jan 1970 00:00:00 GMT' : 'Fri, 31 Dec 2038 23:59:59 GMT';
+    if (translatedLanguage === 'en') {
+      clearTranslationCookies();
+      return;
+    }
+    const cookieValue = `/en/${translatedLanguage}`;
+    const expiry = 'Fri, 31 Dec 2038 23:59:59 GMT';
     document.cookie = `googtrans=${cookieValue}; path=/; expires=${expiry}; SameSite=Lax`;
     if (location.hostname.endsWith('netqorix.com')) {
       document.cookie = `googtrans=${cookieValue}; domain=.netqorix.com; path=/; expires=${expiry}; SameSite=Lax`;
@@ -460,7 +475,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // selecting its empty option. Reload once after clearing its cookie
         // so English always renders from the original English HTML.
         if (config.translate === 'en') {
-          window.location.reload();
+          const cleanUrl = new URL(window.location.href);
+          cleanUrl.searchParams.set('_nqlang', `en-${Date.now()}`);
+          window.location.replace(cleanUrl.toString());
           return;
         }
 
@@ -582,6 +599,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.documentElement.lang = currentLanguage;
+  if (currentLanguage === 'en') {
+    clearTranslationCookies();
+    const cleanUrl = new URL(window.location.href);
+    if (cleanUrl.searchParams.has('_nqlang')) {
+      cleanUrl.searchParams.delete('_nqlang');
+      window.history.replaceState(null, '', `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
+    }
+  }
   installLocaleControls();
   installPricingDisclosure();
   updateStructuredData();
