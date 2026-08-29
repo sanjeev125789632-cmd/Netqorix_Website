@@ -458,12 +458,9 @@ document.addEventListener('DOMContentLoaded', () => {
         preferenceState.region = config.region;
         document.documentElement.lang = locale;
         setTranslationCookie(locale);
-        if (!preferenceState.currencyManuallySelected) {
-          applyCurrency(config.currency, { manual: false });
-        } else {
-          persistPreferenceState();
-          updateLocaleSummary();
-        }
+        // A language/region choice always resets pricing to that market's
+        // mapped currency. Visitors can still override currency afterwards.
+        applyCurrency(config.currency, { manual: false });
 
         const googleSelect = document.querySelector('.goog-te-combo');
         if (googleSelect) {
