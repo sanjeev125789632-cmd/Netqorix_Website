@@ -5,9 +5,8 @@
     (() => {
       try {
         const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
-        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
-        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
-        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        const supportedCurrencies = ['INR', 'EUR', 'JPY', 'KRW', 'CNY'];
+        document.documentElement.dataset.preferredCurrency = supportedCurrencies.includes(saved?.currency) ? saved.currency : 'INR';
         setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
       } catch (error) {}
     })();
@@ -133,7 +132,6 @@
         <div class="currency-toggle-wrapper">
           <div class="currency-toggle-btn" role="radiogroup" aria-label="Currency Selector">
             <button type="button" class="currency-option active" data-currency="INR" aria-label="Switch to Indian Rupee">₹ INR</button>
-            <button type="button" class="currency-option" data-currency="USD" aria-label="Switch to US Dollar">$ USD</button>
           </div>
         </div>
         <a href="contact" class="btn btn-primary btn-header">Book a free scoping call</a>
