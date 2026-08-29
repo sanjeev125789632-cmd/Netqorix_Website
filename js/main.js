@@ -456,6 +456,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // mapped currency. Visitors can still override currency afterwards.
         applyCurrency(config.currency, { manual: false });
 
+        // Google Translate cannot reliably restore the source language by
+        // selecting its empty option. Reload once after clearing its cookie
+        // so English always renders from the original English HTML.
+        if (config.translate === 'en') {
+          window.location.reload();
+          return;
+        }
+
         const googleSelect = document.querySelector('.goog-te-combo');
         if (googleSelect) {
           googleSelect.value = config.translate === 'en' ? '' : config.translate;
