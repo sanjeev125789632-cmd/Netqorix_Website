@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isOpen = navMenu.classList.contains('open');
       if (isOpen) {
         closeMobileNav();
@@ -67,7 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close menu when clicking outside header
     document.addEventListener('click', (e) => {
-      if (header && !header.contains(e.target) && navMenu.classList.contains('open')) {
+      if (!navMenu.classList.contains('open')) return;
+      if (!e.target.isConnected) return;
+      if (mobileToggle.contains(e.target)) return;
+
+      if (header && !header.contains(e.target)) {
         closeMobileNav();
       }
     });
@@ -756,4 +761,3 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => el.classList.add('is-visible'));
   }
 });
-
