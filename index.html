@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -268,9 +279,9 @@
       <div class="ee-grid ee-section__intro"><p class="ee-kicker">03 / FIXED SCOPE</p><div><h2 id="pricing-title">Pricing that reads like<br>a scope document.</h2><p>Compare the baseline. Final scope and price are confirmed before production begins.</p></div></div>
       <div class="pricing-layout">
         <div class="scope-sheet" aria-label="Netqorix pricing packages">
-          <article><header><span>PACKAGE / 01</span><h3>Starter</h3><strong data-inr="₹15,000" data-usd="$500">₹15,000</strong></header><p>5-page business website, mobile-ready layout, contact form, SSL and 10-day launch.</p><footer>50% to start · 50% on delivery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20am%20interested%20in%20the%20Starter%20package" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
-          <article><header><span>PACKAGE / 02</span><h3>Growth</h3><strong data-inr="₹45,000" data-usd="$1,500">₹45,000</strong></header><p>Up to 15 pages, CMS, SEO setup, Google Business Profile and analytics.</p><footer>50% to start · 50% on delivery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20am%20interested%20in%20the%20Growth%20package" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
-          <article><header><span>PACKAGE / 03</span><h3>Custom</h3><strong data-inr="from ₹1,20,000" data-usd="from $4,000">from ₹1,20,000</strong></header><p>Web application, portal, e-commerce, integrations and production cloud deployment.</p><footer>Fixed after discovery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20custom%20project%20quote" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
+          <article><header><span>PACKAGE / 01</span><h3>Starter</h3><strong data-price-min="15000">₹15,000</strong></header><p>5-page business website, mobile-ready layout, contact form, SSL and 10-day launch.</p><footer>50% to start · 50% on delivery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20am%20interested%20in%20the%20Starter%20package" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
+          <article><header><span>PACKAGE / 02</span><h3>Growth</h3><strong data-price-min="45000">₹45,000</strong></header><p>Up to 15 pages, CMS, SEO setup, Google Business Profile and analytics.</p><footer>50% to start · 50% on delivery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20am%20interested%20in%20the%20Growth%20package" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
+          <article><header><span>PACKAGE / 03</span><h3>Custom</h3><strong data-price-min="120000" data-price-prefix="from ">from ₹1,20,000</strong></header><p>Web application, portal, e-commerce, integrations and production cloud deployment.</p><footer>Fixed after discovery <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20custom%20project%20quote" target="_blank" rel="noopener">Request scope ↗</a></footer></article>
         </div>
 
         <form class="project-estimator" id="project-estimator" aria-labelledby="estimator-title">
@@ -278,7 +289,7 @@
           <label>Number of pages <output id="page-count-output" for="est-pages">5</output><input id="est-pages" name="pages" type="range" min="1" max="30" value="5"></label>
           <fieldset><legend>Add requirements</legend><label><input type="checkbox" name="feature" value="cms"> CMS</label><label><input type="checkbox" name="feature" value="seo"> SEO setup</label><label><input type="checkbox" name="feature" value="commerce"> E-commerce</label><label><input type="checkbox" name="feature" value="integrations"> Integrations</label><label><input type="checkbox" name="feature" value="hosting"> Hosting / deployment</label></fieldset>
           <label>Required delivery time<select id="est-delivery" name="delivery"><option value="standard">Standard timeline</option><option value="ten">10-day priority</option><option value="rush">Under 10 days</option></select></label>
-          <div class="project-estimator__total"><span>Indicative estimate</span><strong id="estimate-total" aria-live="polite" data-inr="₹15,000" data-usd="$500">₹15,000</strong></div>
+          <div class="project-estimator__total"><span>Indicative estimate</span><strong id="estimate-total" aria-live="polite" data-price-min="15000">₹15,000</strong></div>
           <p>Final pricing is confirmed after scoping. Your fixed quote will list every deliverable.</p>
           <a id="estimator-cta" href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20would%20like%20a%20fixed%20project%20quote" target="_blank" rel="noopener" class="ee-button ee-button--ink">Request a fixed quote ↗</a>
         </form>
@@ -318,7 +329,7 @@
         <div><p class="ee-kicker">07 / START A PROJECT</p><h2 id="brief-title">Send a short brief.<br>Receive a fixed quote.</h2><p>No sales maze. Your requirement goes directly to the founder.</p><div class="brief-promise"><span>RESPONSE SLA</span><strong>Within 24 business hours</strong><p>A fixed quote after scope review.</p></div></div>
         <form id="lead-form" class="brief-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <input type="hidden" name="access_key" value="dfb47309-848e-47a9-a2c0-30ff4a8df0fc"><input type="hidden" name="subject" value="New Netqorix project brief"><input type="text" id="website-url-confirm" name="website-url-confirm" class="hp-field" tabindex="-1" autocomplete="off">
-          <div class="brief-form__grid"><label><span>01 / Full name *</span><input type="text" id="name" name="name" autocomplete="name" required></label><label><span>02 / WhatsApp number *</span><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required></label><label><span>03 / Service required *</span><select id="service" name="service" required><option value="">Select a service</option><option>Business website</option><option>Web or mobile app</option><option>Cloud infrastructure</option><option>SEO and local search</option><option>Maintenance</option></select></label><label><span>04 / Budget range</span><select id="budget" name="budget"><option value="">Choose a range</option><option>₹15,000–₹45,000</option><option>₹45,000–₹1,20,000</option><option>₹1,20,000+</option><option>Need guidance</option></select></label><label class="brief-form__wide"><span>05 / Project details *</span><textarea id="message" name="message" rows="5" placeholder="What should the website or app help your business achieve?" required></textarea></label><label class="brief-form__wide"><span>06 / Preferred launch date</span><input type="date" id="launch-date" name="preferred_launch_date"></label></div>
+          <div class="brief-form__grid"><label><span>01 / Full name *</span><input type="text" id="name" name="name" autocomplete="name" required></label><label><span>02 / WhatsApp number *</span><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required></label><label><span>03 / Service required *</span><select id="service" name="service" required><option value="">Select a service</option><option>Business website</option><option>Web or mobile app</option><option>Cloud infrastructure</option><option>SEO and local search</option><option>Maintenance</option></select></label><label><span>04 / Budget range</span><select id="budget" name="budget"><option value="">Choose a range</option><option data-price-min="15000" data-price-max="45000">₹15,000–₹45,000</option><option data-price-min="45000" data-price-max="120000">₹45,000–₹1,20,000</option><option data-price-min="120000" data-price-suffix="+">₹1,20,000+</option><option>Need guidance</option></select></label><label class="brief-form__wide"><span>05 / Project details *</span><textarea id="message" name="message" rows="5" placeholder="What should the website or app help your business achieve?" required></textarea></label><label class="brief-form__wide"><span>06 / Preferred launch date</span><input type="date" id="launch-date" name="preferred_launch_date"></label></div>
           <div id="form-status" class="form-status" role="status" aria-live="polite"></div><button type="submit" class="ee-button ee-button--ink">Send project brief →</button><p class="brief-form__note">You’ll receive a fixed quote within 24 business hours.</p>
         </form>
       </div>
