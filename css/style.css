@@ -2941,3 +2941,131 @@ body {
   .home-editorial .scope-sheet header strong { max-width: 100%; text-align: left; }
   .home-editorial .mobile-cta-bar__btn--call { font-size: .66rem; }
 }
+
+/* Mobile resilience: containment, navigation, touch, type and form hardening */
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body.nav-open { overflow: hidden; }
+
+img,
+svg,
+video,
+iframe { max-width: 100%; }
+
+img,
+video,
+iframe { height: auto; }
+
+a[href^="mailto:"],
+a[href^="tel:"] {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 992px) {
+  .nav-menu {
+    visibility: hidden;
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-bottom: calc(3rem + env(safe-area-inset-bottom));
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    transition: transform var(--transition-base), visibility 0s linear var(--transition-base);
+  }
+
+  .nav-menu.open {
+    visibility: visible;
+    transition: transform var(--transition-base), visibility 0s linear 0s;
+  }
+
+  .btn-sm,
+  .footer-links a,
+  a[href^="tel:"],
+  a[href^="mailto:"],
+  .currency-option,
+  .project-estimator label,
+  .project-estimator .checkbox-label,
+  .project-estimator .checkbox-row label { min-height: 44px; }
+
+  .footer-links a,
+  a[href^="tel:"],
+  a[href^="mailto:"],
+  .currency-option,
+  .project-estimator label,
+  .project-estimator .checkbox-label,
+  .project-estimator .checkbox-row label {
+    display: flex;
+    align-items: center;
+  }
+
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body.nav-open .mobile-cta-bar,
+  body.nav-open #netqorix-chatbot { display: none !important; }
+}
+
+@media (max-width: 767px) {
+  .project-index,
+  .project-industry,
+  .delivery-log__day,
+  .service-system__rail span,
+  .project-estimator label,
+  .project-estimator legend,
+  .project-estimator output,
+  .result-line small,
+  .production-timeline span,
+  .founder-credentials span,
+  .brief-form__grid label span,
+  .scope-sheet footer,
+  .brand-descriptor,
+  .home-editorial .nav-link { font-size: .75rem !important; }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    min-width: 0;
+    min-height: 48px;
+    font-size: 16px !important;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    min-height: 20px;
+  }
+
+  input[type="date"] {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  form button[type="submit"],
+  form input[type="submit"] {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .mobile-cta-bar {
+    right: env(safe-area-inset-right);
+    bottom: env(safe-area-inset-bottom);
+    left: env(safe-area-inset-left);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .site-footer { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
