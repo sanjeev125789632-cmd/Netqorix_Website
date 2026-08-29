@@ -473,3 +473,68 @@
   text-align: center;
   line-height: 1.2;
 }
+
+/* Mobile chat sheet and accessible touch targets */
+@media (max-width: 992px) {
+  .nq-chat-header-btn,
+  .nq-chat-send-btn,
+  .nq-chip {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  #netqorix-chatbot {
+    right: max(.75rem, env(safe-area-inset-right));
+    bottom: max(.75rem, env(safe-area-inset-bottom));
+  }
+
+  .nq-chat-trigger {
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .nq-chat-trigger-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .nq-chat-window {
+    position: fixed;
+    inset: auto 0 0 0;
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    transform-origin: bottom center;
+  }
+
+  #netqorix-chatbot:not(.open) .nq-chat-window { transform: translateY(100%); }
+  #netqorix-chatbot.open .nq-chat-window { transform: translateY(0); }
+
+  .nq-chat-header {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+
+  .nq-chat-footer {
+    padding-right: max(.85rem, env(safe-area-inset-right));
+    padding-bottom: max(.85rem, env(safe-area-inset-bottom));
+    padding-left: max(.85rem, env(safe-area-inset-left));
+  }
+}
