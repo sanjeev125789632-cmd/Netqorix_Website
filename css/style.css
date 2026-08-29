@@ -2851,3 +2851,93 @@ body {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+/* Homepage mobile hardening — intentionally last so legacy responsive rules
+   cannot override the editorial layout at narrow widths. */
+@media (max-width: 767px) {
+  .home-editorial { width: 100%; overflow-x: hidden; }
+  .home-editorial .site-header { min-height: 68px; }
+  .home-editorial .header-container { min-height: 68px; gap: .5rem; padding-inline: .75rem; }
+  .home-editorial .brand-link { min-width: 0; gap: .55rem; }
+  .home-editorial .brand-logo-img { width: 36px; height: 36px; flex: 0 0 36px; }
+  .home-editorial .brand-name { font-size: 1rem; }
+  .home-editorial .brand-descriptor { font-size: .54rem; letter-spacing: .05em; }
+  .home-editorial .header-actions { gap: .35rem; min-width: 0; }
+  .home-editorial .locale-trigger { min-width: 44px; min-height: 44px; padding-inline: .65rem; }
+  .home-editorial .mobile-nav-toggle { min-width: 44px; min-height: 44px; }
+  .home-editorial .nav-menu.open { top: 68px; max-height: calc(100dvh - 68px); overflow-y: auto; overscroll-behavior: contain; }
+
+  .home-editorial .ee-grid,
+  .home-editorial .project-ledger,
+  .home-editorial .service-system,
+  .home-editorial .pricing-layout,
+  .home-editorial .results-list,
+  .home-editorial .production-timeline,
+  .home-editorial .brief-layout,
+  .home-editorial .faq-layout { width: min(100% - 1.5rem, 1240px); }
+
+  .home-editorial .ee-hero__copy { padding: 3.25rem 0 3.5rem; }
+  .home-editorial .ee-hero h1 { max-width: 100%; font-size: clamp(3rem, 16.2vw, 5.2rem); line-height: .87; overflow-wrap: normal; word-break: normal; }
+  .home-editorial .ee-hero__lede { font-size: 1rem; }
+  .home-editorial .ee-actions { align-items: stretch; flex-direction: column; gap: 1.1rem; }
+  .home-editorial .ee-actions .ee-button { width: 100%; }
+  .home-editorial .ee-actions .ee-text-link { width: max-content; min-height: 44px; }
+  .home-editorial .ee-guarantee { align-items: flex-start; font-size: .68rem; line-height: 1.5; }
+  .home-editorial .delivery-console { overflow: hidden; }
+  .home-editorial .delivery-console__head { align-items: flex-start; flex-direction: column; }
+  .home-editorial .delivery-console::before { right: -.5rem; font-size: 9rem; }
+  .home-editorial .delivery-console__foot { gap: .25rem; font-size: .52rem; }
+
+  .home-editorial .project-media,
+  .home-editorial .project-plate--compact .project-media { min-height: clamp(15rem, 76vw, 22rem); }
+  .home-editorial .project-media--logo img { padding: clamp(1.5rem, 10vw, 3.25rem); }
+  .home-editorial .project-copy dl div { grid-template-columns: 4.5rem minmax(0, 1fr); }
+  .home-editorial .project-copy dd { min-width: 0; overflow-wrap: anywhere; }
+  .home-editorial .project-copy .ee-text-link { min-height: 44px; }
+
+  .home-editorial .service-system__rail { gap: .55rem; align-items: center; scrollbar-width: thin; }
+  .home-editorial .service-system__rail span { flex: 0 0 auto; }
+  .home-editorial .service-system__list li { min-height: 88px; }
+  .home-editorial .service-system__list a { display: grid; min-width: 44px; min-height: 44px; place-items: center; }
+
+  .home-editorial .scope-sheet header strong { max-width: 11rem; text-align: right; overflow-wrap: anywhere; }
+  .home-editorial .project-estimator { width: calc(100% - 8px); padding: 1.1rem; box-shadow: 6px 6px 0 var(--ee-blue); }
+  .home-editorial .project-estimator__head > span { position: static; display: block; margin-top: .5rem; }
+  .home-editorial .project-estimator input,
+  .home-editorial .project-estimator select { min-height: 44px; }
+  .home-editorial .project-estimator input[type="checkbox"] { min-height: auto; width: 20px; height: 20px; vertical-align: middle; }
+  .home-editorial .project-estimator fieldset label { display: flex; align-items: center; gap: .55rem; min-height: 36px; }
+
+  .home-editorial .result-line > div span { font-size: clamp(2.8rem, 15vw, 5rem); overflow-wrap: anywhere; }
+  .home-editorial .result-line blockquote { font-size: 1rem; }
+  .home-editorial .result-line figcaption img { flex: 0 0 4rem; }
+
+  .home-editorial .founder-dossier figure img { aspect-ratio: 4 / 5; object-position: center top; }
+  .home-editorial .founder-credentials span { flex: 1 1 50%; text-align: center; border-bottom: 1px solid #44474f; }
+  .home-editorial .founder-dossier .ee-button { width: 100%; }
+
+  .home-editorial .brief-form input,
+  .home-editorial .brief-form select { min-height: 48px; }
+  .home-editorial .brief-form textarea { min-height: 140px; }
+  .home-editorial .brief-form input[type="date"] { min-width: 0; max-width: 100%; }
+  .home-editorial .brief-form .ee-button { width: 100%; }
+  .home-editorial .faq-editorial .faq-button { min-height: 64px; gap: 1rem; text-align: left; }
+  .home-editorial .faq-editorial .faq-content p { padding-right: 0; }
+
+  .home-editorial .freshness-strip { padding-block: .8rem; }
+  .home-editorial .freshness-strip p { font-size: .7rem; line-height: 1.5; }
+  .home-editorial .site-footer { padding-bottom: 6.5rem; }
+  .home-editorial .mobile-cta-bar { left: 0; right: 0; bottom: 0; width: 100%; padding: .55rem max(.55rem, env(safe-area-inset-right)) calc(.55rem + env(safe-area-inset-bottom)) max(.55rem, env(safe-area-inset-left)); border-radius: 0; }
+  .home-editorial .mobile-cta-bar__btn { min-height: 48px; font-size: .73rem; }
+}
+
+@media (max-width: 359px) {
+  .home-editorial .brand-descriptor { display: none; }
+  .home-editorial .locale-trigger { padding-inline: .5rem; }
+  .home-editorial .ee-hero h1 { font-size: 2.85rem; }
+  .home-editorial .proof-ledger__inner p { font-size: .68rem; }
+  .home-editorial .project-copy h3 { font-size: 2.35rem; }
+  .home-editorial .scope-sheet header { grid-template-columns: 1fr; }
+  .home-editorial .scope-sheet header strong { max-width: 100%; text-align: left; }
+  .home-editorial .mobile-cta-bar__btn--call { font-size: .66rem; }
+}
