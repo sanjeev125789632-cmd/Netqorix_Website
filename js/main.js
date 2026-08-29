@@ -98,88 +98,195 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const CURRENCY_STORAGE_KEY = 'netqorix_currency_pref';
   const LANGUAGE_STORAGE_KEY = 'netqorix_language_pref';
+  const LOCALE_PREFERENCE_KEY = 'netqorix_locale_preferences_v2';
+  const EXCHANGE_RATE_CACHE_KEY = 'netqorix_exchange_rates_v1';
+  const RATE_CACHE_TTL = 24 * 60 * 60 * 1000;
   const SUPPORTED_CURRENCIES = ['INR', 'USD', 'GBP', 'EUR', 'JPY', 'KRW', 'CNY'];
-  const LANGUAGE_CURRENCY = {
-    en: 'USD',
-    hi: 'INR',
-    es: 'EUR',
-    de: 'EUR',
-    it: 'EUR',
-    ja: 'JPY',
-    ko: 'KRW',
-    zh: 'CNY'
+  const basePrices = Object.freeze({
+    starter: 15000,
+    growth: 45000,
+    custom: 120000,
+    mobileApp: 80000,
+    cloudSetup: 15000,
+    monthlySupport: 8000
+  });
+  const LANGUAGE_REGIONS = {
+    'en-IN': { language: 'en', region: 'IN', currency: 'INR', label: 'English · India', translate: 'en' },
+    'en-US': { language: 'en', region: 'US', currency: 'USD', label: 'English · United States', translate: 'en' },
+    'en-GB': { language: 'en', region: 'GB', currency: 'GBP', label: 'English · United Kingdom', translate: 'en' },
+    'hi-IN': { language: 'hi', region: 'IN', currency: 'INR', label: 'हिन्दी', translate: 'hi' },
+    es: { language: 'es', region: 'ES', currency: 'EUR', label: 'Español', translate: 'es' },
+    de: { language: 'de', region: 'DE', currency: 'EUR', label: 'Deutsch', translate: 'de' },
+    it: { language: 'it', region: 'IT', currency: 'EUR', label: 'Italiano', translate: 'it' },
+    ja: { language: 'ja', region: 'JP', currency: 'JPY', label: '日本語', translate: 'ja' },
+    ko: { language: 'ko', region: 'KR', currency: 'KRW', label: '한국어', translate: 'ko' },
+    'zh-CN': { language: 'zh', region: 'CN', currency: 'CNY', label: '简体中文', translate: 'zh-CN' }
   };
   const CURRENCY_META = {
-    INR: { label: '₹ INR', locale: 'en-IN', rate: 1 },
-    USD: { label: '$ USD', locale: 'en-US', rate: 1 },
-    GBP: { label: '£ GBP', locale: 'en-GB', rate: 0.74 },
-    EUR: { label: '€ EUR', locale: 'de-DE', rate: 0.86 },
-    JPY: { label: '¥ JPY', locale: 'ja-JP', rate: 147 },
-    KRW: { label: '₩ KRW', locale: 'ko-KR', rate: 1390 },
-    CNY: { label: '¥ CNY', locale: 'zh-CN', rate: 7.12 }
+    INR: { label: 'INR (₹)', locale: 'en-IN', fallbackRate: 1 },
+    USD: { label: 'USD ($)', locale: 'en-US', fallbackRate: 0.012 },
+    GBP: { label: 'GBP (£)', locale: 'en-GB', fallbackRate: 0.0094 },
+    EUR: { label: 'EUR (€)', locale: 'de-DE', fallbackRate: 0.0111 },
+    JPY: { label: 'JPY (¥)', locale: 'ja-JP', fallbackRate: 1.8 },
+    KRW: { label: 'KRW (₩)', locale: 'ko-KR', fallbackRate: 16.5 },
+    CNY: { label: 'CNY (¥)', locale: 'zh-CN', fallbackRate: 0.0867 }
   };
-  const LANGUAGE_OPTIONS = [
-    ['en', 'English'],
-    ['hi', 'हिन्दी'],
-    ['es', 'Español'],
-    ['de', 'Deutsch'],
-    ['it', 'Italiano'],
-    ['ja', '日本語'],
-    ['ko', '한국어'],
-    ['zh-CN', '中文']
-  ];
+  const LANGUAGE_OPTIONS = Object.entries(LANGUAGE_REGIONS).map(([code, config]) => [code, config.label]);
+  const FALLBACK_RATES = Object.fromEntries(
+    SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].fallbackRate])
+  );
 
-  function normalizedLanguage(language) {
-    return language === 'zh-CN' ? 'zh' : language;
-  }
-
-  function displayLanguage(language) {
-    return language === 'zh' ? 'zh-CN' : language;
+  function browserLocalePreference() {
+    const locales = navigator.languages?.length ? navigator.languages : [navigator.language || 'en-IN'];
+    for (const locale of locales) {
+      const normalized = locale.replace('_', '-');
+      if (/^en-GB/i.test(normalized)) return 'en-GB';
+      if (/^en-US/i.test(normalized)) return 'en-US';
+      if (/^en/i.test(normalized)) return 'en-IN';
+      if (/^hi/i.test(normalized)) return 'hi-IN';
+      if (/^es/i.test(normalized)) return 'es';
+      if (/^de/i.test(normalized)) return 'de';
+      if (/^it/i.test(normalized)) return 'it';
+      if (/^ja/i.test(normalized)) return 'ja';
+      if (/^ko/i.test(normalized)) return 'ko';
+      if (/^zh/i.test(normalized)) return 'zh-CN';
+    }
+    return 'en-IN';
   }
 
   function readGoogleLanguageCookie() {
     const match = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/([^;]+)/);
-    return match ? normalizedLanguage(decodeURIComponent(match[1])) : '';
+    const translated = match ? decodeURIComponent(match[1]) : '';
+    return Object.keys(LANGUAGE_REGIONS).find(code => LANGUAGE_REGIONS[code].translate === translated) || '';
   }
 
-  let currentLanguage = normalizedLanguage(
-    localStorage.getItem(LANGUAGE_STORAGE_KEY) || readGoogleLanguageCookie() || 'en'
-  );
-  if (!Object.prototype.hasOwnProperty.call(LANGUAGE_CURRENCY, currentLanguage)) {
-    currentLanguage = 'en';
+  function readPreferenceState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(LOCALE_PREFERENCE_KEY));
+      if (saved && LANGUAGE_REGIONS[saved.locale] && SUPPORTED_CURRENCIES.includes(saved.currency)) return saved;
+    } catch (error) {
+      // Ignore malformed or unavailable storage and use browser preferences.
+    }
+    const legacyLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) || readGoogleLanguageCookie();
+    const legacyLocale = legacyLanguage === 'en' ? 'en-IN' : legacyLanguage;
+    const locale = LANGUAGE_REGIONS[legacyLocale] ? legacyLocale : browserLocalePreference();
+    const config = LANGUAGE_REGIONS[locale];
+    const legacyCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
+    return {
+      locale,
+      language: config.language,
+      region: config.region,
+      currency: SUPPORTED_CURRENCIES.includes(legacyCurrency) ? legacyCurrency : config.currency,
+      currencyManuallySelected: SUPPORTED_CURRENCIES.includes(legacyCurrency)
+    };
   }
 
-  let currentCurrency = localStorage.getItem(CURRENCY_STORAGE_KEY);
-  if (!SUPPORTED_CURRENCIES.includes(currentCurrency)) {
-    // First-time visitors always start with INR. Currency changes automatically
-    // only after they choose another language or manually select a currency.
-    currentCurrency = 'INR';
+  let preferenceState = readPreferenceState();
+  let currentLanguage = preferenceState.locale;
+  let currentCurrency = preferenceState.currency;
+  let exchangeRates = { ...FALLBACK_RATES };
+  let exchangeRateTimestamp = 0;
+
+  function persistPreferenceState() {
+    localStorage.setItem(LOCALE_PREFERENCE_KEY, JSON.stringify(preferenceState));
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, preferenceState.locale);
+    localStorage.setItem(CURRENCY_STORAGE_KEY, preferenceState.currency);
   }
 
-  function formatConvertedUsdText(value, currency) {
-    if (currency === 'USD') return value;
+  function loadCachedRates() {
+    try {
+      const cached = JSON.parse(localStorage.getItem(EXCHANGE_RATE_CACHE_KEY));
+      if (cached?.rates && Number.isFinite(cached.timestamp)) {
+        exchangeRates = { ...FALLBACK_RATES, ...cached.rates, INR: 1 };
+        exchangeRateTimestamp = cached.timestamp;
+        return Date.now() - cached.timestamp < RATE_CACHE_TTL;
+      }
+    } catch (error) {
+      // Static fallbacks keep every price visible if storage is unavailable.
+    }
+    return false;
+  }
+
+  function cleanRound(value, currency) {
+    if (currency === 'INR') return Math.round(value);
+    let increment = 1;
+    if (currency === 'JPY') increment = 1000;
+    else if (currency === 'KRW') increment = value >= 100000 ? 10000 : 1000;
+    else if (currency === 'CNY') increment = value >= 10000 ? 100 : value >= 1000 ? 10 : 1;
+    else increment = value >= 1000 ? 10 : value >= 100 ? 5 : 1;
+    return Math.round(value / increment) * increment;
+  }
+
+  function convertFromINR(inrAmount, currency = currentCurrency) {
+    const amount = Number(inrAmount);
+    if (!Number.isFinite(amount)) return 0;
+    return cleanRound(amount * (exchangeRates[currency] || FALLBACK_RATES[currency]), currency);
+  }
+
+  function formatINRPrice(inrAmount, currency = currentCurrency) {
     const meta = CURRENCY_META[currency];
-    return value.replace(/\$\s?([\d,]+)/g, (match, amount) => {
-      const usd = Number(amount.replace(/,/g, ''));
-      if (!Number.isFinite(usd)) return match;
-      const converted = usd * meta.rate;
-      const rounding = currency === 'JPY' || currency === 'KRW'
-        ? (converted >= 100000 ? 10000 : 1000)
-        : (converted >= 10000 ? 100 : converted >= 1000 ? 10 : 1);
-      const rounded = Math.round(converted / rounding) * rounding;
-      return new Intl.NumberFormat(meta.locale, {
-        style: 'currency',
-        currency,
-        currencyDisplay: 'narrowSymbol',
-        maximumFractionDigits: 0
-      }).format(rounded);
+    return new Intl.NumberFormat(meta.locale, {
+      style: 'currency',
+      currency,
+      currencyDisplay: 'narrowSymbol',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(convertFromINR(inrAmount, currency));
+  }
+
+  function formatPriceElement(element, currency) {
+    if (element.dataset.priceStatic) {
+      element.textContent = element.dataset.priceStatic;
+      return;
+    }
+    const minimum = Number(element.dataset.priceMin);
+    const maximum = Number(element.dataset.priceMax);
+    if (!Number.isFinite(minimum)) return;
+    const prefix = element.dataset.pricePrefix || '';
+    const suffix = element.dataset.priceSuffix || '';
+    const formatted = Number.isFinite(maximum)
+      ? `${formatINRPrice(minimum, currency)} – ${formatINRPrice(maximum, currency)}`
+      : formatINRPrice(minimum, currency);
+    element.textContent = `${prefix}${formatted}${suffix}`;
+    if (element instanceof HTMLOptionElement) element.value = element.textContent;
+    element.setAttribute('data-display-currency', currency);
+  }
+
+  function updateStructuredData() {
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+      try {
+        const data = JSON.parse(script.textContent);
+        const visit = value => {
+          if (!value || typeof value !== 'object') return;
+          if (value['@type'] === 'Offer' || value['@type'] === 'AggregateOffer' || value.priceSpecification) {
+            if (value.priceCurrency) value.priceCurrency = 'INR';
+            if (value.priceSpecification?.priceCurrency) value.priceSpecification.priceCurrency = 'INR';
+          }
+          Object.values(value).forEach(visit);
+        };
+        visit(data);
+        script.textContent = JSON.stringify(data);
+      } catch (error) {
+        // Leave valid server-rendered schema untouched if a block is not JSON.
+      }
     });
   }
 
-  function applyCurrency(currency, persist = true) {
+  function installPricingDisclosure() {
+    if (!document.querySelector('[data-price-min]') || document.querySelector('.currency-estimate-note')) return;
+    const note = document.createElement('p');
+    note.className = 'currency-estimate-note';
+    note.textContent = 'Prices shown in currencies other than INR are estimates based on recent exchange rates. Your final fixed quote and payment currency will be confirmed before the project begins.';
+    const anchor = document.querySelector('.pricing-header-bar, .scope-sheet, .package-grid, .pricing-table, [class*="pricing"]');
+    if (anchor) anchor.insertAdjacentElement('afterend', note);
+  }
+
+  function applyCurrency(currency, { persist = true, manual = preferenceState.currencyManuallySelected } = {}) {
     if (!SUPPORTED_CURRENCIES.includes(currency)) return;
     currentCurrency = currency;
-    if (persist) localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
+    preferenceState.currency = currency;
+    preferenceState.currencyManuallySelected = manual;
+    if (persist) persistPreferenceState();
 
     document.querySelectorAll('.currency-option').forEach(button => {
       button.classList.toggle('active', button.dataset.currency === currency);
@@ -188,28 +295,25 @@ document.addEventListener('DOMContentLoaded', () => {
       select.value = currency;
     });
 
-    document.querySelectorAll('[data-inr][data-usd]').forEach(element => {
-      const inrValue = element.getAttribute('data-inr');
-      const usdValue = element.getAttribute('data-usd');
-      element.textContent = currency === 'INR'
-        ? inrValue
-        : formatConvertedUsdText(usdValue, currency);
-    });
+    document.querySelectorAll('[data-price-min], [data-price-static]').forEach(element => formatPriceElement(element, currency));
+    document.documentElement.dataset.currency = currency;
+    document.documentElement.classList.add('currency-ready');
+    document.dispatchEvent(new CustomEvent('netqorix:currencychange', { detail: { currency } }));
+    updateLocaleSummary();
   }
 
-  function setTranslationCookie(language) {
-    const translatedLanguage = displayLanguage(language);
-    const cookieValue = language === 'en' ? '' : `/en/${translatedLanguage}`;
-    const expiry = language === 'en' ? 'Thu, 01 Jan 1970 00:00:00 GMT' : 'Fri, 31 Dec 2038 23:59:59 GMT';
+  function setTranslationCookie(locale) {
+    const translatedLanguage = LANGUAGE_REGIONS[locale].translate;
+    const cookieValue = translatedLanguage === 'en' ? '' : `/en/${translatedLanguage}`;
+    const expiry = translatedLanguage === 'en' ? 'Thu, 01 Jan 1970 00:00:00 GMT' : 'Fri, 31 Dec 2038 23:59:59 GMT';
     document.cookie = `googtrans=${cookieValue}; path=/; expires=${expiry}; SameSite=Lax`;
     if (location.hostname.endsWith('netqorix.com')) {
       document.cookie = `googtrans=${cookieValue}; domain=.netqorix.com; path=/; expires=${expiry}; SameSite=Lax`;
     }
   }
 
-  function languageName(language) {
-    const selected = LANGUAGE_OPTIONS.find(([code]) => normalizedLanguage(code) === normalizedLanguage(language));
-    return selected ? selected[1] : 'English';
+  function languageName(locale) {
+    return LANGUAGE_REGIONS[locale]?.label || LANGUAGE_REGIONS['en-IN'].label;
   }
 
   function createSelect(className, label, options, selectedValue, visibleLabel = true) {
@@ -288,18 +392,21 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
     panel.append(
-      createSelect('language-select', 'Website language', LANGUAGE_OPTIONS, displayLanguage(currentLanguage)),
+      createSelect('language-select', 'Website language and region', LANGUAGE_OPTIONS, currentLanguage),
       createSelect(
         'currency-select',
         'Display currency',
-        SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
+        [
+          ['DEFAULT', `Use language default (${LANGUAGE_REGIONS[currentLanguage].currency})`],
+          ...SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label])
+        ],
         currentCurrency
       )
     );
 
     const note = document.createElement('p');
     note.className = 'locale-note';
-    note.textContent = 'Your selection is remembered. Converted prices are estimates.';
+    note.textContent = 'Your selection is remembered. Non-INR prices are indicative estimates.';
     const status = document.createElement('span');
     status.className = 'locale-status sr-only';
     status.setAttribute('aria-live', 'polite');
@@ -330,7 +437,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const pricingField = createSelect(
         'currency-select currency-select--pricing',
         'Display currency',
-        SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label]),
+        [
+          ['DEFAULT', `Use language default (${LANGUAGE_REGIONS[currentLanguage].currency})`],
+          ...SUPPORTED_CURRENCIES.map(code => [code, CURRENCY_META[code].label])
+        ],
         currentCurrency
       );
       pricingField.classList.add('locale-field--pricing');
@@ -339,18 +449,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.language-select').forEach(select => {
       select.addEventListener('change', event => {
-        const language = normalizedLanguage(event.target.value);
-        currentLanguage = language;
-        localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-        applyCurrency(LANGUAGE_CURRENCY[language]);
-        setTranslationCookie(language);
-        window.location.reload();
+        const locale = event.target.value;
+        const config = LANGUAGE_REGIONS[locale];
+        if (!config) return;
+        currentLanguage = locale;
+        preferenceState.locale = locale;
+        preferenceState.language = config.language;
+        preferenceState.region = config.region;
+        document.documentElement.lang = locale;
+        setTranslationCookie(locale);
+        if (!preferenceState.currencyManuallySelected) {
+          applyCurrency(config.currency, { manual: false });
+        } else {
+          persistPreferenceState();
+          updateLocaleSummary();
+        }
+
+        const googleSelect = document.querySelector('.goog-te-combo');
+        if (googleSelect) {
+          googleSelect.value = config.translate === 'en' ? '' : config.translate;
+          googleSelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
       });
     });
     document.querySelectorAll('.currency-select').forEach(select => {
       select.addEventListener('change', event => {
-        applyCurrency(event.target.value);
-        updateLocaleSummary();
+        if (event.target.value === 'DEFAULT') {
+          applyCurrency(LANGUAGE_REGIONS[currentLanguage].currency, { manual: false });
+        } else {
+          applyCurrency(event.target.value, { manual: true });
+        }
       });
     });
 
@@ -376,6 +504,21 @@ document.addEventListener('DOMContentLoaded', () => {
       includedLanguages: 'en,hi,es,de,it,ja,ko,zh-CN',
       autoDisplay: false
     }, 'netqorix-google-translate');
+
+    const targetLanguage = LANGUAGE_REGIONS[currentLanguage].translate;
+    let attempts = 0;
+    const applyWithoutReload = () => {
+      const googleSelect = document.querySelector('.goog-te-combo');
+      if (!googleSelect && attempts++ < 20) {
+        setTimeout(applyWithoutReload, 100);
+        return;
+      }
+      if (googleSelect && targetLanguage !== 'en' && googleSelect.value !== targetLanguage) {
+        googleSelect.value = targetLanguage;
+        googleSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    };
+    applyWithoutReload();
   };
 
   function loadTranslationEngine() {
@@ -391,15 +534,65 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(script);
   }
 
-  document.documentElement.lang = displayLanguage(currentLanguage);
+  async function refreshExchangeRates() {
+    const cacheIsFresh = loadCachedRates();
+    applyCurrency(currentCurrency, { persist: false, manual: preferenceState.currencyManuallySelected });
+    if (cacheIsFresh) return;
+
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
+      const response = await fetch('https://api.frankfurter.app/latest?from=INR', {
+        headers: { Accept: 'application/json' },
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
+      if (!response.ok) throw new Error(`Exchange-rate request failed: ${response.status}`);
+      const payload = await response.json();
+      const rates = { INR: 1 };
+      SUPPORTED_CURRENCIES.forEach(code => {
+        if (code !== 'INR' && Number.isFinite(payload.rates?.[code])) rates[code] = payload.rates[code];
+      });
+      if (Object.keys(rates).length < SUPPORTED_CURRENCIES.length) throw new Error('Exchange-rate response was incomplete');
+      exchangeRates = rates;
+      exchangeRateTimestamp = Date.now();
+      localStorage.setItem(EXCHANGE_RATE_CACHE_KEY, JSON.stringify({
+        base: 'INR',
+        rates,
+        timestamp: exchangeRateTimestamp
+      }));
+      applyCurrency(currentCurrency, { persist: false, manual: preferenceState.currencyManuallySelected });
+    } catch (error) {
+      // Cached or bundled fallback rates remain active; prices never disappear.
+    }
+  }
+
+  window.NetqorixCurrency = Object.freeze({
+    basePrices,
+    currencies: [...SUPPORTED_CURRENCIES],
+    format: formatINRPrice,
+    convert: convertFromINR,
+    getCurrency: () => currentCurrency,
+    getRateTimestamp: () => exchangeRateTimestamp,
+    formatText(inrText) {
+      return String(inrText).replace(/₹\s?([\d,]+)/g, (match, amount) => {
+        const numeric = Number(amount.replace(/,/g, ''));
+        return Number.isFinite(numeric) ? formatINRPrice(numeric) : match;
+      });
+    }
+  });
+
+  document.documentElement.lang = currentLanguage;
   installLocaleControls();
-  applyCurrency(currentCurrency, false);
+  installPricingDisclosure();
+  updateStructuredData();
+  refreshExchangeRates();
   loadTranslationEngine();
 
   document.addEventListener('click', event => {
     const button = event.target.closest('.currency-option');
     if (button && SUPPORTED_CURRENCIES.includes(button.dataset.currency)) {
-      applyCurrency(button.dataset.currency);
+      applyCurrency(button.dataset.currency, { manual: true });
     }
   });
 
@@ -698,44 +891,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const estimateOutput = estimator.querySelector('#estimate-total');
     const estimateCta = estimator.querySelector('#estimator-cta');
     const featureCosts = {
-      cms: { inr: 15000, usd: 500 },
-      seo: { inr: 12000, usd: 400 },
-      commerce: { inr: 50000, usd: 1700 },
-      integrations: { inr: 25000, usd: 850 },
-      hosting: { inr: 10000, usd: 350 }
+      cms: 15000,
+      seo: 12000,
+      commerce: 50000,
+      integrations: 25000,
+      hosting: 10000
     };
 
     function calculateEstimate() {
       const pages = Number(pagesInput.value);
-      let inr = 15000 + Math.max(0, pages - 5) * 2500;
-      let usd = 500 + Math.max(0, pages - 5) * 80;
+      let inr = basePrices.starter + Math.max(0, pages - 5) * 2500;
       estimator.querySelectorAll('input[name="feature"]:checked').forEach(input => {
-        inr += featureCosts[input.value].inr;
-        usd += featureCosts[input.value].usd;
+        inr += featureCosts[input.value];
       });
-      if (deliveryInput.value === 'ten') { inr += 10000; usd += 350; }
-      if (deliveryInput.value === 'rush') { inr += 30000; usd += 1000; }
+      if (deliveryInput.value === 'ten') inr += 10000;
+      if (deliveryInput.value === 'rush') inr += 30000;
 
       pageOutput.textContent = pages;
-      const inrText = `₹${inr.toLocaleString('en-IN')}`;
-      const usdText = `$${usd.toLocaleString('en-US')}`;
-      estimateOutput.dataset.inr = inrText;
-      estimateOutput.dataset.usd = usdText;
-      estimateOutput.textContent = currentCurrency === 'INR'
-        ? inrText
-        : formatConvertedUsdText(usdText, currentCurrency);
+      estimateOutput.dataset.priceMin = String(inr);
+      delete estimateOutput.dataset.priceMax;
+      formatPriceElement(estimateOutput, currentCurrency);
 
       const selected = Array.from(estimator.querySelectorAll('input[name="feature"]:checked'))
         .map(input => input.parentElement.textContent.trim());
-      const brief = `Hi Netqorix, I would like a fixed quote for approximately ${pages} pages${selected.length ? ` with ${selected.join(', ')}` : ''}. Preferred delivery: ${deliveryInput.options[deliveryInput.selectedIndex].text}. Indicative estimate shown: ${estimateOutput.textContent}.`;
+      const brief = `Hi Netqorix, I would like a fixed quote for approximately ${pages} pages${selected.length ? ` with ${selected.join(', ')}` : ''}. Preferred delivery: ${deliveryInput.options[deliveryInput.selectedIndex].text}. Indicative estimate shown: ${estimateOutput.textContent} (${currentCurrency}). Final quote and payment currency to be confirmed after scoping.`;
       estimateCta.href = `https://wa.me/918369532924?text=${encodeURIComponent(brief)}`;
     }
 
     estimator.addEventListener('input', calculateEstimate);
     estimator.addEventListener('change', calculateEstimate);
-    document.addEventListener('change', event => {
-      if (event.target.matches('.currency-select')) calculateEstimate();
-    });
+    document.addEventListener('netqorix:currencychange', calculateEstimate);
     calculateEstimate();
   }
 
