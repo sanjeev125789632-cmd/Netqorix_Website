@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script data-currency-preflight>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('netqorix_locale_preferences_v2'));
+        const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-IN';
+        const browserCurrency = /^en-US/i.test(locale) ? 'USD' : /^en-GB/i.test(locale) ? 'GBP' : /^(es|de|it)/i.test(locale) ? 'EUR' : /^ja/i.test(locale) ? 'JPY' : /^ko/i.test(locale) ? 'KRW' : /^zh/i.test(locale) ? 'CNY' : 'INR';
+        document.documentElement.dataset.preferredCurrency = saved?.currency || browserCurrency;
+        setTimeout(() => document.documentElement.removeAttribute('data-preferred-currency'), 3000);
+      } catch (error) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon / Brand Logo -->
@@ -163,7 +174,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Full Rate Band</span>
-              <strong data-inr="₹15,000 – ₹2,00,000+" data-usd="$500 – $6,500+">₹15,000 – ₹2,00,000+</strong>
+              <strong data-price-min="15000" data-price-max="200000" data-price-suffix="+">₹15,000 – ₹2,00,000+</strong>
             </div>
             <a href="services-web" class="btn btn-primary btn-sm" style="width: 100%;">Explore Web Services &rarr;</a>
           </div>
@@ -181,7 +192,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Full Rate Band</span>
-              <strong data-inr="₹80,000 – ₹10,00,000+" data-usd="$3,000 – $35,000+">₹80,000 – ₹10,00,000+</strong>
+              <strong data-price-min="80000" data-price-max="1000000" data-price-suffix="+">₹80,000 – ₹10,00,000+</strong>
             </div>
             <a href="services-app" class="btn btn-primary btn-sm" style="width: 100%;">Explore App Services &rarr;</a>
           </div>
@@ -199,7 +210,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Rate Band</span>
-              <strong data-inr="₹15,000 – ₹60,000" data-usd="$500 – $2,200">₹15,000 – ₹60,000</strong>
+              <strong data-price-min="15000" data-price-max="60000">₹15,000 – ₹60,000</strong>
             </div>
             <a href="services-cloud" class="btn btn-primary btn-sm" style="width: 100%;">Explore Cloud Services &rarr;</a>
           </div>
@@ -217,7 +228,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Rate Band</span>
-              <strong data-inr="₹8,000 – ₹35,000" data-usd="$300 – $1,300">₹8,000 – ₹35,000</strong>
+              <strong data-price-min="8000" data-price-max="35000">₹8,000 – ₹35,000</strong>
             </div>
             <a href="services-seo" class="btn btn-primary btn-sm" style="width: 100%;">Explore SEO Services &rarr;</a>
           </div>
@@ -235,7 +246,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Retainers From</span>
-              <strong data-inr="₹8,000 / mo" data-usd="$300 / mo">₹8,000 / mo</strong>
+              <strong data-price-min="8000" data-price-suffix="/ mo">₹8,000 / mo</strong>
             </div>
             <a href="services-maintenance" class="btn btn-primary btn-sm" style="width: 100%;">Explore Maintenance &rarr;</a>
           </div>
@@ -253,7 +264,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Add-Ons From</span>
-              <strong data-inr="₹800 – ₹90,000" data-usd="$30 – $3,200">₹800 – ₹90,000</strong>
+              <strong data-price-min="800" data-price-max="90000">₹800 – ₹90,000</strong>
             </div>
             <a href="services-addons" class="btn btn-primary btn-sm" style="width: 100%;">Explore Add-Ons &rarr;</a>
           </div>
@@ -271,7 +282,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Full Rate Band</span>
-              <strong data-inr="₹5,000 – ₹1,50,000" data-usd="$180 – $5,500">₹5,000 – ₹1,50,000</strong>
+              <strong data-price-min="5000" data-price-max="150000">₹5,000 – ₹1,50,000</strong>
             </div>
             <a href="pricing#table-6" class="btn btn-primary btn-sm" style="width: 100%;">Explore Automation Rates &rarr;</a>
           </div>
@@ -289,7 +300,7 @@
           <div>
             <div class="service-rate-tag">
               <span>Per Model Band</span>
-              <strong data-inr="₹2,500 – ₹1,20,000" data-usd="$100 – $4,500">₹2,500 – ₹1,20,000</strong>
+              <strong data-price-min="2500" data-price-max="120000">₹2,500 – ₹1,20,000</strong>
             </div>
             <a href="pricing#table-7" class="btn btn-primary btn-sm" style="width: 100%;">Explore 3D Asset Rates &rarr;</a>
           </div>
