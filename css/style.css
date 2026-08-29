@@ -3069,3 +3069,19 @@ pre {
 
   .site-footer { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
 }
+
+/* Currency is revealed after the saved/browser preference has been applied. */
+html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency-ready) [data-price-min] {
+  visibility: hidden;
+}
+
+.currency-estimate-note {
+  width: min(100% - 2rem, var(--container-max));
+  margin: 1rem auto 2rem;
+  padding: .85rem 1rem;
+  border-left: 2px solid var(--color-primary);
+  background: var(--color-primary-light);
+  color: var(--color-muted);
+  font-size: .8rem;
+  line-height: 1.55;
+}
