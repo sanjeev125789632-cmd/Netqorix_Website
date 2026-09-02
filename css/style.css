@@ -1782,6 +1782,10 @@ a.client-logo-item:hover {
 .brief-section { background: var(--ee-paper); }
 .brief-layout { width: min(100% - 2rem, 1240px); margin-inline: auto; display: grid; grid-template-columns: 5fr 7fr; gap: clamp(3rem, 8vw, 8rem); }
 .brief-layout h2 { margin: 1rem 0 1.5rem; font-size: clamp(3rem, 6vw, 6.3rem); line-height: .9; letter-spacing: -.065em; }
+.brief-contact-line { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem; }
+.brief-whatsapp-link { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; flex: 0 0 3rem; border-radius: 50%; background: #25d366; color: white; transition: transform .2s ease, box-shadow .2s ease; }
+.brief-whatsapp-link svg { width: 1.65rem; height: 1.65rem; }
+.brief-whatsapp-link:hover { color: white; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 211, 102, .25); }
 .brief-promise { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--ee-ink); }
 .brief-promise span { font: .65rem var(--font-mono); color: var(--ee-blue); }
 .brief-promise strong { display: block; margin: .8rem 0 .2rem; font-size: 1.3rem; }
