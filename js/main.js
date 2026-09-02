@@ -8,9 +8,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  // Production Lead Capture Endpoint & Access Key
-  const ACCESS_KEY = 'dfb47309-848e-47a9-a2c0-30ff4a8df0fc';
-  const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
+  // Lead capture endpoint is disabled until a secure server-side form handler is configured.
+  const FORM_ENDPOINT = '';
   const CONTACT_EMAIL = 'netqorix@gmail.com';
 
   /* ==========================================================================
@@ -851,8 +850,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const formData = new FormData(leadForm);
-      if (!formData.has('access_key')) {
-        formData.append('access_key', ACCESS_KEY);
+      if (!FORM_ENDPOINT) {
+        triggerMailtoFallback(formData);
+        return;
       }
 
       try {

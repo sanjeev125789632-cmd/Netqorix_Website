@@ -42,7 +42,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 
-      <!-- TODO: Replace the placeholder organization sameAs URLs below with the verified Netqorix Google Business Profile, company LinkedIn, and GitHub organization URLs. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,11 +52,7 @@
       "name": "Netqorix",
       "url": "https://www.netqorix.com/",
       "logo": "https://www.netqorix.com/Netqorix_Logo.png",
-      "sameAs": [
-        "https://www.google.com/maps/place/TODO-NETQORIX-GOOGLE-BUSINESS-PROFILE",
-        "https://www.linkedin.com/company/TODO-NETQORIX",
-        "https://github.com/TODO-NETQORIX"
-      ],
+      "email": "netqorix@gmail.com",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+91-83695-32924",
@@ -79,6 +74,8 @@
       "@type": "Service",
       "@id": "https://www.netqorix.com/services-web#service",
       "name": "Website Development Services Mumbai",
+      "serviceType": "Website development and deployment",
+      "description": "Fast, responsive business websites with clean code, SEO foundations, full ownership and fixed-scope delivery from Mumbai.",
       "url": "https://www.netqorix.com/services-web",
       "provider": {
         "@id": "https://www.netqorix.com/#organization"
@@ -93,17 +90,36 @@
           "name": "India"
         }
       ],
-      "priceRange": "₹₹",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "INR",
-        "priceSpecification": {
-          "@type": "PriceSpecification",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter",
           "priceCurrency": "INR",
-          "minPrice": "5000"
+          "price": "15000",
+          "url": "https://www.netqorix.com/pricing#starter-offer",
+          "availability": "https://schema.org/InStock"
         },
-        "availability": "https://schema.org/InStock"
-      }
+        {
+          "@type": "Offer",
+          "name": "Growth",
+          "priceCurrency": "INR",
+          "price": "45000",
+          "url": "https://www.netqorix.com/pricing#growth-offer",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Custom",
+          "priceCurrency": "INR",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "minPrice": "120000"
+          },
+          "url": "https://www.netqorix.com/pricing#custom-offer",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -198,7 +214,7 @@
       <!-- INLINE RATE TABLE -->
       <div class="table-block">
         <div class="table-block-header">
-          <h3>Web Development Service Charges (Effective 2026)</h3>
+          <h3>Website Packages (Effective 2026)</h3>
           <div class="currency-toggle-wrapper">
             <div class="currency-toggle-btn" role="radiogroup">
               <button type="button" class="currency-option active" data-currency="INR">₹ INR</button>
@@ -206,7 +222,7 @@
           </div>
         </div>
         <table class="pricing-table">
-          <caption>Website Development Tiers and Pricing</caption>
+          <caption>Canonical Website Packages and Pricing</caption>
           <thead>
             <tr>
               <th scope="col">Tier</th>
@@ -217,38 +233,23 @@
           <tbody>
             <tr>
               <td class="tier-name">Starter</td>
-              <td class="tier-desc">Static / business site, up to 5 pages, responsive design, contact form integration, basic technical SEO setup.</td>
-              <td class="tier-price"><span data-price-min="15000" data-price-max="40000">₹15,000 – ₹40,000</span></td>
+              <td class="tier-desc">5-page business site, mobile-ready, contact form, SSL, live in 10 days.</td>
+              <td class="tier-price"><span data-price-min="15000">₹15,000</span></td>
             </tr>
             <tr>
-              <td class="tier-name">Professional</td>
-              <td class="tier-desc">Custom dynamic site, CMS integration, blog system, Node/Python backend, user authentication, third-party API integrations.</td>
-              <td class="tier-price"><span data-price-min="50000" data-price-max="150000">₹50,000 – ₹1,50,000</span></td>
+              <td class="tier-name">Growth</td>
+              <td class="tier-desc">Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.</td>
+              <td class="tier-price"><span data-price-min="45000">₹45,000</span></td>
             </tr>
             <tr>
-              <td class="tier-name">E-Commerce / Web App</td>
-              <td class="tier-desc">Online store, payment gateways, custom product logic, customer dashboards, admin portal, scalable backend architecture.</td>
-              <td class="tier-price"><span data-price-min="200000" data-price-suffix="+">₹2,00,000+</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">3D / Interactive — Essential</td>
-              <td class="tier-desc">Three.js / WebGL, animated 3D hero or product viewer, scroll effects (1–2 scenes).</td>
-              <td class="tier-price"><span data-price-min="80000" data-price-max="200000">₹80,000 – ₹2,00,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">3D / Interactive — Immersive</td>
-              <td class="tier-desc">Full 3D experience, custom models, physics/interaction, product configurator.</td>
-              <td class="tier-price"><span data-price-min="250000" data-price-max="600000" data-price-suffix="+">₹2,50,000 – ₹6,00,000+</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Deployment Setup</td>
-              <td class="tier-desc">Domain pointing, cloud hosting configuration, SSL installation, CI/CD pipeline, go-live audit (one-time, per project).</td>
-              <td class="tier-price"><span data-price-min="5000" data-price-max="15000">₹5,000 – ₹15,000</span></td>
+              <td class="tier-name">Custom</td>
+              <td class="tier-desc">Web app, portal, e-commerce, integrations, cloud deploy.</td>
+              <td class="tier-price"><span data-price-min="120000" data-price-prefix="from " data-price-suffix="+">from ₹1,20,000+</span></td>
             </tr>
           </tbody>
         </table>
         <div class="table-footnote">
-          Footnote: Native-quality performance, mobile-first, and clean handover documentation included in every tier. Starting estimates. Final quote depends on scope, features, and timeline.
+          These are the same canonical public packages listed on the Pricing page. Final scope is confirmed before work begins; requested additions are priced separately.
         </div>
       </div>
 

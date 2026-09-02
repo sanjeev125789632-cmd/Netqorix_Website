@@ -74,16 +74,14 @@
       }
     },
     {
-      "@type": [
-        "LocalBusiness",
-        "ProfessionalService"
-      ],
-      "@id": "https://www.netqorix.com/#localbusiness",
+      "@type": "ProfessionalService",
+      "@id": "https://www.netqorix.com/#professionalservice",
       "name": "Netqorix",
       "url": "https://www.netqorix.com/",
       "image": "https://www.netqorix.com/assets/og-image.jpg",
-      "telephone": "+91-83695-32924",
-      "priceRange": "₹₹",
+      "telephone": "+91-8369532924",
+      "email": "netqorix@gmail.com",
+      "priceRange": "₹15,000–₹1,20,000+",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Mumbai",
@@ -102,6 +100,9 @@
       ],
       "parentOrganization": {
         "@id": "https://www.netqorix.com/#organization"
+      },
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
       }
     },
     {
@@ -132,17 +133,27 @@
     {
       "@type": "Question",
       "name": "Who owns the website and source code?",
-      "acceptedAnswer": {"@type": "Answer", "text": "The client receives 100% ownership of the approved source code and intellectual property after final settlement, without platform or vendor lock-in."}
+      "acceptedAnswer": {"@type": "Answer", "text": "You receive 100% ownership of the approved source code and intellectual property after final settlement. The project is handed over without platform or vendor lock-in."}
     },
     {
       "@type": "Question",
       "name": "How does fixed pricing work?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Netqorix confirms the pages, functions, integrations, content responsibilities and delivery milestones before work begins. The resulting quote is fixed for that scope."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Netqorix confirms the pages, functions, integrations, content responsibilities and delivery milestones before work begins. The resulting quote is fixed for that scope; requested additions are priced separately before implementation."}
     },
     {
       "@type": "Question",
       "name": "What happens after launch?",
-      "acceptedAnswer": {"@type": "Answer", "text": "The client receives the production website, repository, credentials and handover documentation. Optional maintenance is available without mandatory retention."}
+      "acceptedAnswer": {"@type": "Answer", "text": "You receive the production website, repository, credentials and handover documentation. Optional maintenance is available, but you are not required to retain Netqorix to keep using your website."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I inspect completed work before contacting you?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every featured project links to its live public website, and the Work section includes detailed case studies describing the published scope and results."}
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my website isn't delivered in 10 days?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Not live in 10 days? You don’t pay the balance."}
     }
   ]
 }
@@ -333,8 +344,8 @@
     <section class="ee-section brief-section" aria-labelledby="brief-title">
       <div class="brief-layout">
         <div><p class="ee-kicker">07 / START A PROJECT</p><h2 id="brief-title">Send a short brief.<br>Receive a fixed quote.</h2><p>No sales maze. Your requirement goes directly to the founder.</p><div class="brief-promise"><span>RESPONSE SLA</span><strong>Within 24 business hours</strong><p>A fixed quote after scope review.</p></div></div>
-        <form id="lead-form" class="brief-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-          <input type="hidden" name="access_key" value="dfb47309-848e-47a9-a2c0-30ff4a8df0fc"><input type="hidden" name="subject" value="New Netqorix project brief"><input type="text" id="website-url-confirm" name="website-url-confirm" class="hp-field" tabindex="-1" autocomplete="off">
+        <form id="lead-form" class="brief-form" method="POST" novalidate>
+          <input type="hidden" name="subject" value="New Netqorix project brief"><input type="text" id="website-url-confirm" name="website-url-confirm" class="hp-field" tabindex="-1" autocomplete="off">
           <div class="brief-form__grid"><label><span>01 / Full name *</span><input type="text" id="name" name="name" autocomplete="name" required></label><label><span>02 / WhatsApp number *</span><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required></label><label><span>03 / Service required *</span><select id="service" name="service" required><option value="">Select a service</option><option>Business website</option><option>Web or mobile app</option><option>Cloud infrastructure</option><option>SEO and local search</option><option>Maintenance</option></select></label><label><span>04 / Budget range</span><select id="budget" name="budget"><option value="">Choose a range</option><option data-price-min="15000" data-price-max="45000">₹15,000–₹45,000</option><option data-price-min="45000" data-price-max="120000">₹45,000–₹1,20,000</option><option data-price-min="120000" data-price-suffix="+">₹1,20,000+</option><option>Need guidance</option></select></label><label class="brief-form__wide"><span>05 / Project details *</span><textarea id="message" name="message" rows="5" placeholder="What should the website or app help your business achieve?" required></textarea></label><label class="brief-form__wide"><span>06 / Preferred launch date</span><input type="date" id="launch-date" name="preferred_launch_date"></label></div>
           <div id="form-status" class="form-status" role="status" aria-live="polite"></div><button type="submit" class="ee-button ee-button--ink">Send project brief →</button><p class="brief-form__note">You’ll receive a fixed quote within 24 business hours.</p>
         </form>
@@ -348,6 +359,7 @@
         <div class="faq-item"><button class="faq-button" aria-expanded="false"><span>How does fixed pricing work?</span><span class="faq-icon">+</span></button><div class="faq-content"><p>Netqorix confirms the pages, functions, integrations, content responsibilities and delivery milestones before work begins. The resulting quote is fixed for that scope; requested additions are priced separately before implementation.</p></div></div>
         <div class="faq-item"><button class="faq-button" aria-expanded="false"><span>What happens after launch?</span><span class="faq-icon">+</span></button><div class="faq-content"><p>You receive the production website, repository, credentials and handover documentation. Optional maintenance is available, but you are not required to retain Netqorix to keep using your website.</p></div></div>
         <div class="faq-item"><button class="faq-button" aria-expanded="false"><span>Can I inspect completed work before contacting you?</span><span class="faq-icon">+</span></button><div class="faq-content"><p>Yes. Every featured project links to its live public website, and the Work section includes detailed case studies describing the published scope and results.</p></div></div>
+        <div class="faq-item"><button class="faq-button" aria-expanded="false"><span>What happens if my website isn't delivered in 10 days?</span><span class="faq-icon">+</span></button><div class="faq-content"><p>Not live in 10 days? You don’t pay the balance.</p></div></div>
       </div></div>
     </section>
   </main>
