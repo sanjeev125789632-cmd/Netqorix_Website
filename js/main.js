@@ -1,8 +1,6 @@
 /**
- * Netqorix Main JavaScript Engine
- * Vanilla JS - Zero External Dependencies
- * Features: Mobile Nav, Sticky Header, Netqorix Ledger Count-Up, FAQ Accordion,
- *           Language-Aware Currency Switcher, Form Validation, Anti-Spam & UTM Tracking.
+ * Shared Netqorix site behaviour.
+ * Handles navigation, localization, pricing, forms, FAQs and scroll effects.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,9 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const FORM_ENDPOINT = '';
   const CONTACT_EMAIL = 'netqorix@gmail.com';
 
-  /* ==========================================================================
-     1. STICKY HEADER & MOBILE NAVIGATION
-     ========================================================================== */
   const header = document.querySelector('.site-header');
   if (header) {
     window.addEventListener('scroll', () => {
@@ -30,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.querySelector('.nav-menu');
 
   function closeMobileNav() {
-    if (navMenu && navMenu.classList.contains('open')) {
-      navMenu.classList.remove('open');
+    if (navMenu && navMenu.classList.contains('is-open')) {
+      navMenu.classList.remove('is-open');
       document.body.classList.remove('nav-open');
       if (mobileToggle) {
         mobileToggle.setAttribute('aria-expanded', 'false');
@@ -49,11 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = navMenu.classList.contains('open');
+      const isOpen = navMenu.classList.contains('is-open');
       if (isOpen) {
         closeMobileNav();
       } else {
-        navMenu.classList.add('open');
+        navMenu.classList.add('is-open');
         document.body.classList.add('nav-open');
         mobileToggle.setAttribute('aria-expanded', 'true');
         mobileToggle.innerHTML = `
@@ -65,9 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close menu when clicking outside header
     document.addEventListener('click', (e) => {
-      if (!navMenu.classList.contains('open')) return;
+      if (!navMenu.classList.contains('is-open')) return;
       if (!e.target.isConnected) return;
       if (mobileToggle.contains(e.target)) return;
 
@@ -76,25 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close menu on link click inside drawer
     navMenu.addEventListener('click', (e) => {
       if (e.target.closest('a')) {
         closeMobileNav();
       }
     });
 
-    // Close menu on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+      if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
         closeMobileNav();
         mobileToggle.focus();
       }
     });
   }
 
-  /* ==========================================================================
-     2. LANGUAGE & MULTI-CURRENCY LOCALIZATION
-     ========================================================================== */
   const CURRENCY_STORAGE_KEY = 'netqorix_currency_pref';
   const LANGUAGE_STORAGE_KEY = 'netqorix_language_pref';
   const LOCALE_PREFERENCE_KEY = 'netqorix_locale_preferences_v2';
@@ -282,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (persist) persistPreferenceState();
 
     document.querySelectorAll('.currency-option').forEach(button => {
-      button.classList.toggle('active', button.dataset.currency === currency);
+      button.classList.toggle('is-active', button.dataset.currency === currency);
     });
     document.querySelectorAll('.currency-select').forEach(select => {
       select.value = currency;
@@ -619,69 +608,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ==========================================================================
-     3. NETQORIX LEDGER COUNT-UP ANIMATION & SCROLL REVEALS
-     ========================================================================== */
-  const ledgerCard = document.querySelector('.ledger-card');
-  let animated = false;
-
-  function animateCountUp() {
-    const counterElements = document.querySelectorAll('.count-up');
-    counterElements.forEach(el => {
-      const target = parseFloat(el.getAttribute('data-target'));
-      const prefix = el.getAttribute('data-prefix') || '';
-      const suffix = el.getAttribute('data-suffix') || '';
-      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-      const duration = 2000; // ms
-      const startTime = performance.now();
-
-      function updateNumber(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Ease out quad
-        const easedProgress = progress * (2 - progress);
-        const currentVal = Math.round(target * easedProgress * Math.pow(10, decimals)) / Math.pow(10, decimals);
-        
-        el.textContent = `${prefix}${currentVal.toFixed(decimals)}${suffix}`;
-
-        if (progress < 1) {
-          requestAnimationFrame(updateNumber);
-        } else {
-          el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
-        }
-      }
-
-      requestAnimationFrame(updateNumber);
-    });
-  }
-
-  if (ledgerCard && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !animated) {
-          animated = true;
-          animateCountUp();
-        }
-      });
-    }, { threshold: 0.2 });
-
-    observer.observe(ledgerCard);
-  }
-
-  /* ==========================================================================
-     4. FAQ ACCORDION
-     ========================================================================== */
   const faqButtons = document.querySelectorAll('.faq-button');
   faqButtons.forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.closest('.faq-item');
       const content = faqItem.querySelector('.faq-content');
-      const isOpen = faqItem.classList.contains('active');
+      const isOpen = faqItem.classList.contains('is-active');
 
-      // Close all other open FAQ items
-      document.querySelectorAll('.faq-item.active').forEach(item => {
+      document.querySelectorAll('.faq-item.is-active').forEach(item => {
         if (item !== faqItem) {
-          item.classList.remove('active');
+          item.classList.remove('is-active');
           const itemContent = item.querySelector('.faq-content');
           if (itemContent) itemContent.style.maxHeight = null;
           const itemBtn = item.querySelector('.faq-button');
@@ -689,33 +625,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Toggle current
       if (isOpen) {
-        faqItem.classList.remove('active');
+        faqItem.classList.remove('is-active');
         content.style.maxHeight = null;
         button.setAttribute('aria-expanded', 'false');
       } else {
-        faqItem.classList.add('active');
+        faqItem.classList.add('is-active');
         content.style.maxHeight = content.scrollHeight + 'px';
         button.setAttribute('aria-expanded', 'true');
       }
     });
   });
 
-  // Recompute accordion height on resize for active items
   window.addEventListener('resize', () => {
-    document.querySelectorAll('.faq-item.active .faq-content').forEach(content => {
+    document.querySelectorAll('.faq-item.is-active .faq-content').forEach(content => {
       content.style.maxHeight = content.scrollHeight + 'px';
     });
   });
 
-  /* ==========================================================================
-     5. UTM TRACKING & SESSION STORAGE
-     ========================================================================== */
   function captureUTMs() {
     const params = new URLSearchParams(window.location.search);
     const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-    
+
     utmKeys.forEach(key => {
       const val = params.get(key);
       if (val) {
@@ -744,9 +675,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ==========================================================================
-     6. LEAD FORM VALIDATION, HONEYPOT & SUBMISSION
-     ========================================================================== */
   const leadForm = document.querySelector('#lead-form');
   const formStartTime = Date.now();
 
@@ -755,7 +683,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const inputs = leadForm.querySelectorAll('input:not([type="hidden"]), select, textarea');
 
-    // Inline field validation logic
     function validateField(input) {
       const fieldGroup = input.closest('.form-group') || input.parentElement;
       let errorElement = fieldGroup.querySelector('.field-error');
@@ -798,12 +725,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return isValid;
     }
 
-    // Validate on blur
     inputs.forEach(input => {
       input.addEventListener('blur', () => validateField(input));
     });
 
-    // Form Submit Handler
     leadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -823,7 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Validate all fields
       let formIsValid = true;
       inputs.forEach(input => {
         if (!validateField(input)) {
@@ -837,7 +761,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Submit loading state
       const submitBtn = leadForm.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -887,7 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const bodyText = `Name: ${name}%0D%0AWhatsApp: ${phone}%0D%0AEmail: ${email}%0D%0ACompany: ${company}%0D%0AService: ${service}%0D%0ABudget: ${budget}%0D%0AMessage: ${message}`;
       const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=Netqorix Quote Request - ${encodeURIComponent(name)}&body=${bodyText}`;
-      
+
       window.location.href = mailtoUrl;
       setTimeout(() => {
         window.location.href = 'thanks.html';
@@ -895,18 +818,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ==========================================================================
-     7. DYNAMIC FOOTER YEAR
-     ========================================================================== */
   const yearEl = document.querySelector('#current-year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  /* ========================================================================
-     8. HOMEPAGE PROJECT ESTIMATOR
-     Indicative only; the final amount is confirmed after scoping.
-     ======================================================================== */
   const estimator = document.querySelector('#project-estimator');
   if (estimator) {
     const pagesInput = estimator.querySelector('#est-pages');
@@ -948,9 +864,6 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateEstimate();
   }
 
-  /* ==========================================================================
-     9. SCROLL-TRIGGERED REVEAL ANIMATIONS
-     ========================================================================== */
   const revealElements = document.querySelectorAll('.scroll-reveal, .reveal-on-scroll');
   if (revealElements.length > 0 && 'IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries) => {

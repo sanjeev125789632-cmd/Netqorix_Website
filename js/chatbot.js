@@ -1,13 +1,8 @@
-/**
- * Netqorix AI Assistant Engine
- * Client-side AI Conversational Engine for Netqorix Website
- * Updated per 2026 Service Rate Card: Web, Mobile, 3D, Automation & AI Agents, 3D Modeling, Add-ons, SEO & Terms.
- */
+/** Client-side Netqorix chatbot behaviour. */
 
 (function () {
   'use strict';
 
-  // State Management
   const STORAGE_KEY = 'netqorix_chat_history_v2';
   let chatHistory = [];
   let isThinking = false;
@@ -24,9 +19,6 @@
       : content;
   }
 
-  /* ==========================================================================
-     KNOWLEDGE BASE & INTENT RECOGNITION ENGINE (RATE CARD 2026)
-     ========================================================================== */
   const KNOWLEDGE_BASE = [
     {
       id: 'founder',
@@ -238,18 +230,15 @@ I'm your AI assistant. Ask me anything about our <strong>2026 Service Rate Card<
     }
   ];
 
-  // Match input string against knowledge base
   function generateResponse(userMsg) {
     const cleanMsg = userMsg.toLowerCase().trim();
 
-    // Check knowledge base items
     for (const item of KNOWLEDGE_BASE) {
       if (item.keywords.some(kw => cleanMsg.includes(kw))) {
         return item.response();
       }
     }
 
-    // Default Fallback
     return `
 I'm glad you asked! Netqorix provides transparent, project-based engineering for digital products.<br><br>
 You can ask me about:
@@ -265,13 +254,9 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
     `;
   }
 
-  /* ==========================================================================
-     DOM BUILDER & UI ENGINE
-     ========================================================================== */
   function initChatbot() {
     if (document.getElementById('netqorix-chatbot')) return;
 
-    // Create Widget Markup
     const container = document.createElement('div');
     container.id = 'netqorix-chatbot';
     container.innerHTML = `
@@ -306,7 +291,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
         </div>
 
         <div class="nq-chat-messages" id="nq-chat-messages-list">
-          <!-- Dynamic Messages -->
         </div>
 
         <div class="nq-chat-footer">
@@ -320,7 +304,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
 
     document.body.appendChild(container);
 
-    // Cache elements
     const triggerBtn = container.querySelector('.nq-chat-trigger');
     const closeBtn = container.querySelector('.nq-btn-close');
     const resetBtn = container.querySelector('.nq-btn-reset');
@@ -328,14 +311,13 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
     const sendBtn = container.querySelector('.nq-chat-send-btn');
     const msgListEl = container.querySelector('#nq-chat-messages-list');
 
-    // Toggle Chat Window
     function toggleChat(open) {
       if (typeof open === 'boolean') {
-        container.classList.toggle('open', open);
+        container.classList.toggle('is-open', open);
       } else {
-        container.classList.toggle('open');
+        container.classList.toggle('is-open');
       }
-      if (container.classList.contains('open')) {
+      if (container.classList.contains('is-open')) {
         setTimeout(() => inputEl.focus(), 150);
         scrollToBottom();
       }
@@ -344,7 +326,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
     triggerBtn.addEventListener('click', () => toggleChat(true));
     closeBtn.addEventListener('click', () => toggleChat(false));
 
-    // Reset Chat
     resetBtn.addEventListener('click', () => {
       chatHistory = [];
       try { sessionStorage.removeItem(STORAGE_KEY); } catch(e){}
@@ -352,18 +333,15 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       sendInitialGreeting();
     });
 
-    // Scroll to bottom
     function scrollToBottom() {
       msgListEl.scrollTop = msgListEl.scrollHeight;
     }
 
-    // Format current time
     function getFormattedTime() {
       const now = new Date();
       return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    // Append Message to UI
     function appendMessage(sender, htmlContent, save = true) {
       const msgDiv = document.createElement('div');
       msgDiv.className = `nq-msg nq-msg-${sender}`;
@@ -397,7 +375,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       });
     });
 
-    // Show quick action chips
     function appendQuickChips() {
       const chipsWrapper = document.createElement('div');
       chipsWrapper.className = 'nq-msg nq-msg-bot';
@@ -416,7 +393,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       msgListEl.appendChild(chipsWrapper);
       scrollToBottom();
 
-      // Bind click events on chips
       chipsWrapper.querySelectorAll('.nq-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const query = chip.getAttribute('data-query');
@@ -427,7 +403,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       });
     }
 
-    // Show Typing Indicator
     function showTypingIndicator() {
       const indicator = document.createElement('div');
       indicator.className = 'nq-msg nq-msg-bot nq-typing-wrapper';
@@ -443,7 +418,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       return indicator;
     }
 
-    // Handle User Message Submission
     function handleUserSend(textOverride) {
       const userText = textOverride || inputEl.value.trim();
       if (!userText || isThinking) return;
@@ -454,7 +428,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       isThinking = true;
       const typingEl = showTypingIndicator();
 
-      // Simulate natural AI thinking time
       const delay = Math.floor(Math.random() * 400) + 400; // 400ms - 800ms
       setTimeout(() => {
         if (typingEl && typingEl.parentNode) {
@@ -474,7 +447,6 @@ Feel free to contact Founder <strong>Sanjeev Kumar</strong> directly at or <a hr
       }
     });
 
-    // Initial greeting or restore history
     function sendInitialGreeting() {
       const greetingHtml = `
 Hello! 👋 Welcome to <strong>Netqorix</strong>.<br><br>
@@ -484,7 +456,6 @@ I'm your AI engineering assistant updated with our official <strong>2026 Service
       appendQuickChips();
     }
 
-    // Load history or greet
     try {
       const saved = sessionStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -503,7 +474,6 @@ I'm your AI engineering assistant updated with our official <strong>2026 Service
     }
   }
 
-  // Initialize once DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initChatbot);
   } else {

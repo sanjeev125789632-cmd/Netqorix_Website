@@ -1,10 +1,9 @@
-/* ==========================================================================
-   NETQORIX AI CHATBOT STYLESHEET
-   Brand: Netqorix (WEB · APPS · DEPLOYMENT)
-   Author: Netqorix Engineering Team
-   ========================================================================== */
+/*
+ * Netqorix Chatbot Styles
+ * Maintainer: Netqorix
+ * Purpose: Chatbot UI and responsive behaviour
+ */
 
-/* Chatbot Container */
 #netqorix-chatbot {
   position: fixed;
   bottom: 1.5rem;
@@ -14,7 +13,6 @@
   color: var(--color-ink, #171126);
 }
 
-/* Floating Trigger Button */
 .nq-chat-trigger {
   position: relative;
   display: flex;
@@ -83,7 +81,6 @@
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(200, 242, 78, 0); }
 }
 
-/* Chat Window Modal */
 .nq-chat-window {
   position: absolute;
   bottom: calc(100% + 1rem);
@@ -106,17 +103,16 @@
   transform-origin: bottom right;
 }
 
-#netqorix-chatbot.open .nq-chat-window {
+#netqorix-chatbot.is-open .nq-chat-window {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
 }
 
-#netqorix-chatbot.open .nq-chat-trigger {
+#netqorix-chatbot.is-open .nq-chat-trigger {
   display: none;
 }
 
-/* Chat Header */
 .nq-chat-header {
   background: var(--color-ink, #171126);
   color: #FFFFFF;
@@ -208,7 +204,6 @@
   fill: none;
 }
 
-/* Chat Messages Area */
 .nq-chat-messages {
   flex: 1;
   padding: 1.25rem;
@@ -228,7 +223,6 @@
   border-radius: 4px;
 }
 
-/* Message Bubbles */
 .nq-msg {
   display: flex;
   flex-direction: column;
@@ -313,7 +307,6 @@
   align-self: flex-start;
 }
 
-/* Typing Indicator */
 .nq-typing-indicator {
   display: flex;
   align-items: center;
@@ -343,7 +336,6 @@
   40% { transform: scale(1); background: var(--color-primary, #2A3BFF); }
 }
 
-/* Quick Suggestion Chips */
 .nq-chat-chips-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -380,7 +372,6 @@
   transform: translateY(-1px);
 }
 
-/* Chat Input Footer */
 .nq-chat-footer {
   padding: 0.85rem 1rem;
   background: #FFFFFF;
@@ -438,13 +429,12 @@
   stroke-width: 2.2;
 }
 
-/* Mobile responsive adjustments */
 @media (max-width: 480px) {
   #netqorix-chatbot {
     bottom: 1rem;
     right: 1rem;
   }
-  
+
   .nq-chat-window {
     width: calc(100vw - 2rem);
     height: calc(100vh - 5rem);
@@ -459,7 +449,6 @@
     bottom: calc(56px + 1rem + env(safe-area-inset-bottom, 0px));
   }
 }
-
 
 /* Keep translated chatbot labels inside the floating control */
 .nq-chat-trigger {
@@ -523,8 +512,8 @@
     transform-origin: bottom center;
   }
 
-  #netqorix-chatbot:not(.open) .nq-chat-window { transform: translateY(100%); }
-  #netqorix-chatbot.open .nq-chat-window { transform: translateY(0); }
+  #netqorix-chatbot:not(.is-open) .nq-chat-window { transform: translateY(100%); }
+  #netqorix-chatbot.is-open .nq-chat-window { transform: translateY(0); }
 
   .nq-chat-header {
     padding-top: max(1rem, env(safe-area-inset-top));
