@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YB2BM2PHM"></script>
@@ -31,9 +31,18 @@
 
   <meta property="og:title" content="Website Development Mumbai — Live in 10 Days, Fixed ₹15,000 | Netqorix">
   <meta property="og:description" content="Own your website code with no vendor lock-in. Netqorix builds fast, professional Mumbai business websites that go live in 10 days.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.netqorix.com/">
   <meta property="og:image" content="https://www.netqorix.com/assets/og-image.jpg">
+  <meta property="og:url" content="https://www.netqorix.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Netqorix">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Website Development Mumbai — Live in 10 Days, Fixed ₹15,000 | Netqorix">
+  <meta name="twitter:description" content="Own your website code with no vendor lock-in. Netqorix builds fast, professional Mumbai business websites that go live in 10 days.">
+  <meta name="twitter:image" content="https://www.netqorix.com/assets/og-image.jpg">
+
+
+
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,10 +60,28 @@
       "@id": "https://www.netqorix.com/#organization",
       "name": "Netqorix",
       "url": "https://www.netqorix.com/",
-      "logo": "https://www.netqorix.com/Netqorix_Logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.netqorix.com/Netqorix_Logo.png",
+        "width": 485,
+        "height": 526
+      },
+      "telephone": "+91 83695 32924",
+      "email": "netqorix@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop 53, 19 East, Sec:19A",
+        "addressLocality": "Nerul Navi Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400706",
+        "addressCountry": "IN"
+      },
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-83695-32924",
+        "telephone": "+91 83695 32924",
         "contactType": "sales",
         "areaServed": [
           "IN",
@@ -64,42 +91,29 @@
           "English",
           "Hindi"
         ]
-      },
-      "founder": {
-        "@id": "https://www.netqorix.com/#founder"
       }
     },
     {
-      "@type": "ProfessionalService",
-      "@id": "https://www.netqorix.com/#professionalservice",
-      "name": "Netqorix",
+      "@type": "WebSite",
+      "@id": "https://www.netqorix.com/#website",
       "url": "https://www.netqorix.com/",
-      "image": "https://www.netqorix.com/assets/og-image.jpg",
-      "telephone": "+91-8369532924",
-      "email": "netqorix@gmail.com",
-      "priceRange": "₹15,000–₹1,20,000+",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Mumbai",
-        "addressRegion": "Maharashtra",
-        "addressCountry": "IN"
-      },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Mumbai"
-        },
-        {
-          "@type": "Country",
-          "name": "India"
-        }
-      ],
-      "parentOrganization": {
+      "name": "Netqorix",
+      "publisher": {
         "@id": "https://www.netqorix.com/#organization"
       },
-      "founder": {
-        "@id": "https://www.netqorix.com/#founder"
-      }
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.netqorix.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.netqorix.com/"
+        }
+      ]
     },
     {
       "@type": "Person",
@@ -110,6 +124,53 @@
         "https://www.linkedin.com/in/sanjeev-yadav-46592a258"
       ],
       "worksFor": {
+        "@id": "https://www.netqorix.com/#organization"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.netqorix.com/#professionalservice",
+      "name": "Netqorix",
+      "url": "https://www.netqorix.com/",
+      "image": "https://www.netqorix.com/assets/og-image.jpg",
+      "telephone": "+91 83695 32924",
+      "email": "netqorix@gmail.com",
+      "priceRange": "₹15,000 fixed",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Shop 53, 19 East, Sec:19A",
+        "addressLocality": "Nerul Navi Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400706",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 19.0219968,
+        "longitude": 73.0272694
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Mumbai"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
+      },
+      "parentOrganization": {
         "@id": "https://www.netqorix.com/#organization"
       }
     }
@@ -162,7 +223,7 @@
   <header class="site-header">
     <div class="container header-container">
       <a href="/" class="brand-link" aria-label="Netqorix Home">
-        <img src="Netqorix_Logo.png" alt="Netqorix Logo" class="brand-logo-img">
+        <img src="Netqorix_Logo.png" alt="Netqorix Logo" class="brand-logo-img" width="485" height="526">
         <div class="brand-text-wrapper">
           <span class="brand-name">Netqorix</span>
           <span class="brand-descriptor">WEB · APPS · DEPLOYMENT</span>
@@ -257,7 +318,7 @@
         </article>
 
         <article class="project-plate project-plate--right reveal-on-scroll">
-          <div class="project-copy"><p class="project-index">PROJECT / 02</p><h3>Bharat Infra Associate</h3><p class="project-industry">Solar Infrastructure · Delhi</p><dl><div><dt>Problem</dt><dd>Installation capability and project proof were difficult to evaluate online.</dd></div><div><dt>Delivered</dt><dd>Project showcase, solar quote estimator and local-search structure.</dd></div><div><dt>Result</dt><dd>Page-one ranking for “solar EPC East Delhi” in six weeks.</dd></div><div><dt>System</dt><dd>Web development · Estimator · Local SEO</dd></div></dl><a href="https://bharatinfrassociate.com/" target="_blank" rel="noopener noreferrer" class="ee-text-link">Open live website ↗</a></div>
+          <div class="project-copy"><p class="project-index">PROJECT / 02</p><h3>Bharat Infra Associate</h3><p class="project-industry">Solar Infrastructure · Delhi</p><dl><div><dt>Problem</dt><dd>Installation capability and project proof were difficult to evaluate online.</dd></div><div><dt>Delivered</dt><dd>Project showcase, solar quote estimator and local-search structure.</dd></div><div><dt>Result</dt><dd>Page-one ranking for “solar EPC East Delhi” in six weeks.</dd></div><div><dt>System</dt><dd>Web development · Estimator · Local SEO</dd></div></dl><a href="work-bharat-infra" class="ee-text-link">Read full case study →</a> <a href="https://bharatinfrassociate.com/" target="_blank" rel="noopener noreferrer" class="ee-text-link">Open live website ↗</a></div>
           <a href="https://bharatinfrassociate.com/" target="_blank" rel="noopener noreferrer" class="project-media project-media--logo" aria-label="Open Bharat Infra Associate website"><img src="assets/clients/bharat-infra.jpg" alt="Bharat Infra Associate website identity" width="900" height="600" loading="lazy"><span>OPEN LIVE SITE ↗</span></a>
         </article>
 
@@ -311,11 +372,11 @@
     <section class="ee-section results-editorial" aria-labelledby="results-title">
       <div class="ee-grid ee-section__intro"><p class="ee-kicker">04 / CLIENT RESULTS</p><div><h2 id="results-title">Measured after launch.</h2><p>Outcomes already published by Netqorix clients, paired with the people and businesses behind them.</p></div></div>
       <div class="results-list">
-        <figure class="result-line"><div><span>0 → 12</span><small>qualified enquiries / month</small></div><blockquote>“The enquiry form now brings us qualified client calls instead of spam.”</blockquote><figcaption><img src="assets/clients/alok-s-kumar-and-company.jpg" alt="Alok S Kumar and Company" loading="lazy">CA Alok S Kumar</figcaption></figure>
-        <figure class="result-line result-line--offset"><div><span>PAGE 01</span><small>ranking in six weeks</small></div><blockquote>“Project pages, quote requests and local search—handled end to end.”</blockquote><figcaption><img src="assets/clients/bharat-infra.jpg" alt="Bharat Infra Associate" loading="lazy">MD Bundan Khan</figcaption></figure>
-        <figure class="result-line"><div><span>4.2 → 0.8s</span><small>page-load reduction</small></div><blockquote>“The work leads, the design gets out of the way.”</blockquote><figcaption><img src="assets/clients/navana.png" alt="NAVANA" loading="lazy">Arch. Sandeep Yadav</figcaption></figure>
-        <figure class="result-line result-line--offset"><div><span>09 DAYS</span><small>to production release</small></div><blockquote>“Clear scope, fixed quote, delivered on the committed timeline.”</blockquote><figcaption><img src="assets/clients/ss-exim.jpg" alt="S S EXIM" loading="lazy">CEO Arun Kumar</figcaption></figure>
-        <figure class="result-line"><div><span>&lt; 10 DAYS</span><small>website delivery</small></div><blockquote>“Professionalism, responsiveness and commitment to the agreed timeline.”</blockquote><figcaption><img src="assets/clients/bhairava-enterprise.png" alt="Bhairava Enterprise" loading="lazy">Sashi</figcaption></figure>
+        <figure class="result-line"><div><span>0 → 12</span><small>qualified enquiries / month</small></div><blockquote>“The enquiry form now brings us qualified client calls instead of spam.”</blockquote><figcaption><img src="assets/clients/alok-s-kumar-and-company.jpg" alt="Alok S Kumar and Company" width="1254" height="1254" loading="lazy">CA Alok S Kumar</figcaption></figure>
+        <figure class="result-line result-line--offset"><div><span>PAGE 01</span><small>ranking in six weeks</small></div><blockquote>“Project pages, quote requests and local search—handled end to end.”</blockquote><figcaption><img src="assets/clients/bharat-infra.jpg" alt="Bharat Infra Associate" width="620" height="720" loading="lazy">MD Bundan Khan</figcaption></figure>
+        <figure class="result-line"><div><span>4.2 → 0.8s</span><small>page-load reduction</small></div><blockquote>“The work leads, the design gets out of the way.”</blockquote><figcaption><img src="assets/clients/navana.png" alt="NAVANA" width="1636" height="945" loading="lazy">Arch. Sandeep Yadav</figcaption></figure>
+        <figure class="result-line result-line--offset"><div><span>09 DAYS</span><small>to production release</small></div><blockquote>“Clear scope, fixed quote, delivered on the committed timeline.”</blockquote><figcaption><img src="assets/clients/ss-exim.jpg" alt="S S EXIM" width="1024" height="691" loading="lazy">CEO Arun Kumar</figcaption></figure>
+        <figure class="result-line"><div><span>&lt; 10 DAYS</span><small>website delivery</small></div><blockquote>“Professionalism, responsiveness and commitment to the agreed timeline.”</blockquote><figcaption><img src="assets/clients/bhairava-enterprise.png" alt="Bhairava Enterprise" width="512" height="512" loading="lazy">Sashi</figcaption></figure>
       </div>
     </section>
 
@@ -362,7 +423,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="brand-link" aria-label="Netqorix Home">
-            <img src="Netqorix_Logo.png" alt="Netqorix Logo" class="brand-logo-img">
+            <img src="Netqorix_Logo.png" alt="Netqorix Logo" class="brand-logo-img" width="485" height="526" loading="lazy">
             <div class="brand-text-wrapper">
               <span class="brand-name" style="color: #FFFFFF;">Netqorix</span>
               <span class="brand-descriptor" style="color: #A9A2C2;">WEB · APPS · DEPLOYMENT</span>
@@ -398,9 +459,16 @@
         <div class="footer-col">
           <h4>Direct Contact</h4>
           <ul class="footer-links">
-            <li><a href="tel:+918369532924">+91 83695 32924</a></li>
-                        <li><a href="mailto:netqorix@gmail.com">netqorix@gmail.com</a></li>
-            <li style="color: #A9A2C2; font-size: 0.9375rem; margin-top: 0.5rem;">Mumbai, India</li>
+            <li>
+              <address class="footer-nap">
+                <strong>Netqorix</strong><br>
+                Shop 53, 19 East, Sec:19A,<br>
+                Nerul Navi Mumbai 400706<br>
+                <a href="tel:+918369532924">+91 83695 32924</a><br>
+                <a href="mailto:netqorix@gmail.com">netqorix@gmail.com</a><br>
+                Hours: Mon–Fri, 10:00 AM–7:00 PM
+              </address>
+            </li>
           </ul>
         </div>
       </div>

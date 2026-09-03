@@ -1294,6 +1294,23 @@ a.client-logo-item:hover {
   color: var(--color-accent);
 }
 
+.footer-nap {
+  margin: 0;
+  color: #A9A2C2;
+  font-style: normal;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.footer-nap strong {
+  color: #FFFFFF;
+}
+
+.footer-nap--compact {
+  padding: 1rem 0;
+  text-align: center;
+}
+
 .footer-bottom {
   padding-top: 2rem;
   border-top: 1px dashed rgba(255, 255, 255, 0.15);
