@@ -443,10 +443,9 @@
   }
 }
 
-/* Lift the launcher clear of the sticky mobile CTA bar (< 768px) */
 @media (max-width: 767px) {
   #netqorix-chatbot {
-    bottom: calc(56px + 1rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -476,7 +475,7 @@
 @media (max-width: 600px) {
   #netqorix-chatbot {
     right: max(.75rem, env(safe-area-inset-right));
-    bottom: max(.75rem, env(safe-area-inset-bottom));
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 
   .nq-chat-trigger {
@@ -502,11 +501,11 @@
 
   .nq-chat-window {
     position: fixed;
-    inset: auto 0 0 0;
+    inset: auto 0 calc(80px + env(safe-area-inset-bottom, 0px)) 0;
     width: 100%;
     max-width: none;
-    height: 100vh;
-    height: 100dvh;
+    height: calc(100vh - 80px - env(safe-area-inset-bottom, 0px));
+    height: calc(100dvh - 80px - env(safe-area-inset-bottom, 0px));
     max-height: none;
     border-radius: 0;
     transform-origin: bottom center;

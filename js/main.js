@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('nav-open');
       if (mobileToggle) {
         mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.setAttribute('aria-label', 'Open navigation menu');
         mobileToggle.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -42,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (mobileToggle && navMenu) {
+    navMenu.id ||= 'primary-navigation';
+    mobileToggle.setAttribute('aria-controls', navMenu.id);
+    mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+
     mobileToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navMenu.classList.contains('is-open');
@@ -51,12 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.add('is-open');
         document.body.classList.add('nav-open');
         mobileToggle.setAttribute('aria-expanded', 'true');
+        mobileToggle.setAttribute('aria-label', 'Close navigation menu');
         mobileToggle.innerHTML = `
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         `;
+        navMenu.querySelector('a')?.focus();
       }
     });
 
@@ -109,11 +116,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'zh-CN': { language: 'zh', region: 'CN', currency: 'CNY', label: '简体中文', translate: 'zh-CN' }
   };
   const CURRENCY_META = {
-    INR: { label: 'INR (₹)', locale: 'en-IN', fallbackRate: 1 },
-    EUR: { label: 'EUR (€)', locale: 'de-DE', fallbackRate: 0.0111 },
-    JPY: { label: 'JPY (¥)', locale: 'ja-JP', fallbackRate: 1.8 },
-    KRW: { label: 'KRW (₩)', locale: 'ko-KR', fallbackRate: 16.5 },
-    CNY: { label: 'CNY (¥)', locale: 'zh-CN', fallbackRate: 0.0867 }
+    INR: { label: 'INR (₹)', symbol: '₹', locale: 'en-IN', fallbackRate: 1 },
+    EUR: { label: 'EUR (€)', symbol: '€', locale: 'de-DE', fallbackRate: 0.0111 },
+    JPY: { label: 'JPY (¥)', symbol: '¥', locale: 'ja-JP', fallbackRate: 1.8 },
+    KRW: { label: 'KRW (₩)', symbol: '₩', locale: 'ko-KR', fallbackRate: 16.5 },
+    CNY: { label: 'CNY (¥)', symbol: '¥', locale: 'zh-CN', fallbackRate: 0.0867 }
   };
   const LANGUAGE_OPTIONS = Object.entries(LANGUAGE_REGIONS).map(([code, config]) => [code, config.label]);
   const FALLBACK_RATES = Object.fromEntries(
@@ -338,7 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateLocaleSummary() {
     document.querySelectorAll('.locale-trigger-text').forEach(element => {
-      element.textContent = `${languageName(currentLanguage)} · ${CURRENCY_META[currentCurrency].label}`;
+      element.textContent = `${languageName(currentLanguage)} · ${CURRENCY_META[currentCurrency].symbol}`;
+    });
+    document.querySelectorAll('.locale-trigger').forEach(button => {
+      button.setAttribute(
+        'aria-label',
+        `Language and currency: ${languageName(currentLanguage)}, ${CURRENCY_META[currentCurrency].label}. Change settings.`
+      );
     });
     document.querySelectorAll('.locale-status').forEach(element => {
       element.textContent = `Selected: ${languageName(currentLanguage)} and ${CURRENCY_META[currentCurrency].label}`;
