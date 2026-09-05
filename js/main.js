@@ -10,6 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const FORM_ENDPOINT = '';
   const CONTACT_EMAIL = 'netqorix@gmail.com';
 
+  // Publish the sticky contact bar's real height so the page padding and the
+  // floating chatbot can clear it, including when its labels wrap onto a
+  // second line or the device adds a bottom safe-area inset.
+  const mobileCtaBar = document.querySelector('.mobile-cta-bar');
+  if (mobileCtaBar) {
+    const syncCtaBarHeight = () => {
+      const visible = getComputedStyle(mobileCtaBar).display !== 'none';
+      if (visible) {
+        const height = Math.ceil(mobileCtaBar.getBoundingClientRect().height);
+        document.documentElement.style.setProperty('--mobile-cta-bar-height', height + 'px');
+      } else {
+        document.documentElement.style.removeProperty('--mobile-cta-bar-height');
+      }
+    };
+
+    syncCtaBarHeight();
+    window.addEventListener('resize', syncCtaBarHeight, { passive: true });
+    window.addEventListener('orientationchange', syncCtaBarHeight, { passive: true });
+    window.addEventListener('load', syncCtaBarHeight);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncCtaBarHeight).catch(() => {});
+    }
+    if (typeof ResizeObserver === 'function') {
+      new ResizeObserver(syncCtaBarHeight).observe(mobileCtaBar);
+    }
+  }
+
   const header = document.querySelector('.site-header');
   if (header) {
     window.addEventListener('scroll', () => {

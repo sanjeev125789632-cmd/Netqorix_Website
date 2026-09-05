@@ -431,7 +431,6 @@
 
 @media (max-width: 480px) {
   #netqorix-chatbot {
-    bottom: 1rem;
     right: 1rem;
   }
 
@@ -440,13 +439,6 @@
     height: calc(100vh - 5rem);
     bottom: 0;
     right: 0;
-  }
-}
-
-/* Lift the launcher clear of the sticky mobile CTA bar (< 768px) */
-@media (max-width: 767px) {
-  #netqorix-chatbot {
-    bottom: calc(56px + 1rem + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -476,7 +468,6 @@
 @media (max-width: 600px) {
   #netqorix-chatbot {
     right: max(.75rem, env(safe-area-inset-right));
-    bottom: max(.75rem, env(safe-area-inset-bottom));
   }
 
   .nq-chat-trigger {
@@ -525,5 +516,48 @@
     padding-right: max(.85rem, env(safe-area-inset-right));
     padding-bottom: max(.85rem, env(safe-area-inset-bottom));
     padding-left: max(.85rem, env(safe-area-inset-left));
+  }
+}
+
+/*
+ * Launcher clearance.
+ *
+ * The sticky mobile contact bar is shown below 768px. The launcher has to sit
+ * clear of it, otherwise the bubble covers the Call button and hides the phone
+ * number. --mobile-cta-bar-height is published by main.js from the bar's
+ * measured height (it grows when the labels wrap); the fallback matches the
+ * one-line bar. The 1rem gap is the required clearance on top of that.
+ *
+ * These rules are last in the file so they are not overridden by the narrow
+ * viewport blocks above, which previously reset `bottom` back to the edge.
+ */
+#netqorix-chatbot {
+  bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 767px) {
+  #netqorix-chatbot {
+    bottom: calc(
+      var(--mobile-cta-bar-height, calc(56px + env(safe-area-inset-bottom, 0px)))
+      + 1rem
+    );
+  }
+
+  /* Expanded state: the sheet is its own fixed layer, but between 601px and
+     767px it is anchored to the launcher, so it inherits the same clearance. */
+  #netqorix-chatbot.is-open .nq-chat-window {
+    max-height: calc(
+      100dvh
+      - var(--mobile-cta-bar-height, calc(56px + env(safe-area-inset-bottom, 0px)))
+      - 5rem
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  /* Full-screen sheet: it covers the contact bar, so it needs no clearance and
+     must not inherit the launcher offset. */
+  #netqorix-chatbot.is-open .nq-chat-window {
+    max-height: none;
   }
 }
