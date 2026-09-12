@@ -50,6 +50,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 
+<!-- NAP (name / telephone / address / hours) in the ProfessionalService node below
+     must match the Google Business Profile exactly. The GBP does not exist yet:
+     when it is created, keep these values and the GBP listing in sync. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -146,7 +149,10 @@
         "@id": "https://www.netqorix.com/#organization"
       },
       "areaServed": [
-        { "@type": "City", "name": "Navi Mumbai" },
+        {
+          "@type": "City",
+          "name": "Navi Mumbai"
+        },
         {
           "@type": "City",
           "name": "Mumbai"
@@ -183,6 +189,102 @@
           }
         }
       ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.netqorix.com/#professionalservice",
+      "name": "Netqorix",
+      "url": "https://www.netqorix.com/",
+      "image": "https://www.netqorix.com/assets/og-image.jpg",
+      "telephone": "+91-83695-32924",
+      "email": "netqorix@gmail.com",
+      "priceRange": "₹15,000+",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressCountry": "IN"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mumbai"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
+      },
+      "parentOrganization": {
+        "@id": "https://www.netqorix.com/#organization"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "@id": "https://www.netqorix.com/pricing#packages",
+        "name": "Netqorix Website Packages",
+        "url": "https://www.netqorix.com/pricing",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#starter-offer",
+            "name": "Starter",
+            "description": "5-page business site, mobile-ready, contact form, SSL, live in 10 days.",
+            "priceCurrency": "INR",
+            "price": "15000",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          },
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#growth-offer",
+            "name": "Growth",
+            "description": "Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.",
+            "priceCurrency": "INR",
+            "price": "45000",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          },
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#custom-offer",
+            "name": "Custom",
+            "description": "Web app, portal, e-commerce, integrations, cloud deploy.",
+            "priceCurrency": "INR",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "INR",
+              "minPrice": "120000"
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          }
+        ]
+      }
     }
   ]
 }
@@ -349,22 +451,50 @@
       </section>
 
       <section class="web-section" id="website-packages" aria-labelledby="packages-title">
-        <p class="eyebrow">02 / Scope and pricing</p>
-        <h2 id="packages-title">Choose the scope your business needs.</h2>
-        <div class="table-block">
-          <div class="web-table-scroll" role="region" aria-label="Website package comparison" tabindex="0">
-            <table class="pricing-table">
-              <caption>Business website packages</caption>
-              <thead><tr><th scope="col">Package</th><th scope="col">Included scope</th><th scope="col">Price</th></tr></thead>
-              <tbody>
-                <tr><th scope="row" class="tier-name">Starter</th><td class="tier-desc">5-page business website, mobile-ready layout, contact form, SSL and a 10-day launch for the agreed scope.</td><td class="tier-price"><span data-price-min="15000">₹15,000</span></td></tr>
-                <tr><th scope="row" class="tier-name">Growth</th><td class="tier-desc">Up to 15 pages, CMS, SEO setup, Google Business Profile for eligible businesses, and analytics.</td><td class="tier-price"><span data-price-min="45000">₹45,000</span></td></tr>
-                <tr><th scope="row" class="tier-name">Custom</th><td class="tier-desc">Web application, portal, e-commerce, integrations and cloud deployment. Scope and timeline agreed after discovery.</td><td class="tier-price"><span data-price-min="120000" data-price-prefix="from " data-price-suffix="+">from ₹1,20,000+</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-footnote">Final scope and pricing are confirmed before production. Requested additions are priced separately. <a href="pricing">View full pricing</a>.</div>
+        <div class="section-header text-center">
+          <span class="eyebrow">Website Packages</span>
+          <h2 id="packages-title">Three packages. One number each.</h2>
         </div>
+
+        <div class="grid-3" style="margin-bottom: var(--space-xl);">
+          <div class="service-card package-card">
+            <div>
+              <div class="package-name">Starter</div>
+              <span class="package-price" data-price-min="15000">₹15,000</span>
+              <p class="package-scope">5-page business site, mobile-ready, contact form, SSL, live in 10 days.</p>
+            </div>
+            <div>
+              <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+              <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Starter</a>
+            </div>
+          </div>
+
+          <div class="service-card package-card">
+            <div>
+              <div class="package-name">Growth</div>
+              <span class="package-price" data-price-min="45000">₹45,000</span>
+              <p class="package-scope">Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.</p>
+            </div>
+            <div>
+              <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+              <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Growth</a>
+            </div>
+          </div>
+
+          <div class="service-card package-card">
+            <div>
+              <div class="package-name">Custom</div>
+              <span class="package-price" data-price-min="120000" data-price-prefix="from " data-price-suffix="+">from ₹1,20,000+</span>
+              <p class="package-scope">Web app, portal, e-commerce, integrations, cloud deploy.</p>
+            </div>
+            <div>
+              <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+              <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Custom</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="pricing-model-note">Full line-item rates for every service: <a href="/pricing">Service Charges →</a></p>
         <h3>Clarify ongoing costs before you start.</h3>
         <p>Ask for domain registration or renewal, hosting, business email, paid tools and maintenance to be itemised in your quote. Their inclusion and recurring charges depend on the agreed setup; the package price alone does not specify them.</p>
         <p>For ongoing changes and support, review our <a href="services-maintenance">website maintenance service</a>. For a wider search campaign, see <a href="services-seo">SEO and local search services</a>.</p>

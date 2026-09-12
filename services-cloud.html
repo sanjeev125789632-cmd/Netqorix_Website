@@ -50,6 +50,9 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 
+<!-- NAP (name / telephone / address / hours) in the ProfessionalService node below
+     must match the Google Business Profile exactly. The GBP does not exist yet:
+     when it is created, keep these values and the GBP listing in sync. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -205,6 +208,102 @@
           }
         }
       ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.netqorix.com/#professionalservice",
+      "name": "Netqorix",
+      "url": "https://www.netqorix.com/",
+      "image": "https://www.netqorix.com/assets/og-image.jpg",
+      "telephone": "+91-83695-32924",
+      "email": "netqorix@gmail.com",
+      "priceRange": "₹15,000+",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressCountry": "IN"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mumbai"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
+      },
+      "parentOrganization": {
+        "@id": "https://www.netqorix.com/#organization"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "@id": "https://www.netqorix.com/pricing#packages",
+        "name": "Netqorix Website Packages",
+        "url": "https://www.netqorix.com/pricing",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#starter-offer",
+            "name": "Starter",
+            "description": "5-page business site, mobile-ready, contact form, SSL, live in 10 days.",
+            "priceCurrency": "INR",
+            "price": "15000",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          },
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#growth-offer",
+            "name": "Growth",
+            "description": "Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.",
+            "priceCurrency": "INR",
+            "price": "45000",
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          },
+          {
+            "@type": "Offer",
+            "@id": "https://www.netqorix.com/pricing#custom-offer",
+            "name": "Custom",
+            "description": "Web app, portal, e-commerce, integrations, cloud deploy.",
+            "priceCurrency": "INR",
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "INR",
+              "minPrice": "120000"
+            },
+            "availability": "https://schema.org/InStock",
+            "url": "https://www.netqorix.com/pricing#packages",
+            "seller": {
+              "@id": "https://www.netqorix.com/#organization"
+            }
+          }
+        ]
+      }
     }
   ]
 }
@@ -264,57 +363,50 @@
         <p class="lead-text">Architected for 99.9% uptime, zero-downtime deployments, automated backups, and robust security policies.</p>
       </div>
 
-      <div class="table-block">
-        <div class="table-block-header">
-          <h3>Cloud Services Service Charges (Effective 2026)</h3>
-          <div class="currency-toggle-wrapper">
-            <div class="currency-toggle-btn" role="radiogroup">
-              <button type="button" class="currency-option is-active" data-currency="INR">₹ INR</button>
-            </div>
+      <div class="section-header text-center">
+        <span class="eyebrow">Website Packages</span>
+        <h2>Three packages. One number each.</h2>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: var(--space-xl);">
+        <div class="service-card package-card">
+          <div>
+            <div class="package-name">Starter</div>
+            <span class="package-price" data-price-min="15000">₹15,000</span>
+            <p class="package-scope">5-page business site, mobile-ready, contact form, SSL, live in 10 days.</p>
+          </div>
+          <div>
+            <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+            <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Starter</a>
           </div>
         </div>
-        <p class="pricing-model-note">Beyond the core Starter / Growth / Custom packages (<a href="/pricing">see full pricing</a>), these are itemized add-on rates for cloud infrastructure setup and management.</p>
-        <table class="pricing-table">
-          <caption>Cloud Services Tiers and Pricing</caption>
-          <thead>
-            <tr>
-              <th scope="col">Tier</th>
-              <th scope="col">Scope &amp; Architecture</th>
-              <th scope="col" style="text-align: right;">Rate</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="tier-name">Cloud Setup (one-time)</td>
-              <td class="tier-desc">Account/architecture setup, environments, CI/CD, security config on AWS / GCP / Azure / DO.</td>
-              <td class="tier-price"><span data-price-min="15000" data-price-max="60000">₹15,000 – ₹60,000</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Managed — Starter</td>
-              <td class="tier-desc">Small app / static + serverless. Monitoring, backups, SSL, patching.</td>
-              <td class="tier-price"><span data-price-min="4000" data-price-suffix="/ mo">₹4,000 / mo</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Managed — Business</td>
-              <td class="tier-desc">Multi-service app, autoscaling, DB management, alerts, monthly report.</td>
-              <td class="tier-price"><span data-price-min="10000" data-price-suffix="/ mo">₹10,000 / mo</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Managed — Scale</td>
-              <td class="tier-desc">High-traffic / enterprise, load balancing, DevOps, 24×7 monitoring, priority SLA.</td>
-              <td class="tier-price"><span data-price-min="25000" data-price-suffix="+ / mo">₹25,000+ / mo</span></td>
-            </tr>
-            <tr>
-              <td class="tier-name">Provider Cost Markup</td>
-              <td class="tier-desc">Actual AWS/GCP/Azure/DO usage billed at cost + management margin.</td>
-              <td class="tier-price"><span data-price-static="cost + 15–20%">cost + 15–20%</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="table-footnote">
-          Footnote: Two models — fixed monthly tiers (management only, provider fees billed separately) or pass-through provider cost + margin. Providers supported: AWS, Google Cloud, Azure, DigitalOcean / Vercel / Netlify.
+
+        <div class="service-card package-card">
+          <div>
+            <div class="package-name">Growth</div>
+            <span class="package-price" data-price-min="45000">₹45,000</span>
+            <p class="package-scope">Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.</p>
+          </div>
+          <div>
+            <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+            <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Growth</a>
+          </div>
+        </div>
+
+        <div class="service-card package-card">
+          <div>
+            <div class="package-name">Custom</div>
+            <span class="package-price" data-price-min="120000" data-price-prefix="from " data-price-suffix="+">from ₹1,20,000+</span>
+            <p class="package-scope">Web app, portal, e-commerce, integrations, cloud deploy.</p>
+          </div>
+          <div>
+            <div class="package-terms">Fixed quote. 50% to start, 50% on delivery.</div>
+            <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20need%20a%20website%20for%20my%20business" target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="width: 100%;">Ask about Custom</a>
+          </div>
         </div>
       </div>
+
+      <p class="pricing-model-note">Full line-item rates for every service: <a href="/pricing">Service Charges →</a></p>
 
       <div class="testimonial-card" style="margin-top: var(--space-xl);">
         <div class="testimonial-logo-wrapper">

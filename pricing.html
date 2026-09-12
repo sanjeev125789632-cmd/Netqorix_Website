@@ -49,6 +49,9 @@
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
+<!-- NAP (name / telephone / address / hours) in the ProfessionalService node below
+     must match the Google Business Profile exactly. The GBP does not exist yet:
+     when it is created, keep these values and the GBP listing in sync. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -199,6 +202,54 @@
           }
         }
       ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.netqorix.com/#professionalservice",
+      "name": "Netqorix",
+      "url": "https://www.netqorix.com/",
+      "image": "https://www.netqorix.com/assets/og-image.jpg",
+      "telephone": "+91-83695-32924",
+      "email": "netqorix@gmail.com",
+      "priceRange": "₹15,000+",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mumbai",
+        "addressCountry": "IN"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Mumbai"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "https://schema.org/Monday",
+            "https://schema.org/Tuesday",
+            "https://schema.org/Wednesday",
+            "https://schema.org/Thursday",
+            "https://schema.org/Friday"
+          ],
+          "opens": "10:00",
+          "closes": "19:00"
+        }
+      ],
+      "founder": {
+        "@id": "https://www.netqorix.com/#founder"
+      },
+      "parentOrganization": {
+        "@id": "https://www.netqorix.com/#organization"
+      },
+      "hasOfferCatalog": {
+        "@id": "https://www.netqorix.com/pricing#packages"
+      }
     }
   ]
 }
