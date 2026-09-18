@@ -24,10 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileToggle = document.querySelector('.mobile-nav-toggle');
   const navMenu = document.querySelector('.nav-menu');
 
+  function closeAllSubmenus(exception) {
+    document.querySelectorAll('.nav-item-has-submenu.is-submenu-open').forEach((item) => {
+      if (item === exception) return;
+      item.classList.remove('is-submenu-open');
+      item.querySelector('.nav-submenu-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
   function closeMobileNav() {
     if (navMenu && navMenu.classList.contains('is-open')) {
       navMenu.classList.remove('is-open');
       document.body.classList.remove('nav-open');
+      closeAllSubmenus();
       if (mobileToggle) {
         mobileToggle.setAttribute('aria-expanded', 'false');
         mobileToggle.setAttribute('aria-label', 'Open navigation menu');
@@ -88,6 +97,55 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMobileNav();
         mobileToggle.focus();
       }
+    });
+  }
+
+  // Services dropdown: button-controlled on every viewport, with hover and
+  // focus handled by CSS on desktop so pointer users never need the button.
+  const submenuItems = Array.from(document.querySelectorAll('.nav-item-has-submenu'));
+
+  submenuItems.forEach((item) => {
+    const toggle = item.querySelector('.nav-submenu-toggle');
+    const submenu = item.querySelector('.nav-submenu');
+    if (!toggle || !submenu) return;
+
+    submenu.id ||= `nav-submenu-${submenuItems.indexOf(item) + 1}`;
+    toggle.setAttribute('aria-controls', submenu.id);
+    toggle.setAttribute('aria-expanded', 'false');
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const willOpen = !item.classList.contains('is-submenu-open');
+      closeAllSubmenus(item);
+      item.classList.toggle('is-submenu-open', willOpen);
+      toggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (willOpen) submenu.querySelector('a')?.focus();
+    });
+
+    submenu.addEventListener('click', (e) => {
+      if (e.target.closest('a')) {
+        item.classList.remove('is-submenu-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  if (submenuItems.length) {
+    document.addEventListener('click', (e) => {
+      if (!e.target.isConnected) return;
+      if (e.target.closest('.nav-item-has-submenu')) return;
+      closeAllSubmenus();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const openItem = document.querySelector('.nav-item-has-submenu.is-submenu-open');
+      if (!openItem) return;
+      openItem.classList.remove('is-submenu-open');
+      const toggle = openItem.querySelector('.nav-submenu-toggle');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.focus();
     });
   }
 

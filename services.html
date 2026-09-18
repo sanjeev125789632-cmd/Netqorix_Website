@@ -214,7 +214,7 @@
         },
         {
           "@type": "Offer",
-          "name": "UI/UX & Branding Add-Ons",
+          "name": "Design & Integrations",
           "url": "https://www.netqorix.com/services-addons",
           "priceCurrency": "INR",
           "priceSpecification": {
@@ -226,8 +226,8 @@
         },
         {
           "@type": "Offer",
-          "name": "Automation & AI Agent Services",
-          "url": "https://www.netqorix.com/pricing#table-6",
+          "name": "Automation Services",
+          "url": "https://www.netqorix.com/services-automation",
           "priceCurrency": "INR",
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -238,8 +238,8 @@
         },
         {
           "@type": "Offer",
-          "name": "3D Modeling & Visual Assets",
-          "url": "https://www.netqorix.com/pricing#table-7",
+          "name": "3D Modeling & Visualization",
+          "url": "https://www.netqorix.com/services-3d",
           "priceCurrency": "INR",
           "priceSpecification": {
             "@type": "PriceSpecification",
@@ -367,7 +367,21 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="services" class="nav-link is-active">Services</a></li>
+          <li class="nav-item-has-submenu">
+            <a href="services" class="nav-link is-active">Services</a>
+            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="Show the services menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <ul class="nav-submenu" aria-label="Services">
+              <li class="nav-submenu-overview"><a href="services" aria-current="page">All services</a></li>
+              <li><a href="services-web">Website Development &amp; Deployment</a></li>
+              <li><a href="services-app">Mobile &amp; Web App Development</a></li>
+              <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+              <li><a href="services-cloud">Cloud Services &amp; Infrastructure</a></li>
+              <li><a href="services-addons">Design &amp; Integrations</a></li>
+              <li><a href="services-automation">Automation Services</a></li>
+              <li><a href="services-3d">3D Modeling &amp; Visualization</a></li>
+              <li><a href="services-seo">SEO &amp; Local Search</a></li>
+            </ul>
+          </li>
           <li><a href="pricing" class="nav-link">Pricing</a></li>
           <li><a href="work" class="nav-link">Work</a></li>
           <li><a href="about" class="nav-link">About</a></li>
@@ -505,7 +519,7 @@
             <div class="service-icon-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
             </div>
-            <h3>UI/UX &amp; Branding Add-Ons</h3>
+            <h3>Design &amp; Integrations</h3>
             <p>Figma UI prototyping, brand identity design, standard &amp; digital business cards, payment gateways, and custom admin portals.</p>
           </div>
           <div>
@@ -513,7 +527,7 @@
               <span>Add-Ons From</span>
               <strong data-price-min="800" data-price-max="90000">₹800 – ₹90,000</strong>
             </div>
-            <a href="services-addons" class="btn btn-primary btn-sm" style="width: 100%;">Explore Add-Ons &rarr;</a>
+            <a href="services-addons" class="btn btn-primary btn-sm" style="width: 100%;">Explore Design &amp; Integrations &rarr;</a>
           </div>
         </div>
 
@@ -530,7 +544,7 @@
               <span>Full Rate Band</span>
               <strong data-price-min="5000" data-price-max="150000">₹5,000 – ₹1,50,000</strong>
             </div>
-            <a href="pricing#table-6" class="btn btn-primary btn-sm" style="width: 100%;">Explore Automation Rates &rarr;</a>
+            <a href="services-automation" class="btn btn-primary btn-sm" style="width: 100%;">Explore Automation Services &rarr;</a>
           </div>
         </div>
 
@@ -547,7 +561,7 @@
               <span>Per Model Band</span>
               <strong data-price-min="2500" data-price-max="120000">₹2,500 – ₹1,20,000</strong>
             </div>
-            <a href="pricing#table-7" class="btn btn-primary btn-sm" style="width: 100%;">Explore 3D Asset Rates &rarr;</a>
+            <a href="services-3d" class="btn btn-primary btn-sm" style="width: 100%;">Explore 3D Modeling &rarr;</a>
           </div>
         </div>
 
@@ -592,13 +606,13 @@
       <section class="case-study-detail" aria-labelledby="automation-service">
         <h2 id="automation-service">Automation and AI-assisted workflows</h2>
         <p>Automation services connect repetitive business steps across forms, email, spreadsheets, databases and supported third-party platforms. A useful automation starts with a documented trigger, the data that moves between systems, exception handling and a clear human owner. Depending on the requirement, the implementation may use tools such as Zapier, Make or n8n, or a custom script when an off-the-shelf connector is not suitable.</p>
-        <p>AI-assisted workflows and chat interfaces require additional boundaries: which sources they may use, what they should refuse, when they escalate to a person and how data is retained. The automation and AI rate bands are listed in the <a href="pricing#table-6">detailed pricing tables</a>. Any third-party usage charges are identified separately during scope confirmation.</p>
+        <p>AI-assisted workflows and chat interfaces require additional boundaries: which sources they may use, what they should refuse, when they escalate to a person and how data is retained. Every option, rate band and running cost is explained on the <a href="services-automation">automation services page</a>. Any third-party usage charges are identified separately during scope confirmation.</p>
       </section>
 
       <section class="case-study-detail" aria-labelledby="modeling-service">
         <h2 id="modeling-service">3D modeling and visual assets</h2>
         <p>3D modeling can support product presentation, architectural communication, training material and interactive digital experiences. Scope depends on geometry complexity, reference quality, required level of detail, textures, rigging, animation and final output formats. A static product model is therefore evaluated differently from a character, an animation cycle or a photorealistic 360-degree render.</p>
-        <p>Clients should provide available drawings, dimensions, photographs, brand references and the intended viewing environment. These inputs help define what must be modeled and how the asset will be optimized for web, video or another production channel. The published <a href="pricing#table-7">3D modeling rate bands</a> provide an entry point; the fixed quote follows review of the actual references and output requirements.</p>
+        <p>Clients should provide available drawings, dimensions, photographs, brand references and the intended viewing environment. These inputs help define what must be modeled and how the asset will be optimized for web, video or another production channel. The <a href="services-3d">3D modeling and visualization page</a> explains each tier and how it differs from interactive 3D website development; the fixed quote follows review of the actual references and output requirements.</p>
       </section>
 
       <div class="terms-card" style="text-align: center; margin-top: var(--space-2xl);">
@@ -633,12 +647,15 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul class="footer-links">
-            <li><a href="services-web">Web Development</a></li>
-            <li><a href="services-app">Mobile App Build</a></li>
-            <li><a href="services-cloud">Cloud Setup &amp; DevOps</a></li>
+            <li><a href="services-web">Website Development</a></li>
+            <li><a href="services-app">Mobile &amp; Web Apps</a></li>
+            <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+            <li><a href="services-cloud">Cloud &amp; Infrastructure</a></li>
+            <li><a href="services-addons">Design &amp; Integrations</a></li>
+            <li><a href="services-automation">Automation Services</a></li>
+            <li><a href="services-3d">3D Modeling</a></li>
             <li><a href="services-seo">SEO &amp; Local Search</a></li>
-            <li><a href="services-maintenance">Maintenance &amp; AMC</a></li>
-            <li><a href="services-addons">Add-On Services</a></li>
+            <li><a href="services">All services</a></li>
           </ul>
         </div>
 

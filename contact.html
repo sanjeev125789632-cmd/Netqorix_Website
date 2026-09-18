@@ -248,7 +248,21 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="services" class="nav-link">Services</a></li>
+          <li class="nav-item-has-submenu">
+            <a href="services" class="nav-link">Services</a>
+            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="Show the services menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <ul class="nav-submenu" aria-label="Services">
+              <li class="nav-submenu-overview"><a href="services">All services</a></li>
+              <li><a href="services-web">Website Development &amp; Deployment</a></li>
+              <li><a href="services-app">Mobile &amp; Web App Development</a></li>
+              <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+              <li><a href="services-cloud">Cloud Services &amp; Infrastructure</a></li>
+              <li><a href="services-addons">Design &amp; Integrations</a></li>
+              <li><a href="services-automation">Automation Services</a></li>
+              <li><a href="services-3d">3D Modeling &amp; Visualization</a></li>
+              <li><a href="services-seo">SEO &amp; Local Search</a></li>
+            </ul>
+          </li>
           <li><a href="pricing" class="nav-link">Pricing</a></li>
           <li><a href="work" class="nav-link">Work</a></li>
           <li><a href="about" class="nav-link">About</a></li>
@@ -365,12 +379,15 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul class="footer-links">
-            <li><a href="services-web">Web Development</a></li>
-            <li><a href="services-app">Mobile App Build</a></li>
-            <li><a href="services-cloud">Cloud Setup &amp; DevOps</a></li>
+            <li><a href="services-web">Website Development</a></li>
+            <li><a href="services-app">Mobile &amp; Web Apps</a></li>
+            <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+            <li><a href="services-cloud">Cloud &amp; Infrastructure</a></li>
+            <li><a href="services-addons">Design &amp; Integrations</a></li>
+            <li><a href="services-automation">Automation Services</a></li>
+            <li><a href="services-3d">3D Modeling</a></li>
             <li><a href="services-seo">SEO &amp; Local Search</a></li>
-            <li><a href="services-maintenance">Maintenance &amp; AMC</a></li>
-            <li><a href="services-addons">Add-On Services</a></li>
+            <li><a href="services">All services</a></li>
           </ul>
         </div>
 
