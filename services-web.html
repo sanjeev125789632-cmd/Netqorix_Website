@@ -40,9 +40,6 @@
   <meta name="twitter:description" content="Business websites in Navi Mumbai from ₹15,000. Compare packages, explore completed projects and get a fixed scope with a 10-day Starter launch.">
   <meta name="twitter:image" content="https://www.netqorix.com/assets/og-image.jpg">
 
-
-
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -50,9 +47,6 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/chatbot.css">
 
-<!-- NAP (name / telephone / address / hours) in the ProfessionalService node below
-     must match the Google Business Profile exactly. The GBP does not exist yet:
-     when it is created, keep these values and the GBP listing in sync. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -166,26 +160,56 @@
         {
           "@type": "Offer",
           "name": "Starter",
-          "url": "https://www.netqorix.com/pricing#starter-offer",
           "priceCurrency": "INR",
           "price": "15000"
         },
         {
           "@type": "Offer",
           "name": "Growth",
-          "url": "https://www.netqorix.com/pricing#growth-offer",
           "priceCurrency": "INR",
           "price": "45000"
         },
         {
           "@type": "Offer",
           "name": "Custom",
-          "url": "https://www.netqorix.com/pricing#custom-offer",
           "priceCurrency": "INR",
           "priceSpecification": {
             "@type": "PriceSpecification",
             "priceCurrency": "INR",
             "minPrice": "120000"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "3D / Interactive — Essential",
+          "priceCurrency": "INR",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "minPrice": "80000",
+            "maxPrice": "200000"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "3D / Interactive — Immersive",
+          "priceCurrency": "INR",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "minPrice": "250000",
+            "maxPrice": "600000"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "Deployment Setup",
+          "priceCurrency": "INR",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "minPrice": "5000",
+            "maxPrice": "15000"
           }
         }
       ]
@@ -341,36 +365,34 @@
         "@type": "Answer",
         "text": "Inclusions and recurring charges depend on the agreed setup. Ask for domain, hosting, email, paid tools and maintenance to be itemised before approving your quote. Optional ongoing support is available separately."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a website and a web application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A website presents information: visitors read it and then contact you. A web application lets people do something — log in, book, pay, track or manage records. If you need the second, see mobile and web app development, which is priced differently because it is software rather than pages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an interactive 3D website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not. Interactive 3D earns its cost for products where configuration or internal detail drives the sale. For a standard services business, a well-built Growth site will generate more enquiries for far less money, and that is the honest recommendation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I update the website myself after launch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With the Growth package, yes — it includes a CMS, which is an admin screen where you change text, images and prices without a developer. The Starter package does not include a CMS; small changes can be handled through a maintenance plan or quoted individually."
+      }
     }
   ]
 }
 </script>
-
-  <style>
-    .web-service .web-section { padding-block: clamp(2rem, 5vw, 4rem); border-bottom: 1px solid var(--ee-line, #c9c6ba); scroll-margin-top: 7rem; }
-    .web-service .web-section h2 { max-width: 26ch; margin-bottom: 1.5rem; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.12; }
-    .web-service .web-section h3 { margin-block: 1.4rem .6rem; font-size: 1.2rem; }
-    .web-service .web-section p { max-width: 72ch; margin-bottom: 1rem; }
-    .web-service .web-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
-    .web-service .web-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-block: 1.5rem; }
-    .web-service .web-note { max-width: 70ch; font-size: .9rem; line-height: 1.6; }
-    .web-service .web-table-scroll { overflow-x: auto; }
-    .web-service .web-table-scroll:focus-visible, .web-service summary:focus-visible { outline: 3px solid #304ffe; outline-offset: 4px; }
-    .web-service .pricing-table { min-width: 560px; }
-    .web-service .web-projects article { border-left: 3px solid #304ffe; padding-left: 1.25rem; }
-    .web-service .web-steps { padding-left: 1.5rem; }
-    .web-service .web-steps li { padding-left: .5rem; }
-    .web-service .web-faq details { border-top: 1px solid var(--ee-line, #c9c6ba); padding-block: 1.2rem; }
-    .web-service .web-faq summary { cursor: pointer; font-weight: 700; }
-    .web-service .web-faq details p { margin-top: 1rem; }
-    .web-service .web-contact { border-bottom: 0; }
-    @media (max-width: 767px) {
-      .web-service .web-grid { grid-template-columns: 1fr; gap: .5rem; }
-      .web-service .pricing-table { min-width: 0; width: 100%; }
-      .web-service .web-actions { gap: .5rem; }
-      .editorial-inner main.web-service .section-header h1 { font-size: clamp(2.3rem, 10vw, 4rem); overflow-wrap: break-word; }
-    }
-  </style>
 </head>
 <body class="editorial-inner">
 
@@ -389,7 +411,21 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="services" class="nav-link is-active">Services</a></li>
+          <li class="nav-item-has-submenu">
+            <a href="services" class="nav-link is-active">Services</a>
+            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="Show the services menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <ul class="nav-submenu" aria-label="Services">
+              <li class="nav-submenu-overview"><a href="services">All services</a></li>
+              <li><a href="services-web" aria-current="page">Website Development &amp; Deployment</a></li>
+              <li><a href="services-app">Mobile &amp; Web App Development</a></li>
+              <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+              <li><a href="services-cloud">Cloud Services &amp; Infrastructure</a></li>
+              <li><a href="services-addons">Design &amp; Integrations</a></li>
+              <li><a href="services-automation">Automation Services</a></li>
+              <li><a href="services-3d">3D Modeling &amp; Visualization</a></li>
+              <li><a href="services-seo">SEO &amp; Local Search</a></li>
+            </ul>
+          </li>
           <li><a href="pricing" class="nav-link">Pricing</a></li>
           <li><a href="work" class="nav-link">Work</a></li>
           <li><a href="about" class="nav-link">About</a></li>
@@ -417,45 +453,89 @@
     </div>
   </header>
 
-
-  <main id="main-content" class="section-padding web-service">
+  <main id="main-content" class="section-padding svc-page">
     <div class="container">
       <div class="section-header text-center">
         <span class="eyebrow">Nerul, Navi Mumbai · Founder-led website development</span>
-        <h1>Website development<br> in Navi Mumbai.</h1>
+        <h1>Website development<br> &amp; deployment.</h1>
         <p class="lead-text">A clear home for your business. A simple way for customers to enquire. Get a mobile-ready, 5-page website for <span data-price-min="15000">₹15,000</span>, with a fixed scope and a 10-day launch.</p>
-        <div class="web-actions">
+        <div class="svc-actions">
           <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20would%20like%20a%20fixed%20quote%20for%20a%20business%20website.%20My%20business%3A%20%0APages%20or%20features%20needed%3A%20%0ATarget%20launch%20date%3A%20" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">WhatsApp your website brief</a>
-          <a href="#website-packages" class="btn btn-secondary btn-lg">Compare website packages</a>
+          <a href="#packages-title" class="btn btn-secondary btn-lg">Compare website packages</a>
         </div>
-        <p class="web-note">The 10-day commitment applies to the agreed business-website scope when content and approvals are ready. Larger builds receive a separate timeline.</p>
+        <p class="svc-note">The 10-day commitment applies to the agreed business-website scope when content and approvals are ready. Larger builds receive a separate timeline.</p>
       </div>
 
-      <section class="web-section" aria-labelledby="starter-title">
-        <p class="eyebrow">01 / Your first business website</p>
-        <h2 id="starter-title">What your <span data-price-min="15000">₹15,000</span> Starter website includes.</h2>
-        <div class="web-grid">
+      <section class="svc-section" aria-labelledby="who-title">
+        <p class="eyebrow">01 / Who this is for</p>
+        <h2 id="who-title">Why a business website still matters.</h2>
+        <p>When someone hears about your business, the first thing they do is search for it. If nothing comes up, or what comes up is a half-finished social page, the enquiry usually goes to whoever does have a proper website.</p>
+        <p>A website is the one place online you actually control. It works at 11pm, it answers the same questions without getting tired, and it lets a stranger decide you are worth contacting before they ever speak to you.</p>
+        <p>This page covers business websites, larger content-managed sites, e-commerce, portals, interactive 3D websites and the deployment work that puts them live.</p>
+      </section>
+
+      <section class="svc-section" aria-labelledby="problems-title">
+        <p class="eyebrow">02 / Problems this can address</p>
+        <h2 id="problems-title">What a proper website fixes.</h2>
+        <ul class="svc-list">
+          <li><strong>Customers cannot find you.</strong> You exist, but not in search results.</li>
+          <li><strong>You look smaller than you are.</strong> A serious business with no website loses to a less capable competitor with one.</li>
+          <li><strong>The same questions, every day.</strong> Prices, timings, locations, what you do and do not offer.</li>
+          <li><strong>Enquiries arrive with nothing useful in them.</strong> No structure means no name, no requirement and no budget.</li>
+          <li><strong>Nothing to send.</strong> No link to share with a prospect, a partner or a bank.</li>
+          <li><strong>It breaks on a phone.</strong> Most visitors are on a phone, and a site that does not work there loses them immediately.</li>
+          <li><strong>You cannot update it.</strong> Your existing site needs a developer for every price change.</li>
+        </ul>
+      </section>
+
+      <section class="svc-section" aria-labelledby="types-title">
+        <p class="eyebrow">03 / Which kind of website you need</p>
+        <h2 id="types-title">Six kinds of website, in plain terms.</h2>
+        <div class="svc-grid">
           <div>
-            <h3>Five pages built around your business</h3>
-            <p>A practical starting structure is Home, About, Services, Work and Contact. We agree the exact pages and content before development begins.</p>
-            <h3>Ready for mobile enquiries</h3>
-            <p>A mobile-ready layout, contact form and SSL are included. Visitors can understand your services and take the next step from their phone.</p>
+        <h3>A business website</h3>
+        <p>Five to fifteen pages explaining who you are, what you offer and how to reach you. This is what most businesses need, and it is what the Starter and Growth packages cover.</p>
+        <h3>A content-managed website</h3>
+        <p>The same thing, plus a CMS &mdash; an admin screen where you update text, images, prices and blog posts yourself, without calling a developer. Included in Growth.</p>
+        <h3>An online store</h3>
+        <p>Products, a cart, checkout, payment and order management. More complex than a business site because money and stock are involved. Quoted under Custom.</p>
           </div>
           <div>
-            <h3>A defined launch and handover</h3>
-            <p>You receive the approved website, source code and agreed access after final settlement. Optional maintenance is available after launch.</p>
-            <h3>A quote you can review before committing</h3>
-            <p>The Starter payment schedule is 50% to start and 50% on delivery. Pages, features, content responsibilities and milestones are agreed before work begins.</p>
+        <h3>A portal or web application</h3>
+        <p>Customers or staff log in and do something: book, track, submit or manage records. This is software, not pages &mdash; see <a href="services-app">mobile and web app development</a>.</p>
+        <h3>An interactive 3D website</h3>
+        <p>Visitors rotate, zoom or configure a product in the browser, built with Three.js or WebGL. Priced separately below.</p>
+        <h3>A landing page</h3>
+        <p>A single focused page for one campaign or one offer. Usually quoted as a small Custom item rather than a package.</p>
+          </div>
+        </div>
+        <div class="svc-callout">
+          If you are unsure, describe what you want a visitor to be able to <em>do</em>. If they only need to read and then contact you, a business website is enough. If they need to log in, pay or manage something, you are looking at an application.
+        </div>
+      </section>
+
+      <section class="svc-section" aria-labelledby="starter-title">
+        <p class="eyebrow">04 / What the Starter package includes</p>
+        <h2 id="starter-title">What your <span data-price-min="15000">₹15,000</span> Starter website includes.</h2>
+        <div class="svc-grid">
+          <div>
+        <h3>Five pages built around your business</h3>
+        <p>A practical starting structure is Home, About, Services, Work and Contact. We agree the exact pages and content before development begins.</p>
+        <h3>Ready for mobile enquiries</h3>
+        <p>A mobile-ready layout, contact form and SSL are included. Visitors can understand your services and take the next step from their phone.</p>
+          </div>
+          <div>
+        <h3>A defined launch and handover</h3>
+        <p>You receive the approved website, source code and agreed access after final settlement. Optional maintenance is available after launch.</p>
+        <h3>A quote you can review before committing</h3>
+        <p>The Starter payment schedule is 50% to start and 50% on delivery. Pages, features, content responsibilities and milestones are agreed before work begins.</p>
           </div>
         </div>
       </section>
 
-      <section class="web-section" id="website-packages" aria-labelledby="packages-title">
-        <div class="section-header text-center">
-          <span class="eyebrow">Website Packages</span>
-          <h2 id="packages-title">Three packages. One number each.</h2>
-        </div>
-
+      <section class="svc-section" aria-labelledby="packages-title">
+        <p class="eyebrow">05 / Packages and rates</p>
+        <h2 id="packages-title">Three packages. One number each.</h2>
         <div class="grid-3" style="margin-bottom: var(--space-xl);">
           <div class="service-card package-card">
             <div>
@@ -493,44 +573,179 @@
             </div>
           </div>
         </div>
-
-        <p class="pricing-model-note">Full line-item rates for every service: <a href="/pricing">Service Charges →</a></p>
-        <h3>Clarify ongoing costs before you start.</h3>
-        <p>Ask for domain registration or renewal, hosting, business email, paid tools and maintenance to be itemised in your quote. Their inclusion and recurring charges depend on the agreed setup; the package price alone does not specify them.</p>
-        <p>For ongoing changes and support, review our <a href="services-maintenance">website maintenance service</a>. For a wider search campaign, see <a href="services-seo">SEO and local search services</a>.</p>
+        <p>Interactive 3D builds and deployment setup are priced as their own line items on top of the package, because not every project needs them.</p>
+        <div class="svc-table-scroll" tabindex="0" role="group" aria-label="Website development and deployment rates">
+        <table class="pricing-table">
+          <caption>Website development and deployment rates</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tier</th>
+              <th scope="col">Scope and deliverables</th>
+              <th scope="col" style="text-align: right;">Project rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier-name">Starter</td>
+              <td class="tier-desc">5-page business site, mobile-ready, contact form, SSL, live in 10 days.</td>
+              <td class="tier-price"><span data-price-min="15000">₹15,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Growth</td>
+              <td class="tier-desc">Up to 15 pages, CMS, SEO setup, Google Business Profile, analytics.</td>
+              <td class="tier-price"><span data-price-min="45000">₹45,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Custom</td>
+              <td class="tier-desc">Web app, portal, e-commerce, integrations, cloud deploy.</td>
+              <td class="tier-price"><span data-price-min="120000" data-price-prefix="from " data-price-suffix="+">from ₹1,20,000+</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">3D / Interactive — Essential</td>
+              <td class="tier-desc">Three.js or WebGL, animated 3D hero or product viewer, scroll effects (1–2 scenes).</td>
+              <td class="tier-price"><span data-price-min="80000" data-price-max="200000">₹80,000 – ₹2,00,000</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">3D / Interactive — Immersive</td>
+              <td class="tier-desc">Full 3D experience, custom models, physics and interaction, product configurator.</td>
+              <td class="tier-price"><span data-price-min="250000" data-price-max="600000" data-price-suffix="+">₹2,50,000 – ₹6,00,000+</span></td>
+            </tr>
+            <tr>
+              <td class="tier-name">Deployment Setup</td>
+              <td class="tier-desc">Domain pointing, cloud hosting configuration, SSL installation, CI/CD pipeline and go-live audit. One-time, per project.</td>
+              <td class="tier-price"><span data-price-min="5000" data-price-max="15000">₹5,000 – ₹15,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Every rate above is a project rate billed per project, not a subscription. The payment schedule is 50% to start and 50% on delivery. Full line-item rates for every Netqorix service are on the <a href="pricing">pricing page</a>.</p>
       </section>
 
-      <section class="web-section" aria-labelledby="projects-title">
-        <p class="eyebrow">03 / Completed projects</p>
+      <section class="svc-section" aria-labelledby="threed-title">
+        <p class="eyebrow">06 / Interactive 3D websites</p>
+        <h2 id="threed-title">When the website itself is the product demo.</h2>
+        <p>An interactive 3D website lets a visitor rotate a product, look inside it, or change its colour and configuration directly in the browser. It is built with Three.js or WebGL and runs on an ordinary web page &mdash; no app to install, no plugin.</p>
+        <h3>Essential</h3>
+        <p>One or two 3D scenes: an animated 3D hero, or a single product viewer visitors can rotate and zoom, with scroll-driven effects. Suitable when you have one flagship product worth showing properly.</p>
+        <h3>Immersive</h3>
+        <p>A full 3D experience with custom models, physics and interaction, and a product configurator where choices change what is displayed and what is quoted. Suitable when the product genuinely has to be explored to be understood.</p>
+        <div class="svc-callout">
+          The 3D models themselves are a separate deliverable. If you do not already own suitable models, they are produced under <a href="services-3d">3D modeling and visualization</a> and quoted as their own line items. A model built for a printed catalogue will not perform in a browser without being optimised for it, so the end use is confirmed before either piece is quoted.
+        </div>
+        <p>Interactive 3D adds real cost and real weight to a page. It earns its place for products where configuration or internal detail drives the sale. For a standard services business, a well-built Growth site will do more for enquiries.</p>
+      </section>
+
+      <section class="svc-section" aria-labelledby="deployment-title">
+        <p class="eyebrow">07 / Deployment: putting it live</p>
+        <h2 id="deployment-title">The part between "finished" and "live".</h2>
+        <p>Deployment is the work of getting a finished website onto the internet at your own domain, securely and repeatably. It is quoted as a one-time item at <span data-price-min="5000" data-price-max="15000">₹5,000 – ₹15,000</span> per project and covers:</p>
+        <ul class="svc-list">
+          <li><strong>Domain pointing.</strong> Connecting your domain name so visitors reach your site.</li>
+          <li><strong>Cloud hosting configuration.</strong> Setting up where the site actually runs.</li>
+          <li><strong>SSL installation.</strong> The padlock in the browser bar. Without it, browsers warn visitors that the site is not secure.</li>
+          <li><strong>A CI/CD pipeline.</strong> An automated path from approved change to live site, so updates are repeatable rather than files dragged onto a server by hand.</li>
+          <li><strong>Go-live audit.</strong> Checking that pages load, forms deliver, links work, analytics record, and search engines can read the site before it is announced.</li>
+        </ul>
+        <p>The domain registration fee and the hosting or cloud provider&rsquo;s charges are billed by those providers, not by Netqorix. For larger infrastructure, autoscaling or ongoing server administration, see <a href="services-cloud">cloud services and infrastructure</a>.</p>
+      </section>
+
+      <section class="svc-section" aria-labelledby="deliverables-title">
+        <p class="eyebrow">08 / What you get and what is excluded</p>
+        <h2 id="deliverables-title">Deliverables and exclusions, stated up front.</h2>
+        <div class="svc-grid">
+          <div>
+        <h3>Included in the agreed scope</h3>
+        <ul class="svc-list">
+          <li>The approved website, built to the agreed page list.</li>
+          <li>Responsive layout that works on phones, tablets and desktops.</li>
+          <li>Contact form and SSL.</li>
+          <li>CMS, SEO setup, Google Business Profile and analytics on the Growth package.</li>
+          <li>Source code and the agreed access, handed over after final settlement.</li>
+          <li>Testing against the approved scope before launch.</li>
+          <li>Deployment, where the Deployment Setup item is in your quote.</li>
+        </ul>
+          </div>
+          <div>
+        <h3>Not included unless quoted separately</h3>
+        <ul class="svc-list">
+          <li>Domain registration and renewal, hosting and business email, which are billed by those providers.</li>
+          <li>Paid plugins, themes, stock photography, fonts and licensed assets.</li>
+          <li>Content writing, product data entry and professional photography.</li>
+          <li>Logo and brand identity design. See <a href="services-addons">design and integrations</a>.</li>
+          <li>Payment gateways and third-party integrations, priced per integration.</li>
+          <li>Ongoing SEO campaigns. The Growth package includes SEO <em>setup</em>; a campaign is <a href="services-seo">separate ongoing work</a>.</li>
+          <li>Maintenance, content updates and new features after launch. See <a href="services-maintenance">maintenance and support</a>.</li>
+          <li>Any guaranteed search ranking position.</li>
+          <li>Pages or features discussed but not written into the approved scope.</li>
+        </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="svc-section" aria-labelledby="examples-title">
+        <p class="eyebrow">09 / What this looks like in practice</p>
+        <h2 id="examples-title">Two situations, described as hypotheticals.</h2>
+        <p>These are illustrative scenarios written to explain how packages are chosen. They are not Netqorix client projects &mdash; verified projects are shown in the next section and on the <a href="work">work page</a>.</p>
+        <div class="svc-example">
+          <span class="svc-example-label">Hypothetical example</span>
+          <p><strong>A two-person consultancy with no website at all.</strong> They need to look credible, explain three services and receive enquiries. Five pages, a contact form, SSL and a mobile-ready layout &mdash; a Starter build, plus Deployment Setup to put it live on their own domain.</p>
+        </div>
+        <div class="svc-example">
+          <span class="svc-example-label">Hypothetical example</span>
+          <p><strong>A manufacturer with twelve product lines and no way to update anything.</strong> They need product pages, a CMS so staff can add new lines themselves, SEO setup so buyers can find the products, a Google Business Profile and analytics. That is the Growth package, with a payment gateway added later as a separate line item if they start selling directly.</p>
+        </div>
+      </section>
+
+      <section class="svc-section" aria-labelledby="projects-title">
+        <p class="eyebrow">10 / Completed projects</p>
         <h2 id="projects-title">See how other businesses present their work.</h2>
-        <div class="web-grid web-projects">
+        <div class="svc-grid">
           <article>
             <h3>Alok S Kumar &amp; Company</h3>
             <p>A Mumbai chartered accountancy practice: service pages and an enquiry journey designed around a professional firm's needs.</p>
-            <a href="work-alok-s-kumar">Explore the CA website project →</a>
+            <p><a href="work-alok-s-kumar">Explore the CA website project &rarr;</a></p>
           </article>
           <article>
             <h3>NAVANA</h3>
             <p>A Mumbai architectural practice: an image-led portfolio that helps visitors explore completed work on desktop and mobile.</p>
-            <a href="work-navana">Explore the architecture portfolio →</a>
+            <p><a href="work-navana">Explore the architecture portfolio &rarr;</a></p>
           </article>
         </div>
-        <p><a href="work">View all completed projects →</a></p>
+        <p><a href="work">View all completed projects &rarr;</a></p>
       </section>
 
-      <section class="web-section" aria-labelledby="process-title">
-        <p class="eyebrow">04 / From brief to launch</p>
+      <section class="svc-section" aria-labelledby="process-title">
+        <p class="eyebrow">11 / From brief to launch</p>
         <h2 id="process-title">Know what happens next.</h2>
-        <ol class="web-steps">
+        <ol class="svc-steps">
           <li><h3>Share your brief</h3><p>Tell us what your business does, the pages or features you need, and your target launch date. Share your existing website if you have one.</p></li>
           <li><h3>Agree the scope</h3><p>Review the fixed quote, page list, content responsibilities and delivery milestones with Sanjeev before work begins.</p></li>
           <li><h3>Review the build</h3><p>Provide your logo, service information, images and feedback as agreed. Content and approval delays affect the launch schedule.</p></li>
           <li><h3>Launch and take ownership</h3><p>After testing and approval, the website goes live. The agreed source code, credentials and handover materials follow final settlement.</p></li>
         </ol>
+        <div class="svc-callout">
+          The 10-day commitment applies to the defined business-website scope when content and approvals are ready. E-commerce, interactive 3D builds and custom applications receive a separately agreed delivery plan.
+        </div>
       </section>
 
-      <section class="web-section web-faq" aria-labelledby="faq-title">
-        <p class="eyebrow">05 / Before you book</p>
+      <section class="svc-section" aria-labelledby="costs-title">
+        <p class="eyebrow">12 / Ongoing and third-party costs</p>
+        <h2 id="costs-title">Clarify what recurs before you start.</h2>
+        <p>The package price is a one-time project cost. These continue afterwards and are billed by other providers:</p>
+        <ul class="svc-list">
+          <li>Domain registration and annual renewal.</li>
+          <li>Web hosting or cloud provider charges.</li>
+          <li>Business email accounts.</li>
+          <li>Paid plugins, themes, fonts and licensed assets.</li>
+          <li>Payment gateway transaction fees, if you take payments.</li>
+          <li>Maintenance and support, if you want ongoing changes covered.</li>
+        </ul>
+        <p>Ask for every one of these to be itemised in your quote before you approve it. A package price on its own does not tell you what the website costs to run.</p>
+      </section>
+
+
+      <section class="svc-section svc-faq" aria-labelledby="faq-title">
+        <p class="eyebrow">Frequently asked questions</p>
         <h2 id="faq-title">Website development questions.</h2>
         <details><summary>Do you work with businesses outside Navi Mumbai?</summary><p>Yes. Netqorix is based in Nerul, Navi Mumbai and serves businesses across Mumbai, India and internationally. Share your location and requirements when you enquire.</p></details>
         <details><summary>Can my website really launch in 10 days?</summary><p>The 10-day commitment applies to the defined business-website scope when content and approvals are ready. E-commerce, custom applications and additional requirements need a separately agreed delivery plan.</p></details>
@@ -538,16 +753,33 @@
         <details><summary>Will the website rank first on Google?</summary><p>No search position is guaranteed. The Growth package includes SEO setup and analytics. Your visibility also depends on the searches you target, competition and the usefulness of your content. We confirm the specific SEO deliverables in your scope.</p></details>
         <details><summary>Who owns the website after launch?</summary><p>You own the approved source code and intellectual property after final settlement. You can maintain the site yourself, use another provider or discuss optional support with Netqorix.</p></details>
         <details><summary>Are hosting and maintenance included?</summary><p>Inclusions and recurring charges depend on the agreed setup. Ask for domain, hosting, email, paid tools and maintenance to be itemised before approving your quote. Optional ongoing support is available separately.</p></details>
+        <details><summary>What is the difference between a website and a web application?</summary><p>A website presents information: visitors read it and then contact you. A web application lets people do something — log in, book, pay, track or manage records. If you need the second, see mobile and web app development, which is priced differently because it is software rather than pages.</p></details>
+        <details><summary>Do I need an interactive 3D website?</summary><p>Usually not. Interactive 3D earns its cost for products where configuration or internal detail drives the sale. For a standard services business, a well-built Growth site will generate more enquiries for far less money, and that is the honest recommendation.</p></details>
+        <details><summary>Can I update the website myself after launch?</summary><p>With the Growth package, yes — it includes a CMS, which is an admin screen where you change text, images and prices without a developer. The Starter package does not include a CMS; small changes can be handled through a maintenance plan or quoted individually.</p></details>
       </section>
 
-      <section class="web-section web-contact" aria-labelledby="brief-title">
+      <section class="svc-section" aria-labelledby="related-title">
+        <p class="eyebrow">13 / Related services</p>
+        <h2 id="related-title">What usually goes with a website project.</h2>
+        <ul class="svc-related">
+          <li><strong><a href="services-app">Mobile &amp; Web App Development</a></strong><span>When visitors need to log in and do something, not just read.</span></li>
+          <li><strong><a href="services-seo">SEO &amp; Local Search</a></strong><span>Getting found after launch, including the full Day 1–180 roadmap.</span></li>
+          <li><strong><a href="services-maintenance">Maintenance &amp; Support</a></strong><span>Keeping the site secure, updated and edited after handover.</span></li>
+          <li><strong><a href="services-addons">Design &amp; Integrations</a></strong><span>UI/UX design, logo, payment gateways and admin dashboards.</span></li>
+          <li><strong><a href="services-3d">3D Modeling &amp; Visualization</a></strong><span>The models and renders an interactive 3D website needs.</span></li>
+          <li><strong><a href="pricing">Pricing</a></strong><span>Every Netqorix rate in one comparison table.</span></li>
+        </ul>
+      </section>
+
+      <section class="svc-section svc-contact" aria-labelledby="cta-title">
         <p class="eyebrow">Your next step</p>
-        <h2 id="brief-title">Tell Sanjeev what your website needs to do.</h2>
+        <h2 id="cta-title">Tell Sanjeev what your website needs to do.</h2>
         <p>Send your business name, required pages or features, and preferred launch date. Receive a fixed quote after scope review.</p>
-        <div class="web-actions">
+        <div class="svc-actions">
           <a href="https://wa.me/918369532924?text=Hi%20Netqorix%2C%20I%20would%20like%20a%20fixed%20quote%20for%20a%20business%20website.%20My%20business%3A%20%0APages%20or%20features%20needed%3A%20%0ATarget%20launch%20date%3A%20" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Request a fixed website quote</a>
           <a href="contact" class="btn btn-secondary btn-lg">Use the contact form</a>
         </div>
+        <p class="svc-note">Compare every Netqorix rate on the <a href="pricing">pricing page</a>.</p>
       </section>
     </div>
   </main>
@@ -573,12 +805,15 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul class="footer-links">
-            <li><a href="services-web">Web Development</a></li>
-            <li><a href="services-app">Mobile App Build</a></li>
-            <li><a href="services-cloud">Cloud Setup &amp; DevOps</a></li>
+            <li><a href="services-web">Website Development</a></li>
+            <li><a href="services-app">Mobile &amp; Web Apps</a></li>
+            <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+            <li><a href="services-cloud">Cloud &amp; Infrastructure</a></li>
+            <li><a href="services-addons">Design &amp; Integrations</a></li>
+            <li><a href="services-automation">Automation Services</a></li>
+            <li><a href="services-3d">3D Modeling</a></li>
             <li><a href="services-seo">SEO &amp; Local Search</a></li>
-            <li><a href="services-maintenance">Maintenance &amp; AMC</a></li>
-            <li><a href="services-addons">Add-On Services</a></li>
+            <li><a href="services">All services</a></li>
           </ul>
         </div>
 

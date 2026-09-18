@@ -19,9 +19,39 @@ The site presents Netqorix's fixed-scope delivery model, public pricing, service
 - JSON-LD structured data
 - Vercel hosting and clean URL redirects
 
+## Site structure
+
+The site is multi-page. Each main service has its own URL with a full explanation,
+packages, deliverables and exclusions, hypothetical examples, process, pricing,
+ongoing costs, FAQs and a WhatsApp CTA:
+
+| Service | URL |
+| --- | --- |
+| Website Development & Deployment | `/services-web` |
+| Mobile & Web App Development | `/services-app` |
+| Maintenance & Support | `/services-maintenance` |
+| Cloud Services & Infrastructure | `/services-cloud` |
+| Design & Integrations | `/services-addons` |
+| Automation Services | `/services-automation` |
+| 3D Modeling & Visualization | `/services-3d` |
+| SEO & Local Search | `/services-seo` |
+
+The homepage introduces the services with short summaries, the dedicated pages
+explain them in full, and `/pricing` keeps every rate in one comparison page with
+"View service details" links out. Full service descriptions are not duplicated
+across the three.
+
+The complete Day 1–180 SEO roadmap lives on `/services-seo`; `/pricing` carries
+only a short phase-summary preview that links to it.
+
+A "Services" dropdown in the main navigation links to every service page on
+desktop and mobile. It is keyboard operable: the chevron button toggles
+`aria-expanded`, Escape closes the menu and returns focus, and the current page
+is marked with `aria-current="page"`.
+
 ## Main features
 
-- Responsive desktop and mobile navigation
+- Responsive desktop and mobile navigation with an accessible Services dropdown
 - Sticky header and mobile contact CTA
 - English, Hindi, Spanish, German, Italian, Japanese, Korean and Simplified Chinese localization
 - INR, EUR, JPY, KRW and CNY price display
@@ -48,7 +78,15 @@ Pricing is maintained consistently on the homepage, pricing page and relevant se
 .
 ├── index.html                 # Homepage
 ├── about.html                 # Company and founder profile
-├── services*.html             # Services and service-detail pages
+├── services.html              # Services overview / hub
+├── services-web.html          # Website development & deployment
+├── services-app.html          # Mobile & web app development
+├── services-maintenance.html  # Maintenance & support
+├── services-cloud.html        # Cloud services & infrastructure
+├── services-addons.html       # Design & integrations
+├── services-automation.html   # Automation services
+├── services-3d.html           # 3D modeling & visualization
+├── services-seo.html          # SEO & local search (Day 1–180 roadmap)
 ├── pricing.html               # Packages, estimator and pricing FAQs
 ├── work.html                  # Client work index
 ├── work-*.html                # Individual case studies

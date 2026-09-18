@@ -304,7 +304,21 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="services" class="nav-link">Services</a></li>
+          <li class="nav-item-has-submenu">
+            <a href="services" class="nav-link">Services</a>
+            <button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="Show the services menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <ul class="nav-submenu" aria-label="Services">
+              <li class="nav-submenu-overview"><a href="services">All services</a></li>
+              <li><a href="services-web">Website Development &amp; Deployment</a></li>
+              <li><a href="services-app">Mobile &amp; Web App Development</a></li>
+              <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+              <li><a href="services-cloud">Cloud Services &amp; Infrastructure</a></li>
+              <li><a href="services-addons">Design &amp; Integrations</a></li>
+              <li><a href="services-automation">Automation Services</a></li>
+              <li><a href="services-3d">3D Modeling &amp; Visualization</a></li>
+              <li><a href="services-seo">SEO &amp; Local Search</a></li>
+            </ul>
+          </li>
           <li><a href="pricing" class="nav-link is-active">Pricing</a></li>
           <li><a href="work" class="nav-link">Work</a></li>
           <li><a href="about" class="nav-link">About</a></li>
@@ -454,6 +468,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">Website types, package scope, interactive 3D options, deployment, deliverables and FAQs. <a href="services-web">View Website Development &amp; Deployment details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Native-quality performance, mobile-first responsiveness, and clean handover documentation included in every tier. Starting estimates. Final quote depends on scope, features, and timeline.
         </div>
@@ -501,6 +516,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">How to tell whether you need a website, a web application or a mobile app. <a href="services-app">View Mobile &amp; Web App Development details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Cross-platform is default and most cost-effective. Native quoted separately only when required. Starting estimates. Final quote depends on scope, features, and timeline.
         </div>
@@ -543,6 +559,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">How included hours work, and how maintenance differs from new feature development. <a href="services-maintenance">View Maintenance &amp; Support details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: AMC recommended after any project launch — protects your investment and keeps the product secure. Starting estimates. Final quote depends on scope, features, and timeline.
         </div>
@@ -590,6 +607,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">Cloud explained in everyday terms, plus how provider charges are billed separately. <a href="services-cloud">View Cloud Services &amp; Infrastructure details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Two models — fixed monthly management fees (provider usage billed separately) or pass-through provider cost + margin. Supported providers: AWS, Google Cloud, Azure, DigitalOcean, Vercel, Netlify. Starting estimates. Final quote depends on scope, features, and timeline.
         </div>
@@ -597,7 +615,7 @@
 
       <div class="table-block" id="table-5">
         <div class="table-block-header">
-          <h3>5. Add-On Services</h3>
+          <h3>5. Design &amp; Integrations</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Design &amp; Integrations</span>
         </div>
         <table class="pricing-table">
@@ -657,6 +675,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">What each design and integration item actually delivers, including rush delivery. <a href="services-addons">View Design &amp; Integrations details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Add-ons can be integrated into primary project proposals or contracted separately. Starting estimates. Final quote depends on scope.
         </div>
@@ -709,6 +728,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">Which automation fits which problem, and when automating is not worth it. <a href="services-automation">View Automation Services details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Third-party tool subscriptions (Zapier, OpenAI/LLM API, WhatsApp Business API, CRM) billed separately at cost or paid directly by client.
         </div>
@@ -716,7 +736,7 @@
 
       <div class="table-block" id="table-7">
         <div class="table-block-header">
-          <h3>7. 3D Modeling Services</h3>
+          <h3>7. 3D Modeling &amp; Visualization</h3>
           <span class="eyebrow" style="color: var(--color-accent); margin-bottom: 0;">Visual Assets &amp; Rigging</span>
         </div>
         <table class="pricing-table">
@@ -756,6 +776,7 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">How 3D deliverables differ from interactive 3D website development. <a href="services-3d">View 3D Modeling &amp; Visualization details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: Priced per model. Final quote depends on polygon detail, texture resolution, and whether the asset is real-time (web/game) or high-poly (render). Source files (.blend/.fbx/.glb) included on delivery.
         </div>
@@ -813,8 +834,67 @@
             </tr>
           </tbody>
         </table>
+        <p class="pricing-service-link">Includes the complete Day 1–180 SEO roadmap, measurement and client responsibilities. <a href="services-seo">View SEO &amp; Local Search details &rarr;</a></p>
         <div class="table-footnote">
           Footnote: SEO is a 3–6 month game — rankings compound over time, not overnight. Monthly retainers deliver the real results; one-time setup alone won't sustain rankings.
+        </div>
+      </div>
+
+      <div class="table-block" id="seo-roadmap-preview">
+        <div class="table-block-header">
+          <h3>SEO roadmap — Day 1 to Day 180</h3>
+        </div>
+        <p class="pricing-model-note">SEO is cumulative work, so the sequence matters as much as the rate. This is the short version; the full roadmap, with every deliverable, how each phase is measured and what Netqorix needs from you, is on the <a href="services-seo#roadmap-title">SEO and local search page</a>.</p>
+        <table class="pricing-table">
+          <caption>SEO roadmap phase summary</caption>
+          <thead>
+            <tr>
+              <th scope="col">Phase</th>
+              <th scope="col">Focus</th>
+              <th scope="col" style="text-align: right;">Billed under</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier-name">Day 1 – 14</td>
+              <td class="tier-desc">Access, technical and on-page audit, keyword and competitor gap analysis, baseline recorded.</td>
+              <td class="tier-price">SEO Audit</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 15 – 30</td>
+              <td class="tier-desc">Indexing fixes, titles and meta, schema, sitemap, Core Web Vitals, GA4 and Search Console.</td>
+              <td class="tier-price">On-Page Setup</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 31 – 60</td>
+              <td class="tier-desc">Google Business Profile, citations, review workflow and the first published articles.</td>
+              <td class="tier-price">Monthly plan + Local SEO</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 61 – 90</td>
+              <td class="tier-desc">Publishing rhythm, internal linking, on-page refinement and the first 90-day review.</td>
+              <td class="tier-price">Monthly plan</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 91 – 120</td>
+              <td class="tier-desc">Expansion into new keyword groups, new pages and content updates.</td>
+              <td class="tier-price">Monthly plan</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 121 – 150</td>
+              <td class="tier-desc">Content depth, conversion review of organic landing pages, reviews and link acquisition.</td>
+              <td class="tier-price">Monthly plan</td>
+            </tr>
+            <tr>
+              <td class="tier-name">Day 151 – 180</td>
+              <td class="tier-desc">Full 180-day report against baseline, what worked, what did not, and the next-cycle plan.</td>
+              <td class="tier-price">Monthly plan</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="pricing-service-link">Day 1 is the day access and the audit begin, not the day you enquire. <a href="services-seo#roadmap-title">Read the full Day 1–180 roadmap &rarr;</a></p>
+        <div class="table-footnote">
+          Footnote: No ranking position is guaranteed. What is committed to is the work carried out and an honest monthly report measured against your Day 1 baseline.
         </div>
       </div>
 
@@ -910,12 +990,15 @@
         <div class="footer-col">
           <h4>Services</h4>
           <ul class="footer-links">
-            <li><a href="services-web">Web Development</a></li>
-            <li><a href="services-app">Mobile App Build</a></li>
-            <li><a href="services-cloud">Cloud Setup &amp; DevOps</a></li>
+            <li><a href="services-web">Website Development</a></li>
+            <li><a href="services-app">Mobile &amp; Web Apps</a></li>
+            <li><a href="services-maintenance">Maintenance &amp; Support</a></li>
+            <li><a href="services-cloud">Cloud &amp; Infrastructure</a></li>
+            <li><a href="services-addons">Design &amp; Integrations</a></li>
+            <li><a href="services-automation">Automation Services</a></li>
+            <li><a href="services-3d">3D Modeling</a></li>
             <li><a href="services-seo">SEO &amp; Local Search</a></li>
-            <li><a href="services-maintenance">Maintenance &amp; AMC</a></li>
-            <li><a href="services-addons">Add-On Services</a></li>
+            <li><a href="services">All services</a></li>
           </ul>
         </div>
 
