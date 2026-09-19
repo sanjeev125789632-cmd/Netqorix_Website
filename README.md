@@ -104,6 +104,8 @@ Pricing is maintained consistently on the homepage, pricing page and relevant se
 ├── assets/                    # Images and client assets
 ├── DESIGN-SYSTEM.md           # Editorial design-system documentation
 ├── llms.txt                   # Plain-text site summary for LLM crawlers
+├── tools/
+│   └── check-llms-txt.py      # Fails if llms.txt disagrees with the pages
 ├── robots.txt                 # Search crawler directives
 ├── sitemap.xml                # Public URL inventory
 └── vercel.json                # Clean URLs and canonical-host redirects
@@ -190,6 +192,23 @@ Every figure in `llms.txt` is copied from a live page. Keep it that way: it must
 second, competing source of pricing. It is deliberately not listed in `sitemap.xml`, which is for
 indexable HTML pages.
 
+`tools/check-llms-txt.py` enforces that. It needs no arguments and no dependencies beyond the
+standard library:
+
+```bash
+python3 tools/check-llms-txt.py            # exits 0 when they agree, 1 when they do not
+python3 tools/check-llms-txt.py --verbose  # also lists each check that passed
+```
+
+It verifies that every link resolves, equals that page's own canonical URL and is in `sitemap.xml`;
+that no indexable page is missing from `llms.txt`; and that every rupee range, standalone amount and
+percentage quoted for a page actually appears on it. Nothing is hardcoded to a particular price or
+page, so adding a service needs no change to the script.
+
+One limit worth knowing: a standalone amount is checked only for presence somewhere on the page, so
+if the same figure appears twice there and one instance is edited, that edit can pass. Ranges are
+matched as a pair and do not have this weakness.
+
 ## Maintenance checklist
 
 Before publishing a change:
@@ -200,9 +219,9 @@ Before publishing a change:
 4. Test keyboard navigation and focus indicators.
 5. Check approximately 1440 px, 768 px and 390 px viewport widths.
 6. Validate canonical links, JSON-LD, `robots.txt` and `sitemap.xml`.
-7. If any price, package scope or contact detail changed, update `llms.txt` to match. It restates
-   figures that live on the service pages, so it silently goes stale otherwise. Check that every
-   link in it still resolves and still matches that page's canonical URL.
+7. Run `python3 tools/check-llms-txt.py`. It re-derives every figure and link in `llms.txt` from
+   the pages and exits non-zero when the two disagree. Update `llms.txt` to match the pages, never
+   the other way round.
 8. Review the final diff for accidental content, pricing, contact or URL changes.
 
 ## Brand and contact
