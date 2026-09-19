@@ -103,6 +103,7 @@ Pricing is maintained consistently on the homepage, pricing page and relevant se
 │   └── chatbot.js             # Chatbot behavior
 ├── assets/                    # Images and client assets
 ├── DESIGN-SYSTEM.md           # Editorial design-system documentation
+├── llms.txt                   # Plain-text site summary for LLM crawlers
 ├── robots.txt                 # Search crawler directives
 ├── sitemap.xml                # Public URL inventory
 └── vercel.json                # Clean URLs and canonical-host redirects
@@ -163,8 +164,31 @@ When adding or removing a public page:
 1. Add accurate title, description, canonical and social metadata.
 2. Add only structured data supported by visible page content.
 3. Update `sitemap.xml`.
-4. Verify internal links and Vercel clean-URL behavior.
-5. Do not add review or aggregate-rating schema without genuine published reviews.
+4. Add or remove the matching entry in `llms.txt`.
+5. Verify internal links and Vercel clean-URL behavior.
+6. Do not add review or aggregate-rating schema without genuine published reviews.
+
+## llms.txt
+
+`llms.txt` is a plain-text summary of the site for LLM crawlers, in the
+[llmstxt.org](https://llmstxt.org/) format: a description of the business, then sectioned lists of
+pages with short notes. The `## Optional` heading is meaningful — it marks content a crawler may
+skip when it needs a shorter context.
+
+Treat it as a convenience, not a ranking or citation lever. No major AI provider has confirmed
+consuming it, and Google has stated Search ignores it. What actually decides whether these pages can
+be cited is the ordinary eligibility floor, which the site already meets:
+
+- `robots.txt` allows every crawler, including `GPTBot`, `ClaudeBot`, `PerplexityBot` and
+  `Google-Extended`. Blocking `Google-Extended` would not affect Search ranking but would stop
+  Gemini grounding.
+- No page carries `noindex`, `nosnippet`, `max-snippet` or `data-nosnippet`. Any of those removes a
+  page from AI surfaces entirely and is the most common silent cause of never being cited.
+- Content ships in the raw HTML rather than being rendered client-side.
+
+Every figure in `llms.txt` is copied from a live page. Keep it that way: it must never become a
+second, competing source of pricing. It is deliberately not listed in `sitemap.xml`, which is for
+indexable HTML pages.
 
 ## Maintenance checklist
 
@@ -176,7 +200,10 @@ Before publishing a change:
 4. Test keyboard navigation and focus indicators.
 5. Check approximately 1440 px, 768 px and 390 px viewport widths.
 6. Validate canonical links, JSON-LD, `robots.txt` and `sitemap.xml`.
-7. Review the final diff for accidental content, pricing, contact or URL changes.
+7. If any price, package scope or contact detail changed, update `llms.txt` to match. It restates
+   figures that live on the service pages, so it silently goes stale otherwise. Check that every
+   link in it still resolves and still matches that page's canonical URL.
+8. Review the final diff for accidental content, pricing, contact or URL changes.
 
 ## Brand and contact
 
