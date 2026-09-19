@@ -1,0 +1,44 @@
+# Netqorix
+
+> Founder-led web, application, cloud, automation and SEO studio based in Nerul, Navi Mumbai, India, serving businesses across Mumbai, India and internationally. Netqorix publishes its prices, works to a fixed scope agreed before work begins, and hands over source code and intellectual property after final settlement.
+
+Founder: Sanjeev Yadav. Contact: netqorix@gmail.com, +91 83695 32924 (phone and WhatsApp). Hours: Monday to Friday, 10:00–19:00 IST.
+
+Published package prices: Starter ₹15,000, Growth ₹45,000, Custom from ₹1,20,000+. The 10-day launch commitment applies to the defined business-website scope when content and approvals are ready; larger builds receive a separately agreed delivery plan. Every rate on the site is a starting estimate, with the final quote confirmed after scope review. Hosting, domain, app store and third-party provider charges are billed by those providers and are itemised separately.
+
+## Services
+
+- [Services overview](https://www.netqorix.com/services): Index of all eight service lines, with rate bands and links to each dedicated page.
+- [Website development and deployment](https://www.netqorix.com/services-web): Business websites, CMS builds, e-commerce, portals, interactive 3D websites built with Three.js or WebGL, and deployment setup. Starter ₹15,000, Growth ₹45,000, Custom from ₹1,20,000+; deployment setup ₹5,000–₹15,000.
+- [Mobile and web app development](https://www.netqorix.com/services-app): Android, iOS and web applications, cross-platform and native. Simple apps ₹80,000–₹2,00,000, mid-complexity ₹3,00,000–₹8,00,000, enterprise ₹10,00,000+; app store deployment ₹10,000–₹25,000. Includes guidance on whether a website, a web application or a mobile app is the right choice.
+- [Maintenance and support](https://www.netqorix.com/services-maintenance): Annual maintenance at 15–20% of project cost per year, monthly retainers at ₹8,000 for up to 10 hours or ₹18,000 for up to 25 hours, hosting management ₹3,000–₹6,000 a month. Explains how maintenance differs from new feature development.
+- [Cloud services and infrastructure](https://www.netqorix.com/services-cloud): Setup ₹15,000–₹60,000 on AWS, Google Cloud, Azure or DigitalOcean; managed plans ₹4,000, ₹10,000 or ₹25,000+ a month. Provider usage is billed at direct cost plus a 15–20% management margin when Netqorix holds the account.
+- [Design and integrations](https://www.netqorix.com/services-addons): UI/UX design ₹20,000–₹80,000, logo and brand identity ₹8,000–₹25,000, business cards from ₹800, payment gateways ₹10,000–₹25,000, API integrations ₹8,000–₹20,000 each, admin dashboards ₹25,000–₹90,000. Rush delivery is an optional surcharge of 25–40%.
+- [Automation services](https://www.netqorix.com/services-automation): Workflow automation ₹5,000–₹20,000 per workflow, rule-based chatbots ₹15,000–₹40,000, AI assistants ₹40,000–₹1,50,000, marketing automation ₹12,000–₹45,000, custom scripts ₹8,000–₹35,000, ongoing maintenance ₹3,000–₹8,000 a month.
+- [3D modeling and visualization](https://www.netqorix.com/services-3d): Simple models ₹3,000–₹12,000, detailed models with PBR textures ₹15,000–₹45,000, character models ₹40,000–₹1,20,000, rigging and animation ₹10,000–₹50,000, product renders ₹2,500–₹10,000. Distinguishes asset deliverables from interactive 3D website development.
+- [SEO and local search](https://www.netqorix.com/services-seo): Audits ₹8,000–₹20,000, on-page setup ₹12,000–₹35,000, monthly plans ₹10,000 or ₹22,000, Google Business Profile setup ₹3,000–₹8,000, local SEO ₹8,000 a month, articles ₹1,500–₹4,000 each. Includes the complete Day 1–180 SEO roadmap with phase deliverables, how each phase is measured, and what the client is responsible for. No ranking position is guaranteed.
+
+## Pricing
+
+- [Pricing](https://www.netqorix.com/pricing): Every service rate in one comparison page, with engagement terms. Payment is 50% to start and 50% on delivery; two rounds of revisions are included per milestone; out-of-scope work is ₹800–₹1,500 per hour; source code and IP transfer to the client on final settlement. GST and local taxes are extra where applicable.
+
+## Company
+
+- [About](https://www.netqorix.com/about): Company and founder background. Sanjeev Yadav is a Mumbai-based business analyst whose experience spans Accenture, Deloitte, Nielsen and Kaizen.
+- [Contact](https://www.netqorix.com/contact): Enquiry form, WhatsApp and direct contact details.
+
+## Client work
+
+- [Work](https://www.netqorix.com/work): Index of completed client projects, each linking to the live website.
+- [Alok S Kumar & Company](https://www.netqorix.com/work-alok-s-kumar): Chartered accountancy practice in Mumbai; service pages and an enquiry journey for a professional firm.
+- [Bharat Infra Company](https://www.netqorix.com/work-bharat-infra): Solar infrastructure; project pages, quote requests and Google Business Profile setup.
+- [NAVANA](https://www.netqorix.com/work-navana): Architectural practice; image-led portfolio, page load reduced from 4.2s to 0.8s.
+- [S S EXIM](https://www.netqorix.com/work-ss-exim): Electrical, IoT and BMS trade; technical catalogue, cloud deployment and SSL automation, delivered in 9 days.
+- [Bhairava Enterprise](https://www.netqorix.com/work-bhairava-enterprise): Industrial engineering; hydraulics, electrical, pipeline and trading capabilities organised into a project-enquiry journey.
+
+## Optional
+
+- [Insights](https://www.netqorix.com/blog): Technical articles for founders and growing businesses.
+- [Why page speed beats heavy trends for B2B conversions](https://www.netqorix.com/blog-post-1): Why fast-loading B2B websites convert better than animation-heavy designs.
+- [Choosing between React Native and native builds in 2026](https://www.netqorix.com/blog-post-2): React Native and Flutter compared with native iOS and Android on cost, delivery speed and long-term maintenance.
+- [Local SEO strategies for engineering and B2B services](https://www.netqorix.com/blog-post-3): Google Business Profile setup, local schema markup and project citations for engineering and B2B firms.
