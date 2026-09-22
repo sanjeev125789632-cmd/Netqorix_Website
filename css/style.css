@@ -3546,6 +3546,35 @@ html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency
   height: 16px;
 }
 
+.offer-bar[hidden] { display: none; }
+
+.offer-bar__close {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #b9bcc4;
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.offer-bar__close:hover,
+.offer-bar__close:focus-visible {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.offer-bar__close svg {
+  width: 18px;
+  height: 18px;
+}
+
 @keyframes offer-bar-drop {
   from { transform: translateY(-100%); }
   to { transform: translateY(0); }
@@ -3561,7 +3590,8 @@ html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency
   50% { background-color: #fff; transform: scale(1.07); }
 }
 
-@media (max-width: 1040px) {
+/* Below this the teaser line no longer fits beside the CTA without wrapping. */
+@media (max-width: 1240px) {
   .offer-bar__text span { display: none; }
 }
 
@@ -3572,6 +3602,8 @@ html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency
     gap: .5rem .6rem;
     padding: .6rem 0;
   }
+  .offer-bar__badge { order: 1; }
+  .offer-bar__close { order: 1; width: 44px; height: 44px; margin-left: auto; }
   .offer-bar__text { flex: 1 1 100%; order: 2; font-size: .8rem; }
   .offer-bar__cta { order: 3; width: 100%; justify-content: center; min-height: 44px; }
 }
