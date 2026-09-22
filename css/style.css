@@ -3452,3 +3452,132 @@ html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency
 /* Keep the CTA clear of the sticky mobile contact bar when focused by keyboard. */
 .support-offer__cta,
 .support-offer-compact__cta { scroll-margin-bottom: 96px; }
+
+/* =========================================================
+   Homepage top offer bar. Flashes on load to draw attention,
+   then settles. The flash alternates the bar background between
+   ink and brand blue so the copy stays white and readable in
+   both states. Rate is held below 1Hz and capped at 3 cycles:
+   WCAG 2.3.1 forbids more than three flashes in any one second.
+   ========================================================= */
+
+.offer-bar {
+  position: relative;
+  z-index: 1001;
+  background: var(--ee-ink, #111318);
+  color: #fff;
+  border-bottom: 1px solid var(--ee-blue, #304ffe);
+  animation:
+    offer-bar-drop .5s cubic-bezier(.2, .7, .2, 1) both,
+    offer-bar-flash 1.15s ease-in-out .45s 3 both;
+}
+
+.offer-bar__inner {
+  width: min(100% - 2rem, 1240px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(.65rem, 2vw, 1.25rem);
+  padding: .7rem 0;
+}
+
+.offer-bar__badge {
+  flex: 0 0 auto;
+  padding: .3rem .6rem;
+  border-radius: 2px;
+  background: var(--ee-acid, #c9f35a);
+  color: var(--ee-ink, #111318);
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  animation: offer-badge-flash 1.15s ease-in-out .45s 3 both;
+}
+
+/* `p` carries its own colour, which would otherwise beat the bar's. */
+.offer-bar__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: #fff;
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.offer-bar__text strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.offer-bar__text span {
+  color: #e8eaee;
+  margin-left: .45rem;
+}
+
+.offer-bar__cta {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 40px;
+  padding: .5rem .9rem;
+  border: 1px solid var(--ee-acid, #c9f35a);
+  border-radius: 2px;
+  background: var(--ee-acid, #c9f35a);
+  color: var(--ee-ink, #111318);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 650;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.offer-bar__cta:hover,
+.offer-bar__cta:focus-visible {
+  background: #fff;
+  color: var(--ee-ink, #111318);
+}
+
+.offer-bar__cta svg {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+@keyframes offer-bar-drop {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes offer-bar-flash {
+  0%, 100% { background-color: var(--ee-ink, #111318); }
+  50% { background-color: var(--ee-blue, #304ffe); }
+}
+
+@keyframes offer-badge-flash {
+  0%, 100% { background-color: var(--ee-acid, #c9f35a); transform: scale(1); }
+  50% { background-color: #fff; transform: scale(1.07); }
+}
+
+@media (max-width: 1040px) {
+  .offer-bar__text span { display: none; }
+}
+
+@media (max-width: 719px) {
+  .offer-bar__inner {
+    width: min(100% - 1.5rem, 1240px);
+    flex-wrap: wrap;
+    gap: .5rem .6rem;
+    padding: .6rem 0;
+  }
+  .offer-bar__text { flex: 1 1 100%; order: 2; font-size: .8rem; }
+  .offer-bar__cta { order: 3; width: 100%; justify-content: center; min-height: 44px; }
+}
+
+/* No motion for anyone who has asked the OS not to animate. */
+@media (prefers-reduced-motion: reduce) {
+  .offer-bar,
+  .offer-bar__badge { animation: none; }
+}
