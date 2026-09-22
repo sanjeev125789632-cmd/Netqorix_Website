@@ -539,7 +539,11 @@ p:last-child {
   font-size: 1.0625rem;
 }
 
-.btn svg,
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
 
 .pulse-dot {
   width: 6px;
@@ -3422,14 +3426,11 @@ html[data-preferred-currency]:not([data-preferred-currency="INR"]):not(.currency
   text-align: center;
 }
 
-/* Reset the shared `.btn svg` dot styling for this inline WhatsApp mark. */
+/* Slightly larger than the shared `.btn svg` size, to match the CTA weight. */
 .support-offer-compact__cta svg {
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
-  background-color: transparent;
-  border-radius: 0;
-  animation: none;
 }
 
 .support-offer-compact__terms {
